@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=3 uid="uid://nrn2rwrtw2to"]
+
+[ext_resource type="Script" path="res://scenes/main-menu/main-menu.gd" id="1_28gkh"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jn407"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_woax6"]
+sky_material = SubResource("ProceduralSkyMaterial_jn407")
+
+[sub_resource type="Environment" id="Environment_w3aak"]
+background_mode = 2
+sky = SubResource("Sky_woax6")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="MainMenu" type="Node3D"]
+script = ExtResource("1_28gkh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w3aak")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+fov = 107.5
+
+[node name="MarginContainer" type="MarginContainer" parent="Camera3D"]
+offset_right = 1280.0
+offset_bottom = 720.0
+
+[node name="Label" type="Label" parent="Camera3D/MarginContainer"]
+layout_mode = 2
+text = "My Text Label"

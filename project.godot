@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="godot-4.3-sandbox-3d"
-run/main_scene="res://scenes/client/client-scene.tscn"
+run/main_scene="res://scenes/client/client.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Globals="*res://scenes/globals.gd"
 
 [display]
 
