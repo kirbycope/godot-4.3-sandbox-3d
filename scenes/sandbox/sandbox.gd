@@ -13,7 +13,7 @@ func _ready() -> void:
 func _input(event) -> void:
 
 	# Check if the [pause] action was just _pressed_
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("start"):
 		# Toggle game paused
 		Globals.game_paused = !Globals.game_paused
 		# Toggle mouse capture

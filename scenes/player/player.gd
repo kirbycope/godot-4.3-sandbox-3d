@@ -40,12 +40,18 @@ var timer_jump:float = 0.0
 # Note: `@onready` variables are set when the scene is loaded.
 @onready var animation_player = $Visuals/AuxScene/AnimationPlayer
 @onready var camera_mount = $CameraMount
+@onready var debug_ui = $CameraMount/Camera3D/Debug
 @onready var visuals = $Visuals
 
 
 ## Called once for every event before _unhandled_input(), allowing you to consume some events.
 ## Use _input(event) if you only need to respond to discrete input events, such as detecting a single press or release of a key or button.
 func _input(event) -> void:
+
+	# [debug] button _pressed_
+	if event.is_action_pressed("debug"):
+		# Toggle "debug" visibility
+		debug_ui.visible = !debug_ui.visible
 
 	# If the game is not paused...
 	if !Globals.game_paused:
@@ -55,96 +61,87 @@ func _input(event) -> void:
 			# Rotate camera based on mouse movement
 			camera_rotate_by_mouse(event)
 
-		# [crouch] button _pressed_ (and the animation player is not locked)
-		if event.is_action_pressed("crouch") and !is_animation_locked:
-			# Check if player is flying
-			if is_flying:
-				# Pitch the player slightly downward
-				visuals.rotation.x = deg_to_rad(-6)
-			# The player is not flying
-			else:
-				# Flag the player as "crouching"
-				is_crouching = true
-		
-		# [crouch] button _released_
-		if event.is_action_released("crouch"):
-			# Check if player is flying
-			if is_flying:
-				# Reset player pitch
-				visuals.rotation.x = 0
-			# The player is not flying
-			else:
-				# Flag player as no longer "crouching"
-				is_crouching = false
-		
-		# [kick-left] button _pressed_ (while grounded and the animation player is not locked)
-		if event.is_action_pressed("left_kick") and is_on_floor() and !is_animation_locked:
-			# Flag the animation player as locked
-			is_animation_locked = true
-			# Flag the player as "kicking with their left leg"
-			is_kicking_left = true
-			# Check if the animation player is not already playing the appropriate animation
-			if animation_player.current_animation != "Kicking_Left":
-				# Play the left "kicking" animation
-				animation_player.play("Kicking_Left")
-			# Check the kick hits something
-			check_kick_collision()
-		
-		# [kick-right] button _pressed_ (while grounded and the animation player is not locked)
-		if event.is_action_pressed("right_kick") and is_on_floor() and !is_animation_locked:
-			# Flag the animation player as locked
-			is_animation_locked = true
-			# Flag the player as "kicking with their right leg"
-			is_kicking_right = true
-			# Check if the animation player is not already playing the appropriate animation
-			if animation_player.current_animation != "Kicking_Right":
-				# Play the right "kicking" animation
-				animation_player.play("Kicking_Right")
-			# Check the kick hits something
-			check_kick_collision()
-		
-		# [punch-left] button _pressed_ (while grounded and the animation player is not locked)
-		if event.is_action_pressed("left_punch") and is_on_floor() and !is_animation_locked:
-			# Flag the animation player as locked
-			is_animation_locked = true
-			# Flag the player as "punching with their left arm"
-			is_punching_left = true
-			# Check if the player is crouching
-			if is_crouching:
+		# Check if the animation player is not lock
+		if !is_animation_locked:
+
+			# [kick-left] button _pressed_ (while on a floor)
+			if event.is_action_pressed("left_kick") and is_on_floor():
+				# Flag the animation player as locked
+				is_animation_locked = true
+				# Flag the player as "kicking with their left leg"
+				is_kicking_left = true
 				# Check if the animation player is not already playing the appropriate animation
-				if animation_player.current_animation != "Punching_Low_Left":
-					# Play the left, low "punching" animation
-					animation_player.play("Punching_Low_Left")
-			# The player should be standing
-			else:
+				if animation_player.current_animation != "Kicking_Left":
+					# Play the left "kicking" animation
+					animation_player.play("Kicking_Left")
+				# Check the kick hits something
+				check_kick_collision()
+			
+			# [kick-right] button _pressed_ (while on a floor)
+			if event.is_action_pressed("right_kick") and is_on_floor():
+				# Flag the animation player as locked
+				is_animation_locked = true
+				# Flag the player as "kicking with their right leg"
+				is_kicking_right = true
 				# Check if the animation player is not already playing the appropriate animation
-				if animation_player.current_animation != "Punching_Left":
-					# Play the left "punching" animation
-					animation_player.play("Punching_Left")
-			# Check the punch hits something
-			check_punch_collision()
+				if animation_player.current_animation != "Kicking_Right":
+					# Play the right "kicking" animation
+					animation_player.play("Kicking_Right")
+				# Check the kick hits something
+				check_kick_collision()
+			
+			# [punch-left] button _pressed_ (while on a floor)
+			if event.is_action_pressed("left_punch") and is_on_floor():
+				# Flag the animation player as locked
+				is_animation_locked = true
+				# Flag the player as "punching with their left arm"
+				is_punching_left = true
+				# Check if the player is crouching
+				if is_crouching:
+					# Check if the animation player is not already playing the appropriate animation
+					if animation_player.current_animation != "Punching_Low_Left":
+						# Play the left, low "punching" animation
+						animation_player.play("Punching_Low_Left")
+				# The player should be standing
+				else:
+					# Check if the animation player is not already playing the appropriate animation
+					if animation_player.current_animation != "Punching_Left":
+						# Play the left "punching" animation
+						animation_player.play("Punching_Left")
+				# Check the punch hits something
+				check_punch_collision()
+			
+			# [punch-right] button _pressed_ (while on a floor)
+			if event.is_action_pressed("right_punch") and is_on_floor():
+				# Flag the animation player as locked
+				is_animation_locked = true
+				# Flag the player as "punching with their right arm"
+				is_punching_right = true
+				# Check if the player is crouching
+				if is_crouching:
+					# Check if the animation player is not already playing the appropriate animation
+					if animation_player.current_animation != "Punching_Low_Right":
+						# Play the right, low "punching" animation
+						animation_player.play("Punching_Low_Right")
+				# The player should be standing
+				else:
+					# Check if the animation player is not already playing the appropriate animation
+					if animation_player.current_animation != "Punching_Right":
+						# Play the right "punching" animation
+						animation_player.play("Punching_Right")
+				# Check the punch hits something
+				check_punch_collision()
 		
-		# [punch-right] button _pressed_ (while grounded and the animation player is not locked)
-		if event.is_action_pressed("right_punch") and is_on_floor() and !is_animation_locked:
-			# Flag the animation player as locked
-			is_animation_locked = true
-			# Flag the player as "punching with their right arm"
-			is_punching_right = true
-			# Check if the player is crouching
-			if is_crouching:
-				# Check if the animation player is not already playing the appropriate animation
-				if animation_player.current_animation != "Punching_Low_Right":
-					# Play the right, low "punching" animation
-					animation_player.play("Punching_Low_Right")
-			# The player should be standing
-			else:
-				# Check if the animation player is not already playing the appropriate animation
-				if animation_player.current_animation != "Punching_Right":
-					# Play the right "punching" animation
-					animation_player.play("Punching_Right")
-			# Check the punch hits something
-			check_punch_collision()
-		
+			# [sprint] button _pressed_
+			if event.is_action_pressed("sprint"):
+				# Flag the player as "sprinting"
+				is_sprinting = true
+			
+			# [sprint] button _released_
+			if event.is_action_released("sprint"):
+				# Flag the player as no longer "sprinting"
+				is_sprinting = false
+
 		# [select] button _pressed_
 		if event.is_action_pressed("select"):
 			# Check if in first-person
@@ -163,20 +160,6 @@ func _input(event) -> void:
 				# Set camera's position
 				camera_mount.get_node("Camera3D").position = Vector3(0, 0.0, 0.0)
 		
-		# [sprint] button _pressed_
-		if event.is_action_pressed("sprint"):
-			# Flag the player as "sprinting"
-			is_sprinting = true
-		
-		# [sprint] button _released_
-		if event.is_action_released("sprint"):
-			# Flag the player as no longer "sprinting"
-			is_sprinting = false
-
-		# [start] button _pressed_
-		if event.is_action_released("start"):
-			print("[start] button _pressed_")
-
 
 ## Called each physics frame with the time since the last physics frame as argument (delta, in seconds).
 ## Use _physics_process(delta) if the input needs to be checked continuously in sync with the physics engine, like for smooth movement or jump control.
@@ -191,6 +174,7 @@ func _physics_process(delta) -> void:
 		animation_player.play("Idle")
 		# Flag the animation player no longer locked
 		is_animation_locked = false
+		# Reset player state
 		is_kicking_left = false
 		is_kicking_right = false
 		is_punching_left = false
@@ -202,89 +186,8 @@ func _physics_process(delta) -> void:
 	# If the game is not paused...
 	if !Globals.game_paused:
 
-		# [jump] button _pressed_
-		if Input.is_action_pressed("jump"):
-			# Check if the player is flying
-			if is_flying:
-				# Increase the player's vertical position
-				position.y += 0.1
-
-		# Check if player is on a floor
-		if is_on_floor():
-			# Check if the falling "Idle" animation is still playing
-			if animation_player.current_animation == "Falling_Idle":
-				# Play the standing "Idle" animation
-				animation_player.play("Idle")
-				# Set jumping flag
-				is_jumping = false
-			# Check if the [jump] action is currently pressed
-			if Input.is_action_just_pressed("jump"):
-				# Set the player's vertical velocity
-				velocity.y = player_jump_velocity
-				# Reset the "double jumping" flag
-				is_double_jumping = false
-				# Check if the player is "flying"
-				if !is_flying:
-				# Set jumping flag
-					is_jumping = true
-		# The player is not on a floor
-		else:
-			# Check if the [jump] action was just pressed
-			if Input.is_action_just_pressed("jump"):
-				# Check if "double jump" is enabled and the player is not currently double-jumping
-				if enable_double_jump and !is_double_jumping:
-					# Set the player's vertical velocity
-					velocity.y = player_jump_velocity
-					# Set the "double jumping" flag
-					is_double_jumping = true
-				# Check if flying is enabled and the player is not already flying
-				if enable_flying and !is_flying:
-					# Start flying
-					flying_start()
-				# If already flying, angle the player
-				elif enable_flying and is_flying:
-					# Pitch the player slightly downward
-					visuals.rotation.x = deg_to_rad(6)
-				# Check if flying but the "jump timer" hasn't started
-				if is_flying and timer_jump == 0.0:
-					# Set the "jump timer" to the current game time
-					timer_jump = Time.get_ticks_msec()
-				# Check if flying and a timer is already running
-				elif is_flying and timer_jump > 0.0:
-					# Get the current game time
-					var time_now = Time.get_ticks_msec()
-					# Check if _this_ button press is within 200 milliseconds
-					if time_now - timer_jump < 200:
-						# Stop flying
-						flying_stop()
-					# Either way, reset the timer
-					timer_jump = Time.get_ticks_msec()
-			# Add the gravity.
-			velocity.y -= gravity * delta
-			# Check if the player is "flying"
-			if is_flying:
-				# Check if the current animation is not a flying one
-				if animation_player.current_animation not in animations_flying:
-					# Play the idle "Flying" animation
-					animation_player.play("Flying")
-				# Check if the [crouch] action is currently pressed
-				if Input.is_action_pressed("crouch"):
-					# Move down a bit
-					position.y -= 0.1
-					# End flying if collision detected (below player)
-					if $visuals/RayCast3D_BelowPlayer.is_colliding():
-						# Stop flying
-						flying_stop()
-				# Check if the [jump] action is just released
-				if Input.is_action_just_released("jump"):
-					# Reset player pitch
-					visuals.rotation.x = 0.0
-			# The player must be "falling"
-			else:
-				# Check if the current animation is not the falling one
-				if animation_player.current_animation != "Falling_Idle":
-					# Play the idle "falling" animation
-					animation_player.play("Falling_Idle")
+		# set animation and velocity based on player action and position
+		mangage_state()
 
 		# Handle [look_*] using controller
 		var look_actions = ["look_down", "look_up", "look_left", "look_right"]
@@ -296,7 +199,7 @@ func _physics_process(delta) -> void:
 				camera_rotate_by_controller(delta)
 		
 		# Handle player movement
-		update_velocity()
+		update_velocity(delta)
 		
 		# Check if the animation player is unlocked
 		if !is_animation_locked:
@@ -306,54 +209,35 @@ func _physics_process(delta) -> void:
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass # Replace with function body.
+	# Check is the Debug Panel is visible
+	if debug_ui.visible:
+		# Panel
+		$CameraMount/Camera3D/Debug/Panel/CheckBox1.button_pressed = enable_double_jump
+		$CameraMount/Camera3D/Debug/Panel/CheckBox2.button_pressed = enable_flying
+		$CameraMount/Camera3D/Debug/Panel/CheckBox3.button_pressed = enable_vibration
+		$CameraMount/Camera3D/Debug/Panel/CheckBox4.button_pressed = is_animation_locked
+		$CameraMount/Camera3D/Debug/Panel/CheckBox5.button_pressed = is_crouching
+		$CameraMount/Camera3D/Debug/Panel/CheckBox6.button_pressed = is_double_jumping
+		$CameraMount/Camera3D/Debug/Panel/CheckBox7.button_pressed = is_flying
+		$CameraMount/Camera3D/Debug/Panel/CheckBox8.button_pressed = is_jumping
+		$CameraMount/Camera3D/Debug/Panel/CheckBox9.button_pressed = is_kicking_left
+		$CameraMount/Camera3D/Debug/Panel/CheckBox10.button_pressed = is_kicking_right
+		$CameraMount/Camera3D/Debug/Panel/CheckBox11.button_pressed = is_punching_left
+		$CameraMount/Camera3D/Debug/Panel/CheckBox12.button_pressed = is_punching_right
+		$CameraMount/Camera3D/Debug/Panel/CheckBox13.button_pressed = is_sprinting
+		#$CameraMount/Camera3D/Debug/Panel/CheckBox14.button_pressed = false
+		$CameraMount/Camera3D/Debug/Panel/CheckBox15.button_pressed = Globals.game_paused
 
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
-
-## Rotate camera using the right-analog stick.
-func camera_rotate_by_controller(delta: float):
-
-	# Get the intensity of each action 
-	var look_up = Input.get_action_strength("look_up")
-	var look_down = Input.get_action_strength("look_down")
-	var look_left = Input.get_action_strength("look_left")
-	var look_right = Input.get_action_strength("look_right")
-
-	# Calculate the desired vertical rotation based on controller motion
-	var new_rotation_x = camera_mount.rotation_degrees.x + ((look_up - look_down) * look_sensitivity_controller * delta)
-	# Limit how far up/down the camera can rotate
-	new_rotation_x = clamp(new_rotation_x, -80, 90)
-	# Rotate camera up/forward and down/backward
-	camera_mount.rotation_degrees.x = new_rotation_x
-
-	# Determine the horizontal rotation
-	rotation_degrees.y = rotation_degrees.y - ((look_right - look_left) * look_sensitivity_controller * delta)
-	# Rotate the visuals opposite the camera's horizontal rotation
-	visuals.rotation_degrees.y = visuals.rotation_degrees.y + ((look_right - look_left) * look_sensitivity_controller * delta)
-
-
-## Rotate camera using the mouse motion.
-func camera_rotate_by_mouse(event: InputEvent):
-
-	# Calculate the desired vertical rotation based on mouse motion
-	var new_rotation_x = camera_mount.rotation_degrees.x - event.relative.y * look_sensitivity_mouse
-	# Limit how far up/down the camera can rotate
-	new_rotation_x = clamp(new_rotation_x, -80, 90)
-	# Rotate camera up/forward and down/backward
-	camera_mount.rotation_degrees.x = new_rotation_x
-
-	# Update the player (visuals+camera) opposite the horizontal mouse motion
-	rotate_y(deg_to_rad(-event.relative.x * look_sensitivity_mouse))
-	# Rotate the visuals opposite the camera's horizontal rotation
-	visuals.rotate_y(deg_to_rad(event.relative.x * look_sensitivity_mouse))
+	
+	# Disable the debud ui
+	debug_ui.visible = false 
 
 
 ## Check if the kick hits anything.
-func check_kick_collision():
+func check_kick_collision() -> void:
 	# Get the RayCast3D
 	var raycast = $Visuals/RayCast3D_InFrontPlayer_Low
 	# Check if the RayCast3D is collining with something
@@ -394,7 +278,7 @@ func check_kick_collision():
 
 
 ## Checks if the thrown punch hits anything.
-func check_punch_collision():
+func check_punch_collision() -> void:
 	# Get the RayCast3D
 	var raycast = $Visuals/RayCast3D_InFrontPlayer_Middle
 	# Check if the RayCast3D is collining with something
@@ -434,8 +318,46 @@ func check_punch_collision():
 			Input.start_joy_vibration(0, 1.0 , 0.0, 0.1)
 
 
+## Rotate camera using the right-analog stick.
+func camera_rotate_by_controller(delta: float) -> void:
+
+	# Get the intensity of each action 
+	var look_up = Input.get_action_strength("look_up")
+	var look_down = Input.get_action_strength("look_down")
+	var look_left = Input.get_action_strength("look_left")
+	var look_right = Input.get_action_strength("look_right")
+
+	# Calculate the desired vertical rotation based on controller motion
+	var new_rotation_x = camera_mount.rotation_degrees.x + ((look_up - look_down) * look_sensitivity_controller * delta)
+	# Limit how far up/down the camera can rotate
+	new_rotation_x = clamp(new_rotation_x, -80, 90)
+	# Rotate camera up/forward and down/backward
+	camera_mount.rotation_degrees.x = new_rotation_x
+
+	# Determine the horizontal rotation
+	rotation_degrees.y = rotation_degrees.y - ((look_right - look_left) * look_sensitivity_controller * delta)
+	# Rotate the visuals opposite the camera's horizontal rotation
+	visuals.rotation_degrees.y = visuals.rotation_degrees.y + ((look_right - look_left) * look_sensitivity_controller * delta)
+
+
+## Rotate camera using the mouse motion.
+func camera_rotate_by_mouse(event: InputEvent) -> void:
+
+	# Calculate the desired vertical rotation based on mouse motion
+	var new_rotation_x = camera_mount.rotation_degrees.x - event.relative.y * look_sensitivity_mouse
+	# Limit how far up/down the camera can rotate
+	new_rotation_x = clamp(new_rotation_x, -80, 90)
+	# Rotate camera up/forward and down/backward
+	camera_mount.rotation_degrees.x = new_rotation_x
+
+	# Update the player (visuals+camera) opposite the horizontal mouse motion
+	rotate_y(deg_to_rad(-event.relative.x * look_sensitivity_mouse))
+	# Rotate the visuals opposite the camera's horizontal rotation
+	visuals.rotate_y(deg_to_rad(event.relative.x * look_sensitivity_mouse))
+
+
 ## Start the player flying.
-func flying_start():
+func flying_start() -> void:
 	gravity = 0.0
 	motion_mode = MOTION_MODE_FLOATING
 	position.y += 0.1
@@ -444,7 +366,7 @@ func flying_start():
 
 
 ## Stop the player flying.
-func flying_stop():
+func flying_stop() -> void:
 	gravity = 9.8
 	motion_mode = MOTION_MODE_GROUNDED
 	velocity.y -= gravity
@@ -452,8 +374,117 @@ func flying_stop():
 	is_flying = false
 
 
+## Manage the player's state; setting flags and playing animations.
+func mangage_state() -> void:
+
+	# Check if the player is flying
+	if is_flying:
+
+		# [crouch] button just _pressed_
+		if Input.is_action_just_pressed("crouch"):
+			# Pitch the player slightly downward
+			visuals.rotation.x = deg_to_rad(-6)
+		
+		# [crouch] button currently _pressed_
+		if Input.is_action_pressed("crouch"):
+			# Decrease the player's vertical position
+			position.y -= 0.1
+			# End flying if collision detected below the player
+			if $Visuals/RayCast3D_BelowPlayer.is_colliding():
+				# Stop flying
+				flying_stop()
+		
+		# [crouch] button just _released_
+		if Input.is_action_just_released("crouch"):
+			# Reset the player's pitch
+			visuals.rotation.x = 0
+
+		# [jump] button just _pressed_
+		if Input.is_action_just_pressed("jump"):
+			# Pitch the player slightly downward
+			visuals.rotation.x = deg_to_rad(6)
+
+		# [jump] button currently _pressed_
+		if Input.is_action_pressed("jump"):
+			# Increase the player's vertical position
+			position.y += 0.1
+
+		# [jump] button just _released_
+		if Input.is_action_just_released("jump"):
+			# Reset the player's pitch
+			visuals.rotation.x = 0
+
+		# Check if the current animation is not a flying one
+		if animation_player.current_animation not in animations_flying:
+			# Play the idle "Flying" animation
+			animation_player.play("Flying")
+
+	# Check if player is on a floor
+	if is_on_floor():
+
+		# Reset the jumping flag
+		is_jumping = false
+
+		# [crouch] button currently _pressed_
+		if Input.is_action_pressed("crouch"):
+			# Flag the player as "crouching"
+			is_crouching = true
+
+		# [crouch] button just _released_
+		if Input.is_action_just_released("crouch"):
+			# Flag player as no longer "crouching"
+			is_crouching = false
+
+		# [jump] button just _pressed_
+		if Input.is_action_just_pressed("jump"):
+			# Set the player's vertical velocity
+			velocity.y = player_jump_velocity
+			# Flag the player as no longer "double jumping"
+			is_double_jumping = false
+			# Flag the player as "jumping"
+			is_jumping = true
+	
+	# The player should not be on a floor and not flying
+	else:
+		
+		# [crouch] button just _released_
+		if Input.is_action_just_released("crouch"):
+			# Flag player as no longer "crouching"
+			is_crouching = false
+
+		# [jump] button just _pressed_
+		if Input.is_action_just_pressed("jump"):
+
+			# Check if "double jump" is enabled and the player is not currently double-jumping
+			if enable_double_jump and !is_double_jumping:
+				# Set the player's vertical velocity
+				velocity.y = player_jump_velocity
+				# Set the "double jumping" flag
+				is_double_jumping = true
+
+			# Check if "flying" is enabled and the player is not already flying
+			if enable_flying and !is_flying:
+				# Start flying
+				flying_start()
+
+			# Check if "flying" but the "jump timer" hasn't started
+			if is_flying and timer_jump == 0.0:
+				# Set the "jump timer" to the current game time
+				timer_jump = Time.get_ticks_msec()
+			# Check if "flying" and the "jump timer" is already running
+			elif is_flying and timer_jump > 0.0:
+				# Get the current game time
+				var time_now = Time.get_ticks_msec()
+				# Check if _this_ button press is within 200 milliseconds
+				if time_now - timer_jump < 200:
+					# Stop flying
+					flying_stop()
+				# Either way, reset the timer
+				timer_jump = Time.get_ticks_msec()
+
+
 ## Sets the player's idle animation based on status.
-func set_player_idle_animation():
+func set_player_idle_animation() -> void:
 
 	# Check if the player is "crouching"
 	if is_crouching:
@@ -496,7 +527,7 @@ func set_player_idle_animation():
 
 
 ## Sets the player's movement speed based on status.
-func set_player_speed():
+func set_player_speed() -> void:
 	# Check if the player is crouching
 	if is_crouching:
 		# Set the player's movement speed to the "crawling" speed
@@ -519,7 +550,11 @@ func set_player_speed():
 
 
 ## Update the player's velocity based on input and status.
-func update_velocity():
+func update_velocity(delta:float) -> void:
+
+	# Add the gravity.
+	velocity.y -= gravity * delta
+
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
