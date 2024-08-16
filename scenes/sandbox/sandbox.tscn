@@ -22,7 +22,8 @@ size = Vector3(256, 1, 256)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w84ox"]
 albedo_texture = ExtResource("2_pkcde")
-texture_filter = 0
+uv1_triplanar = true
+texture_filter = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_bamu4"]
 material = SubResource("StandardMaterial3D_w84ox")
