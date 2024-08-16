@@ -1,11 +1,5 @@
 extends Node3D
-## The `client` node serves as the stage for our scenes.
-##
-## Client is a singleton, which is a globally accessible object that exists for
-## the entire duration of the game. It allows you to store data and functions
-## that you want to be available across different scenes and scripts without
-## having to pass them around manually.
-## @tutorial: https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html
+
 
 # Godot Best Practices
 # 1. File names are `kebab-cased`, i.e. `"res://foo-bar.tscn"`.
@@ -25,23 +19,22 @@ extends Node3D
 var loading_instance = null
 # The resource path of the "Main Menu" scene
 var res_main_menu:String = "res://scenes/main-menu/main-menu.tscn"
-
-# Note: `@onready` variables are set when the scene is loaded.
-
 # The "Loading" scene.
 @onready var scene_loading:PackedScene = preload("res://scenes/loading/loading.tscn")
 
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	if Globals.debug_mode: print("[DEBUG] ","Client scene loaded.")
+	# [DEBUG] Message
+	if Globals.debug_mode: print("[DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene loaded.")
 	# Load the "Main Menu" scene
 	load_scene(res_main_menu)
 
 
-## Called every frame. '_delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass # Replace with function body.
+# Called when the node leaves the scene tree.
+func _exit_tree() -> void:
+	# [DEBUG] Message
+	if Globals.debug_mode: print("[DEBUG] '",get_script().resource_path.get_file().get_basename(), " scene unloaded.")
 
 
 ## Loads the given scene into _this_ one.
