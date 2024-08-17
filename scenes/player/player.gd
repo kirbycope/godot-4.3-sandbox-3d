@@ -138,9 +138,12 @@ func _input(event) -> void:
 				# Flag the player as in "first" person
 				perspective = 1
 				# Set camera mount's position
-				camera_mount.position = Vector3(0.0, 1.3, 0.0)
+				camera_mount.position = Vector3(0.0, 1.6, 0.0)
 				# Set camera's position
-				camera_mount.get_node("Camera3D").position = Vector3(0.0, 0.4, 0.0)
+				camera_mount.get_node("Camera3D").position = Vector3(0.0, 0.25, 0.0)
+				# Align visuals with the camera
+				visuals.rotation = Vector3(0.0, 0.0, camera_mount.rotation.z)
+
 			# Check if in first-person
 			elif perspective == 1:
 				# Flag the player as in "third" person
@@ -149,6 +152,8 @@ func _input(event) -> void:
 				camera_mount.position = Vector3(0.0, 1.6, 0.0)
 				# Set camera's position
 				camera_mount.get_node("Camera3D").position = Vector3(0.0, 0.6, 2.5)
+				# Set the visual's rotation
+				visuals.rotation = Vector3(0.0, 0.0, 0.0)
 
 
 ## Called each physics frame with the time since the last physics frame as argument (delta, in seconds).
@@ -340,13 +345,14 @@ func camera_rotate_by_mouse(event: InputEvent) -> void:
 	new_rotation_x = clamp(new_rotation_x, -80, 90)
 	# Rotate camera up/forward and down/backward
 	camera_mount.rotation_degrees.x = new_rotation_x
-
+	
 	# Update the player (visuals+camera) opposite the horizontal mouse motion
 	rotate_y(deg_to_rad(-event.relative.x * look_sensitivity_mouse))
-	# Rotate the visuals opposite the camera's horizontal rotation
-	visuals.rotate_y(deg_to_rad(event.relative.x * look_sensitivity_mouse))
-
-
+	# Check if the player is not in "third person" perspective
+	if perspective == 0:
+		# Rotate the visuals opposite the camera's horizontal rotation
+		visuals.rotate_y(deg_to_rad(event.relative.x * look_sensitivity_mouse))
+		
 ## Start the player flying.
 func flying_start() -> void:
 	gravity = 0.0
@@ -581,8 +587,10 @@ func update_velocity(delta: float) -> void:
 					# Play the walking "move" animation
 					if animation_player.current_animation != "Walking_InPlace":
 						animation_player.play("Walking_InPlace")
-			# Update the camera to look in the direction based on player input
-			visuals.look_at(position + direction)
+			# Check if the player is not in "third person" perspective
+			if perspective == 0:
+				# Update the camera to look in the direction based on player input
+				visuals.look_at(position + direction)
 			# Update horizontal veolicty
 			velocity.x = direction.x * player_current_speed
 			# Update vertical veolocity
