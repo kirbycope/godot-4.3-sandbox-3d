@@ -8,6 +8,6 @@ extends Node
 ## @tutorial: https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html
 
 # Flag for if the app was opened in Debug mode.
-var debug_mode:bool = OS.is_debug_build()
+var debug_mode: bool = OS.is_debug_build()
 # Flag for if the game is Paused.
-var game_paused:bool = false
+var game_paused: bool = false
