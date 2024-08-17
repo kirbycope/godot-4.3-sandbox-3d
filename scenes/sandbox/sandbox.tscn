@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfx6ch2dsl12u"]
+[gd_scene load_steps=11 format=3 uid="uid://dfx6ch2dsl12u"]
 
 [ext_resource type="Script" path="res://scenes/sandbox/sandbox.gd" id="1_bwap0"]
 [ext_resource type="PackedScene" uid="uid://q5nqrm48n43l" path="res://scenes/player/player.tscn" id="1_uevfy"]
 [ext_resource type="Texture2D" uid="uid://cmpsda8y37hpg" path="res://assets/textures/Kenney/2D assets/Prototype Textures/PNG/Dark/texture_09.png" id="2_lcu1v"]
+[ext_resource type="PackedScene" uid="uid://b4pad5c0igkil" path="res://assets/models/godot_plush V2.glb" id="4_12ji6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1ibyv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -50,3 +51,6 @@ mesh = SubResource("BoxMesh_bamu4")
 
 [node name="Player" parent="." instance=ExtResource("1_uevfy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="godot_plush V2" parent="." instance=ExtResource("4_12ji6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2, 1.5)
