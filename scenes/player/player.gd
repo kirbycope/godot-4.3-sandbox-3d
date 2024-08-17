@@ -1,41 +1,41 @@
 extends CharacterBody3D
 
-var animations_crouching = [ "Crawling_InPlace", "Crouching_Idle"]
-var animations_jumping = [ "Falling_Idle" ]
-var animations_flying = [ "Flying" ]
+var animations_crouching = ["Crawling_InPlace", "Crouching_Idle"]
+var animations_jumping = ["Falling_Idle"]
+var animations_flying = ["Flying"]
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-var is_animation_locked:bool = false
-var is_crouching:bool = false
-var is_double_jumping:bool = false
-var is_flying:bool = false
-var is_jumping:bool = false
-var is_kicking_left:bool = false
-var is_kicking_right:bool = false
-var is_punching_left:bool = false
-var is_punching_right:bool = false
-var is_sprinting:bool = false
-var timer_jump:float = 0.0
+var is_animation_locked: bool = false
+var is_crouching: bool = false
+var is_double_jumping: bool = false
+var is_flying: bool = false
+var is_jumping: bool = false
+var is_kicking_left: bool = false
+var is_kicking_right: bool = false
+var is_punching_left: bool = false
+var is_punching_right: bool = false
+var is_sprinting: bool = false
+var timer_jump: float = 0.0
 
 # Note: `@export` variables are available for editing in the property editor.
-@export var enable_double_jump:bool = false
-@export var enable_vibration:bool = false
-@export var enable_flying:bool = false
-@export var force_kicking:float = 2.0
-@export var force_kicking_sprinting:float = 3.0
-@export var force_punching:float = 1.0
-@export var force_punching_sprinting:float = 1.5
-@export var force_pushing:float = 1.0 
-@export var force_pushing_sprinting:float = 2.0 
-@export var look_sensitivity_controller:float = 120.0
-@export var look_sensitivity_mouse:float = 0.2
-@export var perspective:int = 0
-@export var player_crawling_speed:float = 0.75
-@export var player_current_speed:float = 3.0 
-@export var player_jump_velocity:float = 4.5
-@export var player_fast_flying_speed:float = 10.0
-@export var player_flying_speed:float= 5.0
-@export var player_sprinting_speed:float= 5.0
-@export var player_walking_speed:float= 2.5
+@export var enable_double_jump: bool = false
+@export var enable_vibration: bool = false
+@export var enable_flying: bool = false
+@export var force_kicking: float = 2.0
+@export var force_kicking_sprinting: float = 3.0
+@export var force_punching: float = 1.0
+@export var force_punching_sprinting: float = 1.5
+@export var force_pushing: float = 1.0
+@export var force_pushing_sprinting: float = 2.0
+@export var look_sensitivity_controller: float = 120.0
+@export var look_sensitivity_mouse: float = 0.2
+@export var perspective: int = 0
+@export var player_crawling_speed: float = 0.75
+@export var player_current_speed: float = 3.0
+@export var player_jump_velocity: float = 4.5
+@export var player_fast_flying_speed: float = 10.0
+@export var player_flying_speed: float = 5.0
+@export var player_sprinting_speed: float = 5.0
+@export var player_walking_speed: float = 2.5
 
 # Note: `@onready` variables are set when the scene is loaded.
 @onready var animation_player = $Visuals/AuxScene/AnimationPlayer
@@ -55,13 +55,13 @@ func _input(event) -> void:
 
 	# If the game is not paused...
 	if !Globals.game_paused:
-		
+
 		# Check for mouse motion
 		if event is InputEventMouseMotion:
 			# Rotate camera based on mouse movement
 			camera_rotate_by_mouse(event)
 
-		# Check if the animation player is not lock
+		# Check if the animation player is not locked
 		if !is_animation_locked:
 
 			# [kick-left] button _pressed_ (while on a floor)
@@ -76,7 +76,7 @@ func _input(event) -> void:
 					animation_player.play("Kicking_Left")
 				# Check the kick hits something
 				check_kick_collision()
-			
+
 			# [kick-right] button _pressed_ (while on a floor)
 			if event.is_action_pressed("right_kick") and is_on_floor():
 				# Flag the animation player as locked
@@ -89,7 +89,7 @@ func _input(event) -> void:
 					animation_player.play("Kicking_Right")
 				# Check the kick hits something
 				check_kick_collision()
-			
+
 			# [punch-left] button _pressed_ (while on a floor)
 			if event.is_action_pressed("left_punch") and is_on_floor():
 				# Flag the animation player as locked
@@ -110,7 +110,7 @@ func _input(event) -> void:
 						animation_player.play("Punching_Left")
 				# Check the punch hits something
 				check_punch_collision()
-			
+
 			# [punch-right] button _pressed_ (while on a floor)
 			if event.is_action_pressed("right_punch") and is_on_floor():
 				# Flag the animation player as locked
@@ -131,16 +131,6 @@ func _input(event) -> void:
 						animation_player.play("Punching_Right")
 				# Check the punch hits something
 				check_punch_collision()
-		
-			# [sprint] button _pressed_
-			if event.is_action_pressed("sprint"):
-				# Flag the player as "sprinting"
-				is_sprinting = true
-			
-			# [sprint] button _released_
-			if event.is_action_released("sprint"):
-				# Flag the player as no longer "sprinting"
-				is_sprinting = false
 
 		# [select] button _pressed_
 		if event.is_action_pressed("select"):
@@ -159,7 +149,7 @@ func _input(event) -> void:
 				camera_mount.position = Vector3(0, 1.6, 0)
 				# Set camera's position
 				camera_mount.get_node("Camera3D").position = Vector3(0, 0.0, 0.0)
-		
+
 
 ## Called each physics frame with the time since the last physics frame as argument (delta, in seconds).
 ## Use _physics_process(delta) if the input needs to be checked continuously in sync with the physics engine, like for smooth movement or jump control.
@@ -179,7 +169,7 @@ func _physics_process(delta) -> void:
 		is_kicking_right = false
 		is_punching_left = false
 		is_punching_right = false
-	
+
 	# Set the player's idle animation, as needed
 	set_player_idle_animation()
 
@@ -197,10 +187,10 @@ func _physics_process(delta) -> void:
 			if Input.is_action_pressed(action):
 				# Rotate camera based on controller movement
 				camera_rotate_by_controller(delta)
-		
+
 		# Handle player movement
 		update_velocity(delta)
-		
+
 		# Check if the animation player is unlocked
 		if !is_animation_locked:
 			# Move player
@@ -209,6 +199,7 @@ func _physics_process(delta) -> void:
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+
 	# Check is the Debug Panel is visible
 	if debug_ui.visible:
 		# Panel
@@ -231,9 +222,9 @@ func _process(delta: float) -> void:
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	
+
 	# Disable the debud ui
-	debug_ui.visible = false 
+	debug_ui.visible = false
 
 
 ## Check if the kick hits anything.
@@ -274,7 +265,7 @@ func check_kick_collision() -> void:
 					collider.call("animate_hit_low_right")
 		# Controller vibration
 		if enable_vibration:
-			Input.start_joy_vibration(0, 0.0 , 1.0, 0.1)
+			Input.start_joy_vibration(0, 0.0, 1.0, 0.1)
 
 
 ## Checks if the thrown punch hits anything.
@@ -315,7 +306,7 @@ func check_punch_collision() -> void:
 					collider.call("animate_hit_high_right")
 		# Controller vibration
 		if enable_vibration:
-			Input.start_joy_vibration(0, 1.0 , 0.0, 0.1)
+			Input.start_joy_vibration(0, 1.0, 0.0, 0.1)
 
 
 ## Rotate camera using the right-analog stick.
@@ -377,110 +368,124 @@ func flying_stop() -> void:
 ## Manage the player's state; setting flags and playing animations.
 func mangage_state() -> void:
 
-	# Check if the player is flying
-	if is_flying:
+	# Check if that the animation player is not locked
+	if !is_animation_locked:
 
-		# [crouch] button just _pressed_
-		if Input.is_action_just_pressed("crouch"):
-			# Pitch the player slightly downward
-			visuals.rotation.x = deg_to_rad(-6)
+		# [sprint] button _pressed_
+		if Input.is_action_pressed("sprint"):
+			# Flag the player as "sprinting"
+			is_sprinting = true
 		
-		# [crouch] button currently _pressed_
-		if Input.is_action_pressed("crouch"):
-			# Decrease the player's vertical position
-			position.y -= 0.1
-			# End flying if collision detected below the player
-			if $Visuals/RayCast3D_BelowPlayer.is_colliding():
-				# Stop flying
-				flying_stop()
-		
-		# [crouch] button just _released_
-		if Input.is_action_just_released("crouch"):
-			# Reset the player's pitch
-			visuals.rotation.x = 0
-
-		# [jump] button just _pressed_
-		if Input.is_action_just_pressed("jump"):
-			# Pitch the player slightly downward
-			visuals.rotation.x = deg_to_rad(6)
-
-		# [jump] button currently _pressed_
-		if Input.is_action_pressed("jump"):
-			# Increase the player's vertical position
-			position.y += 0.1
-
-		# [jump] button just _released_
-		if Input.is_action_just_released("jump"):
-			# Reset the player's pitch
-			visuals.rotation.x = 0
-
-		# Check if the current animation is not a flying one
-		if animation_player.current_animation not in animations_flying:
-			# Play the idle "Flying" animation
-			animation_player.play("Flying")
-
-	# Check if player is on a floor
-	if is_on_floor():
-
-		# Reset the jumping flag
-		is_jumping = false
-
-		# [crouch] button currently _pressed_
-		if Input.is_action_pressed("crouch"):
-			# Flag the player as "crouching"
-			is_crouching = true
-
-		# [crouch] button just _released_
-		if Input.is_action_just_released("crouch"):
-			# Flag player as no longer "crouching"
-			is_crouching = false
-
-		# [jump] button just _pressed_
-		if Input.is_action_just_pressed("jump"):
-			# Set the player's vertical velocity
-			velocity.y = player_jump_velocity
-			# Flag the player as no longer "double jumping"
-			is_double_jumping = false
-			# Flag the player as "jumping"
-			is_jumping = true
+		# [sprint] button just _released_
+		if Input.is_action_just_released("sprint"):
+			# Flag the player as no longer "sprinting"
+			is_sprinting = false
 	
-	# The player should not be on a floor and not flying
-	else:
-		
-		# [crouch] button just _released_
-		if Input.is_action_just_released("crouch"):
-			# Flag player as no longer "crouching"
-			is_crouching = false
+		# Check if the player is flying
+		if is_flying:
 
-		# [jump] button just _pressed_
-		if Input.is_action_just_pressed("jump"):
-
-			# Check if "double jump" is enabled and the player is not currently double-jumping
-			if enable_double_jump and !is_double_jumping:
-				# Set the player's vertical velocity
-				velocity.y = player_jump_velocity
-				# Set the "double jumping" flag
-				is_double_jumping = true
-
-			# Check if "flying" is enabled and the player is not already flying
-			if enable_flying and !is_flying:
-				# Start flying
-				flying_start()
-
-			# Check if "flying" but the "jump timer" hasn't started
-			if is_flying and timer_jump == 0.0:
-				# Set the "jump timer" to the current game time
-				timer_jump = Time.get_ticks_msec()
-			# Check if "flying" and the "jump timer" is already running
-			elif is_flying and timer_jump > 0.0:
-				# Get the current game time
-				var time_now = Time.get_ticks_msec()
-				# Check if _this_ button press is within 200 milliseconds
-				if time_now - timer_jump < 200:
+			# [crouch] button just _pressed_
+			if Input.is_action_just_pressed("crouch"):
+				# Pitch the player slightly downward
+				visuals.rotation.x = deg_to_rad(-6)
+			
+			# [crouch] button currently _pressed_
+			if Input.is_action_pressed("crouch"):
+				# Decrease the player's vertical position
+				position.y -= 0.1
+				# End flying if collision detected below the player
+				if $Visuals/RayCast3D_BelowPlayer.is_colliding():
 					# Stop flying
 					flying_stop()
-				# Either way, reset the timer
-				timer_jump = Time.get_ticks_msec()
+			
+			# [crouch] button just _released_
+			if Input.is_action_just_released("crouch"):
+				# Reset the player's pitch
+				visuals.rotation.x = 0
+
+			# [jump] button just _pressed_
+			if Input.is_action_just_pressed("jump"):
+				# Pitch the player slightly downward
+				visuals.rotation.x = deg_to_rad(6)
+
+			# [jump] button currently _pressed_
+			if Input.is_action_pressed("jump"):
+				# Increase the player's vertical position
+				position.y += 0.1
+
+			# [jump] button just _released_
+			if Input.is_action_just_released("jump"):
+				# Reset the player's pitch
+				visuals.rotation.x = 0
+
+			# Check if the current animation is not a flying one
+			if animation_player.current_animation not in animations_flying:
+				# Play the idle "Flying" animation
+				animation_player.play("Flying")
+
+		# Check if player is on a floor
+		if is_on_floor():
+
+			# Reset the jumping flags
+			is_jumping = false
+			is_double_jumping = false
+
+			# [crouch] button currently _pressed_
+			if Input.is_action_pressed("crouch"):
+				# Flag the player as "crouching"
+				is_crouching = true
+
+			# [crouch] button just _released_
+			if Input.is_action_just_released("crouch"):
+				# Flag player as no longer "crouching"
+				is_crouching = false
+
+			# [jump] button just _pressed_
+			if Input.is_action_just_pressed("jump"):
+				# Set the player's vertical velocity
+				velocity.y = player_jump_velocity
+				# Flag the player as no longer "double jumping"
+				is_double_jumping = false
+				# Flag the player as "jumping"
+				is_jumping = true
+		
+		# The player should not be on a floor and not flying
+		else:
+			
+			# [crouch] button just _released_
+			if Input.is_action_just_released("crouch"):
+				# Flag player as no longer "crouching"
+				is_crouching = false
+
+			# [jump] button just _pressed_
+			if Input.is_action_just_pressed("jump"):
+
+				# Check if "double jump" is enabled and the player is not currently double-jumping
+				if enable_double_jump and !is_double_jumping:
+					# Set the player's vertical velocity
+					velocity.y = player_jump_velocity
+					# Set the "double jumping" flag
+					is_double_jumping = true
+
+				# Check if "flying" is enabled and the player is not already flying
+				if enable_flying and !is_flying:
+					# Start flying
+					flying_start()
+
+				# Check if "flying" but the "jump timer" hasn't started
+				if is_flying and timer_jump == 0.0:
+					# Set the "jump timer" to the current game time
+					timer_jump = Time.get_ticks_msec()
+				# Check if "flying" and the "jump timer" is already running
+				elif is_flying and timer_jump > 0.0:
+					# Get the current game time
+					var time_now = Time.get_ticks_msec()
+					# Check if _this_ button press is within 200 milliseconds
+					if time_now - timer_jump < 200:
+						# Stop flying
+						flying_stop()
+					# Either way, reset the timer
+					timer_jump = Time.get_ticks_msec()
 
 
 ## Sets the player's idle animation based on status.
@@ -550,7 +555,7 @@ func set_player_speed() -> void:
 
 
 ## Update the player's velocity based on input and status.
-func update_velocity(delta:float) -> void:
+func update_velocity(delta: float) -> void:
 
 	# Add the gravity.
 	velocity.y -= gravity * delta
@@ -588,7 +593,7 @@ func update_velocity(delta:float) -> void:
 	# If no movement detected...
 	else:
 		# Stop any/all "move" animations
-		var animations = [ "Crawling_InPlace", "Running_InPlace", "Walking_InPlace" ]
+		var animations = ["Crawling_InPlace", "Running_InPlace", "Walking_InPlace"]
 		for animation in animations:
 			if animation_player.current_animation == animation:
 				animation_player.stop()
