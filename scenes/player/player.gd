@@ -138,9 +138,9 @@ func _input(event) -> void:
 				# Flag the player as in "first" person
 				perspective = 1
 				# Set camera mount's position
-				camera_mount.position = Vector3(0.0, 1.6, 0.0)
+				camera_mount.position = Vector3(0.0, 1.5, 0.0)
 				# Set camera's position
-				camera_mount.get_node("Camera3D").position = Vector3(0.0, 0.25, 0.0)
+				camera_mount.get_node("Camera3D").position = Vector3(0.0, 0.1, 0.0)
 				# Align visuals with the camera
 				visuals.rotation = Vector3(0.0, 0.0, camera_mount.rotation.z)
 
