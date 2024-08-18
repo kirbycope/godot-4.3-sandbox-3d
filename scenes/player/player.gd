@@ -34,8 +34,9 @@ var timer_jump: float = 0.0
 @export var player_jump_velocity: float = 4.5
 @export var player_fast_flying_speed: float = 10.0
 @export var player_flying_speed: float = 5.0
+@export var player_running_speed: float = 3.5
 @export var player_sprinting_speed: float = 5.0
-@export var player_walking_speed: float = 2.5
+@export var player_walking_speed: float = 1.0
 
 # Note: `@onready` variables are set when the scene is loaded.
 @onready var animation_player = $Visuals/AuxScene/AnimationPlayer
@@ -405,19 +406,27 @@ func camera_rotate_by_controller(delta: float) -> void:
 	var look_left = Input.get_action_strength("look_left")
 	var look_right = Input.get_action_strength("look_right")
 
+	# Calculate the input strength for vertical and horizontal movement
+	var vertical_input = look_up - look_down
+	var horizontal_input = look_right - look_left
+	
+	# Adjust rotation speed based on input intensity (magnitude of the right stick movement)
+	var vertical_rotation_speed = abs(vertical_input) * look_sensitivity_controller
+	var horizontal_rotation_speed = abs(horizontal_input) * look_sensitivity_controller
+
 	# Calculate the desired vertical rotation based on controller motion
-	var new_rotation_x = camera_mount.rotation_degrees.x + ((look_up - look_down) * look_sensitivity_controller * delta)
+	var new_rotation_x = camera_mount.rotation_degrees.x + (vertical_input * vertical_rotation_speed * delta)
 	# Limit how far up/down the camera can rotate
 	new_rotation_x = clamp(new_rotation_x, -80, 90)
 	# Rotate camera up/forward and down/backward
 	camera_mount.rotation_degrees.x = new_rotation_x
-	
+
 	# Update the player (visuals+camera) opposite the horizontal controller motion
-	rotation_degrees.y = rotation_degrees.y - ((look_right - look_left) * look_sensitivity_controller * delta)
+	rotation_degrees.y = rotation_degrees.y - (horizontal_input * horizontal_rotation_speed * delta)
 	# Check if the player is in "third person" perspective
 	if perspective == 0:
 		# Rotate the visuals opposite the camera's horizontal rotation
-		visuals.rotation_degrees.y = visuals.rotation_degrees.y + ((look_right - look_left) * look_sensitivity_controller * delta)
+		visuals.rotation_degrees.y = visuals.rotation_degrees.y + (horizontal_input * horizontal_rotation_speed * delta)
 
 
 ## Rotate camera using the mouse motion.
@@ -668,40 +677,34 @@ func update_velocity(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+
+	# Calculate the input magnitude (intensity of the left-analog stick)
+	var input_magnitude = input_dir.length()
+
 	# Check for directional movement
 	if direction:
+		# Determine player speed based on input magnitude
+		player_current_speed = lerp(player_walking_speed, player_running_speed, input_magnitude)
+		#print("running") if player_current_speed > 3.0 else print("walking")
 		# Check if the animation player is unlocked
 		if !is_animation_locked:
 			# Check if the player is on the ground
 			if is_on_floor():
-
 				# Check if the player is crouching
 				if is_crouching:
 					# Play the crouching "move" animation
 					if animation_player.current_animation != "Crawling_InPlace":
 						animation_player.play("Crawling_InPlace")
-					# Check if in "first person" perspective
-					#if perspective == 1:
-						# Set camera mount's position
-						#move_camera_mount(Vector3(0.0, 0.2, -0.8))
 				# Check if the player is sprinting
 				elif is_sprinting:
 					# Play the sprinting "move" animation
 					if animation_player.current_animation != "Running_InPlace":
 						animation_player.play("Running_InPlace")
-					# Check if in "first person" perspective
-					#if perspective == 1:
-						# Set camera mount's position
-						#move_camera_mount(Vector3(0.0, 1.65, -0.6))
 				# The player must be walking
 				else:
 					# Play the walking "move" animation
 					if animation_player.current_animation != "Walking_InPlace":
 						animation_player.play("Walking_InPlace")
-					# Check if in "first person" perspective
-					#if perspective == 1:
-						# Set camera mount's position
-						#move_camera_mount(Vector3(0.0, 1.65, -0.4))
 			# Check if the player is not in "third person" perspective
 			if perspective == 0:
 				# Update the camera to look in the direction based on player input
