@@ -51,9 +51,68 @@ func _input(event) -> void:
 
 	# [debug] button _pressed_
 	if event.is_action_pressed("debug"):
+		
 		# Toggle "debug" visibility
 		debug_ui.visible = !debug_ui.visible
-
+		
+	# Check if the Debug UI is currently displayed
+	if debug_ui.visible:
+		# Check if the current Input Event was triggered by a joypad
+		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+			# Get the joypad's name
+			var device_name = Input.get_joy_name(event.device)
+			# Check if the joypad is an XBox controller
+			if device_name == "XInput Gamepad":
+				# Ⓐ
+				if event.is_action_pressed("crouch"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonA.visible = false
+				elif event.is_action_released("crouch"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonA.visible = true
+				# Ⓑ
+				if event.is_action_pressed("sprint"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonB.visible = false
+				elif event.is_action_released("sprint"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonB.visible = true
+				# Ⓧ
+				if event.is_action_pressed("use"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonX.visible = false
+				elif event.is_action_released("use"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonX.visible = true
+				# Ⓨ
+				if event.is_action_pressed("jump"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonY.visible = false
+				elif event.is_action_released("jump"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonY.visible = true
+				# ☰ (Start)
+				if event.is_action_pressed("start"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonStart.visible = false
+				elif event.is_action_released("start"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonStart.visible = true
+				# ⧉ (Select)
+				if event.is_action_pressed("select"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonSelect.visible = false
+				elif event.is_action_released("select"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonSelect.visible = true
+				# Ⓛ1 (L1)
+				if event.is_action_pressed("left_punch"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonL1.visible = false
+				elif event.is_action_released("left_punch"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonL1.visible = true
+				# Ⓛ2 (L2)
+				if event.is_action_pressed("left_kick"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonL2.visible = false
+				elif event.is_action_released("left_kick"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonL2.visible = true
+				# Ⓡ1 (R1)
+				if event.is_action_pressed("right_punch"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonR1.visible = false
+				elif event.is_action_released("right_punch"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonR1.visible = true
+				# Ⓡ2 (R2)
+				if event.is_action_pressed("right_kick"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonR2.visible = false
+				elif event.is_action_released("right_kick"):
+					$CameraMount/Camera3D/Debug/XboxController/White/ButtonR2.visible = true
 	# If the game is not paused...
 	if !Globals.game_paused:
 
@@ -203,6 +262,7 @@ func _physics_process(delta) -> void:
 	# Move the camera to player
 	move_camera()
 
+
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 
@@ -330,11 +390,13 @@ func camera_rotate_by_controller(delta: float) -> void:
 	new_rotation_x = clamp(new_rotation_x, -80, 90)
 	# Rotate camera up/forward and down/backward
 	camera_mount.rotation_degrees.x = new_rotation_x
-
-	# Determine the horizontal rotation
+	
+	# Update the player (visuals+camera) opposite the horizontal controller motion
 	rotation_degrees.y = rotation_degrees.y - ((look_right - look_left) * look_sensitivity_controller * delta)
-	# Rotate the visuals opposite the camera's horizontal rotation
-	visuals.rotation_degrees.y = visuals.rotation_degrees.y + ((look_right - look_left) * look_sensitivity_controller * delta)
+	# Check if the player is in "third person" perspective
+	if perspective == 0:
+		# Rotate the visuals opposite the camera's horizontal rotation
+		visuals.rotation_degrees.y = visuals.rotation_degrees.y + ((look_right - look_left) * look_sensitivity_controller * delta)
 
 
 ## Rotate camera using the mouse motion.
@@ -349,7 +411,7 @@ func camera_rotate_by_mouse(event: InputEvent) -> void:
 	
 	# Update the player (visuals+camera) opposite the horizontal mouse motion
 	rotate_y(deg_to_rad(-event.relative.x * look_sensitivity_mouse))
-	# Check if the player is not in "third person" perspective
+	# Check if the player is in "third person" perspective
 	if perspective == 0:
 		# Rotate the visuals opposite the camera's horizontal rotation
 		visuals.rotate_y(deg_to_rad(event.relative.x * look_sensitivity_mouse))
@@ -435,8 +497,8 @@ func mangage_state() -> void:
 		is_jumping = false
 		is_double_jumping = false
 
-		# [crouch] button currently _pressed_
-		if Input.is_action_pressed("crouch"):
+		# [crouch] button currently _pressed_ (and the animation played is unlocked)
+		if Input.is_action_pressed("crouch") and !is_animation_locked:
 			# Flag the player as "crouching"
 			is_crouching = true
 
@@ -445,8 +507,8 @@ func mangage_state() -> void:
 			# Flag player as no longer "crouching"
 			is_crouching = false
 
-		# [jump] button just _pressed_
-		if Input.is_action_just_pressed("jump"):
+		# [jump] button just _pressed_ (and the animation player is unlocked)
+		if Input.is_action_just_pressed("jump") and !is_animation_locked:
 			# Set the player's vertical velocity
 			velocity.y = player_jump_velocity
 			# Flag the player as not "double jumping"
@@ -503,7 +565,7 @@ func move_camera():
 		# Get the overall transform of the specified bone, with respect to the skeleton.
 		var bone_pose = skeleton.get_bone_global_pose(bone_index)
 		# Adjust the camera mount position to match the bone's relative position (adjusting for $Visuals/AuxScene scaling)
-		camera_mount.position = Vector3(-bone_pose.origin.x * 0.01, bone_pose.origin.y * 0.01, -bone_pose.origin.z * 0.01)
+		camera_mount.position = Vector3(-bone_pose.origin.x * 0.01, bone_pose.origin.y * 0.01, (-bone_pose.origin.z * 0.01) - 0.1)
 
 
 ## Sets the player's idle animation based on status.
