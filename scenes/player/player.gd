@@ -63,6 +63,26 @@ func _input(event) -> void:
 			var device_name = Input.get_joy_name(event.device)
 			# Check if the joypad is an XBox controller
 			if device_name == "XInput Gamepad":
+				# ⍐ (D-Pad Up)
+				if event.is_action_pressed("dpad_up"):
+					$CameraMount/Camera3D/Debug/XboxController/White/DPadUp.visible = false
+				elif event.is_action_released("dpad_up"):
+					$CameraMount/Camera3D/Debug/XboxController/White/DPadUp.visible = true
+				# ⍗ (D-Pad Down)
+				if event.is_action_pressed("dpad_down"):
+					$CameraMount/Camera3D/Debug/XboxController/White/DPadDown.visible = false
+				elif event.is_action_released("dpad_down"):
+					$CameraMount/Camera3D/Debug/XboxController/White/DPadDown.visible = true
+				# ⍇ (D-Pad Left)
+				if event.is_action_pressed("dpad_left"):
+					$CameraMount/Camera3D/Debug/XboxController/White/DPadLeft.visible = false
+				elif event.is_action_released("dpad_left"):
+					$CameraMount/Camera3D/Debug/XboxController/White/DPadLeft.visible = true
+				# ⍈ (D-Pad Right)
+				if event.is_action_pressed("dpad_right"):
+					$CameraMount/Camera3D/Debug/XboxController/White/DPadRight.visible = false
+				elif event.is_action_released("dpad_right"):
+					$CameraMount/Camera3D/Debug/XboxController/White/DPadRight.visible = true
 				# Ⓐ
 				if event.is_action_pressed("crouch"):
 					$CameraMount/Camera3D/Debug/XboxController/White/ButtonA.visible = false
