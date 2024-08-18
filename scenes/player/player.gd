@@ -40,6 +40,7 @@ var timer_jump: float = 0.0
 # Note: `@onready` variables are set when the scene is loaded.
 @onready var animation_player = $Visuals/AuxScene/AnimationPlayer
 @onready var camera_mount = $CameraMount
+@onready var camera = $CameraMount/Camera3D
 @onready var debug_ui = $CameraMount/Camera3D/Debug
 @onready var visuals = $Visuals
 
@@ -137,10 +138,8 @@ func _input(event) -> void:
 			if perspective == 0:
 				# Flag the player as in "first" person
 				perspective = 1
-				# Set camera mount's position
-				camera_mount.position = Vector3(0.0, 1.65, -0.4)
 				# Set camera's position
-				camera_mount.get_node("Camera3D").position = Vector3(0.0, 0.0, 0.0)
+				camera.position = Vector3(0.0, 0.0, 0.0)
 				# Align visuals with the camera
 				visuals.rotation = Vector3(0.0, 0.0, camera_mount.rotation.z)
 				
@@ -151,7 +150,7 @@ func _input(event) -> void:
 				# Set camera mount's position
 				camera_mount.position = Vector3(0.0, 1.65, 0.0)
 				# Set camera's position
-				camera_mount.get_node("Camera3D").position = Vector3(0.0, 0.6, 2.5)
+				camera.position = Vector3(0.0, 0.6, 2.5)
 				# Set the visual's rotation
 				visuals.rotation = Vector3(0.0, 0.0, 0.0)
 
@@ -201,6 +200,8 @@ func _physics_process(delta) -> void:
 			# Move player
 			move_and_slide()
 
+	# Move the camera to player
+	move_camera()
 
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -224,15 +225,6 @@ func _process(delta: float) -> void:
 		#$CameraMount/Camera3D/Debug/Panel/CheckBox14.button_pressed = false
 		$CameraMount/Camera3D/Debug/Panel/CheckBox15.button_pressed = Globals.game_paused
 
-	# Update the camera every frame
-	if perspective == 1:
-		var skeleton = $Visuals/AuxScene/Node/Skeleton3D
-		var bone_name = "mixamorigNeck"
-		var bone_index = skeleton.find_bone(bone_name)
-		# Get the overall transform of the specified bone, with respect to the skeleton.
-		var bone_pose = skeleton.get_bone_global_pose(bone_index)
-		# Adjust the camera position to match the bone's relative position (adjusting for $Visuals scaling)
-		camera_mount.position = bone_pose.origin * 0.01
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -361,7 +353,8 @@ func camera_rotate_by_mouse(event: InputEvent) -> void:
 	if perspective == 0:
 		# Rotate the visuals opposite the camera's horizontal rotation
 		visuals.rotate_y(deg_to_rad(event.relative.x * look_sensitivity_mouse))
-		
+
+
 ## Start the player flying.
 func flying_start() -> void:
 	gravity = 0.0
@@ -446,19 +439,11 @@ func mangage_state() -> void:
 		if Input.is_action_pressed("crouch"):
 			# Flag the player as "crouching"
 			is_crouching = true
-			# Check if in "first person" perspective
-			#if perspective == 1:
-			#	# Set camera mount's position
-			#	move_camera_mount(Vector3(0.0, 0.9, -0.6))
 
 		# [crouch] button just _released_
 		if Input.is_action_just_released("crouch"):
 			# Flag player as no longer "crouching"
 			is_crouching = false
-			# Check if in "first person" perspective
-			#if perspective == 1:
-			#	# Set camera mount's position
-			#	move_camera_mount(Vector3(0.0, 1.65, -0.4))
 
 		# [jump] button just _pressed_
 		if Input.is_action_just_pressed("jump"):
@@ -508,10 +493,17 @@ func mangage_state() -> void:
 					timer_jump = Time.get_ticks_msec()
 
 
-## Move the camera (smoothly)
-func move_camera_mount(target_position: Vector3):
-	var tween = get_tree().create_tween()
-	tween.tween_property(camera_mount, "position", target_position, 0.2)
+## Update the camera to follow the character head's position (while in "first person").
+func move_camera():
+	# Check if in "first person" perspective
+	if perspective == 1:
+		var skeleton = $Visuals/AuxScene/Node/Skeleton3D
+		var bone_name = "mixamorigHead"
+		var bone_index = skeleton.find_bone(bone_name)
+		# Get the overall transform of the specified bone, with respect to the skeleton.
+		var bone_pose = skeleton.get_bone_global_pose(bone_index)
+		# Adjust the camera mount position to match the bone's relative position (adjusting for $Visuals/AuxScene scaling)
+		camera_mount.position = Vector3(-bone_pose.origin.x * 0.01, bone_pose.origin.y * 0.01, -bone_pose.origin.z * 0.01)
 
 
 ## Sets the player's idle animation based on status.
@@ -555,6 +547,10 @@ func set_player_idle_animation() -> void:
 		if animation_player.current_animation in animations_jumping:
 			# Play the standing "Idle" animation
 			animation_player.play("Idle")
+		# Check if in "first person" perspective
+		#if perspective == 1:
+			# Set camera mount's position
+			#move_camera_mount(Vector3(0.0, 1.65, -0.4))
 
 
 ## Sets the player's movement speed based on status.
@@ -595,21 +591,34 @@ func update_velocity(delta: float) -> void:
 		if !is_animation_locked:
 			# Check if the player is on the ground
 			if is_on_floor():
+
 				# Check if the player is crouching
 				if is_crouching:
 					# Play the crouching "move" animation
 					if animation_player.current_animation != "Crawling_InPlace":
 						animation_player.play("Crawling_InPlace")
+					# Check if in "first person" perspective
+					#if perspective == 1:
+						# Set camera mount's position
+						#move_camera_mount(Vector3(0.0, 0.2, -0.8))
 				# Check if the player is sprinting
 				elif is_sprinting:
 					# Play the sprinting "move" animation
 					if animation_player.current_animation != "Running_InPlace":
 						animation_player.play("Running_InPlace")
+					# Check if in "first person" perspective
+					#if perspective == 1:
+						# Set camera mount's position
+						#move_camera_mount(Vector3(0.0, 1.65, -0.6))
 				# The player must be walking
 				else:
 					# Play the walking "move" animation
 					if animation_player.current_animation != "Walking_InPlace":
 						animation_player.play("Walking_InPlace")
+					# Check if in "first person" perspective
+					#if perspective == 1:
+						# Set camera mount's position
+						#move_camera_mount(Vector3(0.0, 1.65, -0.4))
 			# Check if the player is not in "third person" perspective
 			if perspective == 0:
 				# Update the camera to look in the direction based on player input
