@@ -133,6 +133,7 @@ func _input(event) -> void:
 					$CameraMount/Camera3D/Debug/XboxController/White/ButtonR2.visible = false
 				elif event.is_action_released("right_kick"):
 					$CameraMount/Camera3D/Debug/XboxController/White/ButtonR2.visible = true
+
 	# If the game is not paused...
 	if !Globals.game_paused:
 
