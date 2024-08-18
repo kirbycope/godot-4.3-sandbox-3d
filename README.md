@@ -14,3 +14,26 @@ A 3D sandbox for version 4.3 of the Godot Engine.
 1. Single-hash before code comments.
 1. Arrange functions and variables alphabetically.
 1. Use prefixes to group variables, i.e. `player_postion` and `player_health`.
+
+### Godot Color Codes (from icon.svg)
+https://rgbcolorcode.com/color/`{hex}`
+
+**Charcoal** </br>
+*#363d52* </br>
+`rgb(54, 61, 82)` </br>
+`vec3(0.21,0.24,0.32)` </br>
+
+**White** </br>
+*#fff* </br>
+`rgb(255, 255, 255)` </br>
+`vec3(1.00,1.00,1.00)` </br>
+
+**Steel Blue** </br>
+*#478cbf* </br>
+`rgb(71, 140, 191)` </br>
+`vec3(0.28,0.55,0.75)` </br>
+
+**Paynes Gray** </br>
+*#414042* </br>
+`rgb(65, 64, 66)` </br>
+`vec3(0.25,0.25,0.26)` </br>

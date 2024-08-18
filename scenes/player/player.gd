@@ -138,18 +138,18 @@ func _input(event) -> void:
 				# Flag the player as in "first" person
 				perspective = 1
 				# Set camera mount's position
-				camera_mount.position = Vector3(0.0, 1.5, 0.0)
+				camera_mount.position = Vector3(0.0, 1.65, -0.4)
 				# Set camera's position
-				camera_mount.get_node("Camera3D").position = Vector3(0.0, 0.1, 0.0)
+				camera_mount.get_node("Camera3D").position = Vector3(0.0, 0.0, 0.0)
 				# Align visuals with the camera
 				visuals.rotation = Vector3(0.0, 0.0, camera_mount.rotation.z)
-
+				
 			# Check if in first-person
 			elif perspective == 1:
 				# Flag the player as in "third" person
 				perspective = 0
 				# Set camera mount's position
-				camera_mount.position = Vector3(0.0, 1.6, 0.0)
+				camera_mount.position = Vector3(0.0, 1.65, 0.0)
 				# Set camera's position
 				camera_mount.get_node("Camera3D").position = Vector3(0.0, 0.6, 2.5)
 				# Set the visual's rotation
@@ -224,6 +224,15 @@ func _process(delta: float) -> void:
 		#$CameraMount/Camera3D/Debug/Panel/CheckBox14.button_pressed = false
 		$CameraMount/Camera3D/Debug/Panel/CheckBox15.button_pressed = Globals.game_paused
 
+	# Update the camera every frame
+	if perspective == 1:
+		var skeleton = $Visuals/AuxScene/Node/Skeleton3D
+		var bone_name = "mixamorigNeck"
+		var bone_index = skeleton.find_bone(bone_name)
+		# Get the overall transform of the specified bone, with respect to the skeleton.
+		var bone_pose = skeleton.get_bone_global_pose(bone_index)
+		# Adjust the camera position to match the bone's relative position (adjusting for $Visuals scaling)
+		camera_mount.position = bone_pose.origin * 0.01
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -437,11 +446,19 @@ func mangage_state() -> void:
 		if Input.is_action_pressed("crouch"):
 			# Flag the player as "crouching"
 			is_crouching = true
+			# Check if in "first person" perspective
+			#if perspective == 1:
+			#	# Set camera mount's position
+			#	move_camera_mount(Vector3(0.0, 0.9, -0.6))
 
 		# [crouch] button just _released_
 		if Input.is_action_just_released("crouch"):
 			# Flag player as no longer "crouching"
 			is_crouching = false
+			# Check if in "first person" perspective
+			#if perspective == 1:
+			#	# Set camera mount's position
+			#	move_camera_mount(Vector3(0.0, 1.65, -0.4))
 
 		# [jump] button just _pressed_
 		if Input.is_action_just_pressed("jump"):
@@ -489,6 +506,12 @@ func mangage_state() -> void:
 						flying_stop()
 					# Either way, reset the timer
 					timer_jump = Time.get_ticks_msec()
+
+
+## Move the camera (smoothly)
+func move_camera_mount(target_position: Vector3):
+	var tween = get_tree().create_tween()
+	tween.tween_property(camera_mount, "position", target_position, 0.2)
 
 
 ## Sets the player's idle animation based on status.
