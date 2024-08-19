@@ -51,6 +51,7 @@ var timer_jump: float = 0.0
 @onready var raycast_high = $Visuals/RayCast3D_InFrontPlayer_High
 @onready var raycast_middle = $Visuals/RayCast3D_InFrontPlayer_Middle
 @onready var raycast_low = $Visuals/RayCast3D_InFrontPlayer_Low
+@onready var raycast_below = $Visuals/RayCast3D_BelowPlayer
 @onready var visuals = $Visuals
 
 
@@ -405,7 +406,15 @@ func check_top_edge_collision() -> void:
 		if animation_player.current_animation != "Hanging_Idle":
 			animation_player.play("Hanging_Idle")
 		# Adjust for the animation's player position
-		position += Vector3(0.0, -0.45, 0.0)
+		var point = raycast_high.get_collision_point()
+		print("Collision:", point)
+		print("Player:   ", position)
+
+		# Determine the direction away from the wall
+		var offset_direction = (position - point).normalized()
+		# Offset the player by half the width away from the wall
+		position = Vector3(point.x + offset_direction.x * 0.2, position.y - 0.45, point.z + offset_direction.z * 0.2)
+		
 		is_animation_locked = true
 		is_hanging = true
 		is_jumping = false
@@ -511,7 +520,7 @@ func mangage_state() -> void:
 			# Decrease the player's vertical position
 			position.y -= 0.1
 			# End flying if collision detected below the player
-			if $Visuals/RayCast3D_BelowPlayer.is_colliding():
+			if raycast_below.is_colliding():
 				# Stop flying
 				flying_stop()
 		
