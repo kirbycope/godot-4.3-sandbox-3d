@@ -6,6 +6,7 @@ var animations_hanging = ["Hanging_Idle"]
 var animations_jumping = ["Falling_Idle"]
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var is_animation_locked: bool = false
+var is_climbing: bool = false
 var is_crouching: bool = false
 var is_double_jumping: bool = false
 var is_flying: bool = false
@@ -45,6 +46,7 @@ var timer_jump: float = 0.0
 @onready var camera_mount = $CameraMount
 @onready var camera = $CameraMount/Camera3D
 @onready var debug_ui = $CameraMount/Camera3D/Debug
+@onready var raycast_jumptarget = $Visuals/RayCast3D_JumpTarget
 @onready var raycast_top = $Visuals/RayCast3D_InFrontPlayer_Top
 @onready var raycast_high = $Visuals/RayCast3D_InFrontPlayer_High
 @onready var raycast_middle = $Visuals/RayCast3D_InFrontPlayer_Middle
@@ -397,9 +399,9 @@ func check_punch_collision() -> void:
 			Input.start_joy_vibration(0, 1.0, 0.0, 0.1)
 
 
-## 
+## Check the eyeline for a ledge to grab.
 func check_top_edge_collision() -> void:
-	if !raycast_top.is_colliding() and raycast_high.is_colliding():
+	if !raycast_top.is_colliding() and raycast_high.is_colliding() and !is_climbing:
 		if animation_player.current_animation != "Hanging_Idle":
 			animation_player.play("Hanging_Idle")
 		# Adjust for the animation's player position
@@ -407,6 +409,8 @@ func check_top_edge_collision() -> void:
 		is_animation_locked = true
 		is_hanging = true
 		is_jumping = false
+		# Reset velocity to prevent any movement
+		velocity = Vector3.ZERO
 		# Delay execution
 		await get_tree().create_timer(0.2).timeout
 		# Flag the animation player no longer locked
@@ -541,13 +545,33 @@ func mangage_state() -> void:
 
 		# [crouch] button currently _pressed_ (and the animation played is unlocked)
 		if Input.is_action_pressed("crouch") and !is_animation_locked:
+			# Flag the player as no longer "hanging"
 			is_hanging = false
-			print("let go")
+			# Make the player start falling again
+			velocity.y = -gravity
+			# Play the idle "falling" animation
+			animation_player.play("Falling_Idle")
 
 		# [jump] button just _pressed_ (and the animation player is unlocked)
 		if Input.is_action_just_pressed("jump") and !is_animation_locked:
+			# Flag the player as no longer "hanging"
 			is_hanging = false
-			print("climb up")
+			# Flag the player as "climbing" (from a ledge)
+			is_climbing = true
+			# Make the player start falling again
+			velocity.y = -gravity
+			# Play the idle "Standing" animation
+			animation_player.play("Idle")
+			# Find the target position
+			var collision_point = raycast_jumptarget.get_collision_point()
+			# Move the player
+			var tween = get_tree().create_tween()
+			tween.tween_property($".", "position", collision_point , 0.2)
+			# Delay execution
+			await get_tree().create_timer(0.2).timeout
+			# Flag the player as no longer "climbing"
+			is_climbing = false
+
 
 	# Check if player is on a floor
 	if is_on_floor():
@@ -710,8 +734,10 @@ func set_player_speed(input_magnitude) -> void:
 ## Update the player's velocity based on input and status.
 func update_velocity(delta: float) -> void:
 
-	# Add the gravity.
-	velocity.y -= gravity * delta
+	# Check if the player is not hanging
+	if !is_hanging:
+		# Add the gravity.
+		velocity.y -= gravity * delta
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "forward", "backward")
