@@ -1,13 +1,15 @@
 extends CharacterBody3D
 
 var animations_crouching = ["Crawling_InPlace", "Crouching_Idle"]
-var animations_jumping = ["Falling_Idle"]
 var animations_flying = ["Flying"]
+var animations_hanging = ["Hanging_Idle"]
+var animations_jumping = ["Falling_Idle"]
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var is_animation_locked: bool = false
 var is_crouching: bool = false
 var is_double_jumping: bool = false
 var is_flying: bool = false
+var is_hanging: bool = false
 var is_jumping: bool = false
 var is_kicking_left: bool = false
 var is_kicking_right: bool = false
@@ -299,13 +301,13 @@ func _process(delta: float) -> void:
 		$CameraMount/Camera3D/Debug/Panel/CheckBox5.button_pressed = is_crouching
 		$CameraMount/Camera3D/Debug/Panel/CheckBox6.button_pressed = is_double_jumping
 		$CameraMount/Camera3D/Debug/Panel/CheckBox7.button_pressed = is_flying
-		$CameraMount/Camera3D/Debug/Panel/CheckBox8.button_pressed = is_jumping
-		$CameraMount/Camera3D/Debug/Panel/CheckBox9.button_pressed = is_kicking_left
-		$CameraMount/Camera3D/Debug/Panel/CheckBox10.button_pressed = is_kicking_right
-		$CameraMount/Camera3D/Debug/Panel/CheckBox11.button_pressed = is_punching_left
-		$CameraMount/Camera3D/Debug/Panel/CheckBox12.button_pressed = is_punching_right
-		$CameraMount/Camera3D/Debug/Panel/CheckBox13.button_pressed = is_sprinting
-		#$CameraMount/Camera3D/Debug/Panel/CheckBox14.button_pressed = false
+		$CameraMount/Camera3D/Debug/Panel/CheckBox8.button_pressed = is_hanging
+		$CameraMount/Camera3D/Debug/Panel/CheckBox9.button_pressed = is_jumping
+		$CameraMount/Camera3D/Debug/Panel/CheckBox10.button_pressed = is_kicking_left
+		$CameraMount/Camera3D/Debug/Panel/CheckBox11.button_pressed = is_kicking_right
+		$CameraMount/Camera3D/Debug/Panel/CheckBox12.button_pressed = is_punching_left
+		$CameraMount/Camera3D/Debug/Panel/CheckBox13.button_pressed = is_punching_right
+		$CameraMount/Camera3D/Debug/Panel/CheckBox14.button_pressed = is_sprinting
 		$CameraMount/Camera3D/Debug/Panel/CheckBox15.button_pressed = Globals.game_paused
 
 
@@ -398,15 +400,17 @@ func check_punch_collision() -> void:
 ## 
 func check_top_edge_collision() -> void:
 	if !raycast_top.is_colliding() and raycast_high.is_colliding():
-		#animation_player.play("Jumping_To_Hanging_Right")
+		if animation_player.current_animation != "Hanging_Idle":
+			animation_player.play("Hanging_Idle")
+		# Adjust for the animation's player position
 		position += Vector3(0.0, -0.45, 0.0)
-		#var tween = get_tree().create_tween()
-		#tween.tween_property($".", "position", position + Vector3(0.0, -0.125, 0.0), 0.5)
 		is_animation_locked = true
+		is_hanging = true
 		is_jumping = false
 		# Delay execution
-		#await get_tree().create_timer(0.5).timeout
-		animation_player.play("Hanging_Idle")
+		await get_tree().create_timer(0.2).timeout
+		# Flag the animation player no longer locked
+		is_animation_locked = false
 
 
 ## Rotate camera using the right-analog stick.
@@ -532,6 +536,19 @@ func mangage_state() -> void:
 			# Play the idle "Flying" animation
 			animation_player.play("Flying")
 
+	# Check if the player is hanging (from a ledge)
+	if is_hanging:
+
+		# [crouch] button currently _pressed_ (and the animation played is unlocked)
+		if Input.is_action_pressed("crouch") and !is_animation_locked:
+			is_hanging = false
+			print("let go")
+
+		# [jump] button just _pressed_ (and the animation player is unlocked)
+		if Input.is_action_just_pressed("jump") and !is_animation_locked:
+			is_hanging = false
+			print("climb up")
+
 	# Check if player is on a floor
 	if is_on_floor():
 
@@ -642,6 +659,13 @@ func set_player_idle_animation() -> void:
 			# Play the standing "Idle" animation
 			animation_player.play("Idle")
 	
+	# Check if the player is "hanging"
+	if is_hanging:
+		# Check if the current animation is not a hanging one
+		if animation_player.current_animation not in animations_hanging:
+			# Play the idle "Hanging" animation
+			animation_player.play("Hanging_Idle")
+	
 	# Check if the player is "jumping"
 	if is_jumping:
 		# Check if the current animation is not a jumping one
@@ -662,8 +686,8 @@ func set_player_idle_animation() -> void:
 
 ## Sets the player's movement speed based on status.
 func set_player_speed(input_magnitude) -> void:
-	# Check if the player is crouching
-	if is_crouching:
+	# Check if the player is crouching or hanging
+	if is_crouching or is_hanging:
 		# Set the player's movement speed to the "crawling" speed
 		player_current_speed = player_crawling_speed
 	# Check if the player is flying and sprinting
