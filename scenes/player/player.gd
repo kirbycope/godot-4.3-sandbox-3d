@@ -43,6 +43,10 @@ var timer_jump: float = 0.0
 @onready var camera_mount = $CameraMount
 @onready var camera = $CameraMount/Camera3D
 @onready var debug_ui = $CameraMount/Camera3D/Debug
+@onready var raycast_top = $Visuals/RayCast3D_InFrontPlayer_Top
+@onready var raycast_high = $Visuals/RayCast3D_InFrontPlayer_High
+@onready var raycast_middle = $Visuals/RayCast3D_InFrontPlayer_Middle
+@onready var raycast_low = $Visuals/RayCast3D_InFrontPlayer_Low
 @onready var visuals = $Visuals
 
 
@@ -314,14 +318,12 @@ func _ready() -> void:
 
 ## Check if the kick hits anything.
 func check_kick_collision() -> void:
-	# Get the RayCast3D
-	var raycast = $Visuals/RayCast3D_InFrontPlayer_Low
 	# Check if the RayCast3D is collining with something
-	if raycast.is_colliding():
+	if raycast_low.is_colliding():
 		# Get the object the RayCast is colliding with
-		var collider = raycast.get_collider()
+		var collider = raycast_low.get_collider()
 		# Get the position of the current collision
-		var collision_position = raycast.get_collision_point()
+		var collision_position = raycast_low.get_collision_point()
 		# Delay execution
 		await get_tree().create_timer(0.5).timeout
 		# Flag the animation player no longer locked
@@ -355,14 +357,13 @@ func check_kick_collision() -> void:
 
 ## Checks if the thrown punch hits anything.
 func check_punch_collision() -> void:
-	# Get the RayCast3D
-	var raycast = $Visuals/RayCast3D_InFrontPlayer_Middle
+
 	# Check if the RayCast3D is collining with something
-	if raycast.is_colliding():
+	if raycast_middle.is_colliding():
 		# Get the object the RayCast is colliding with
-		var collider = raycast.get_collider()
+		var collider = raycast_middle.get_collider()
 		# Get the position of the current collision
-		var collision_position = raycast.get_collision_point()
+		var collision_position = raycast_middle.get_collision_point()
 		# Delay execution
 		await get_tree().create_timer(0.3).timeout
 		# Flag the animation player no longer locked
@@ -392,6 +393,20 @@ func check_punch_collision() -> void:
 		# Controller vibration
 		if enable_vibration:
 			Input.start_joy_vibration(0, 1.0, 0.0, 0.1)
+
+
+## 
+func check_top_edge_collision() -> void:
+	if !raycast_top.is_colliding() and raycast_high.is_colliding():
+		#animation_player.play("Jumping_To_Hanging_Right")
+		position += Vector3(0.0, -0.45, 0.0)
+		#var tween = get_tree().create_tween()
+		#tween.tween_property($".", "position", position + Vector3(0.0, -0.125, 0.0), 0.5)
+		is_animation_locked = true
+		is_jumping = false
+		# Delay execution
+		#await get_tree().create_timer(0.5).timeout
+		animation_player.play("Hanging_Idle")
 
 
 ## Rotate camera using the right-analog stick.
@@ -545,6 +560,9 @@ func mangage_state() -> void:
 	
 	# The player should not be on a floor and not flying
 	else:
+
+		# Edge detection
+		check_top_edge_collision()
 		
 		# [crouch] button just _released_
 		if Input.is_action_just_released("crouch"):
