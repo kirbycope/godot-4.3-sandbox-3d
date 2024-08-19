@@ -240,9 +240,6 @@ func _input(event) -> void:
 ## Use _physics_process(delta) if the input needs to be checked continuously in sync with the physics engine, like for smooth movement or jump control.
 func _physics_process(delta) -> void:
 
-	# Set the player's movement speed
-	set_player_speed()
-
 	# Check if no animation is playing
 	if !animation_player.is_playing():
 		# Play the idle "Standing" animation
@@ -646,7 +643,7 @@ func set_player_idle_animation() -> void:
 
 
 ## Sets the player's movement speed based on status.
-func set_player_speed() -> void:
+func set_player_speed(input_magnitude) -> void:
 	# Check if the player is crouching
 	if is_crouching:
 		# Set the player's movement speed to the "crawling" speed
@@ -664,8 +661,8 @@ func set_player_speed() -> void:
 		player_current_speed = player_sprinting_speed
 	# The player should be walking (or standing)
 	else:
-		# Set the player's movement speed to "walking"
-		player_current_speed = player_walking_speed
+		# Determine player speed based on input magnitude (walking or running)
+		player_current_speed = lerp(player_walking_speed, player_running_speed, input_magnitude)
 
 
 ## Update the player's velocity based on input and status.
@@ -680,12 +677,12 @@ func update_velocity(delta: float) -> void:
 
 	# Calculate the input magnitude (intensity of the left-analog stick)
 	var input_magnitude = input_dir.length()
-
+	
+	# Set the player's movement speed
+	set_player_speed(input_magnitude)
+	
 	# Check for directional movement
 	if direction:
-		# Determine player speed based on input magnitude
-		player_current_speed = lerp(player_walking_speed, player_running_speed, input_magnitude)
-		#print("running") if player_current_speed > 3.0 else print("walking")
 		# Check if the animation player is unlocked
 		if !is_animation_locked:
 			# Check if the player is on the ground
@@ -698,13 +695,19 @@ func update_velocity(delta: float) -> void:
 				# Check if the player is sprinting
 				elif is_sprinting:
 					# Play the sprinting "move" animation
-					if animation_player.current_animation != "Running_InPlace":
-						animation_player.play("Running_InPlace")
-				# The player must be walking
+					if animation_player.current_animation != "Sprinting_InPlace":
+						animation_player.play("Sprinting_InPlace")
+				# The player must be walking or running
 				else:
-					# Play the walking "move" animation
-					if animation_player.current_animation != "Walking_InPlace":
-						animation_player.play("Walking_InPlace")
+					# Check if the player is running
+					if player_current_speed > (player_running_speed - (player_running_speed - player_walking_speed) * 0.25):
+						# Play the walking "move" animation
+						if animation_player.current_animation != "Running_InPlace":
+							animation_player.play("Running_InPlace")
+					else:
+						# Play the walking "move" animation
+						if animation_player.current_animation != "Walking_InPlace":
+							animation_player.play("Walking_InPlace")
 			# Check if the player is not in "third person" perspective
 			if perspective == 0:
 				# Update the camera to look in the direction based on player input
