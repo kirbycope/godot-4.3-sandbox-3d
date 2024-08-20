@@ -6,8 +6,10 @@ var loading_instance = null
 var res_main_menu: String = "res://scenes/main-menu/main-menu.tscn"
 # The resource path of the "Sandbox" scene
 var res_sandbox: String = "res://scenes/sandbox/sandbox.tscn"
-# The "Loading" scene.
+# The "Loading" scene
 @onready var scene_loading: PackedScene = preload("res://scenes/loading/loading.tscn")
+# The local player's name
+var username: String = OS.get_environment("USERNAME")
 
 
 ## Called when the node enters the scene tree for the first time.
