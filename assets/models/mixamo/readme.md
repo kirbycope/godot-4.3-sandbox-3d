@@ -1,7 +1,7 @@
 # Mixamo
 
 ## Model(s)
-X Bot - https://www.mixamo.com/#/?page=1&query=X+Bot&type=Character
+X Bot - https://www.mixamo.com/#/?page=1&query=X+Bot&type=Character </br>
 Y Bot - https://www.mixamo.com/#/?page=1&query=Y+Bot&type=Character
 
 Download settings:
