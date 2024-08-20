@@ -47,6 +47,9 @@ var timer_jump: float = 0.0
 @onready var camera_mount = $CameraMount
 @onready var camera = $CameraMount/Camera3D
 @onready var debug_ui = $CameraMount/Camera3D/Debug
+@onready var debug_stick_l_origin : Vector2 = $CameraMount/Camera3D/Debug/XboxController/White/StickL.position
+@onready var debug_stick_r_origin : Vector2 = $CameraMount/Camera3D/Debug/XboxController/White/StickR.position
+@onready var player_skeleton = $Visuals/AuxScene/Node/Skeleton3D
 @onready var raycast_jumptarget = $Visuals/RayCast3D_JumpTarget
 @onready var raycast_top = $Visuals/RayCast3D_InFrontPlayer_Top
 @onready var raycast_high = $Visuals/RayCast3D_InFrontPlayer_High
@@ -322,29 +325,27 @@ func _process(delta: float) -> void:
 		
 		if last_input_device == "Controller":
 			# Left stick
-			var stick_l_origin:= Vector2(955, 564)
 			var left_stick_input = Vector2(
 				Input.get_axis("left", "right"),
 				Input.get_axis("forward", "backward")
 			)
 			if left_stick_input.length() > 0:
 				# Move StickL based on stick input strength
-				$CameraMount/Camera3D/Debug/XboxController/White/StickL.position = stick_l_origin + left_stick_input * 10.0
+				$CameraMount/Camera3D/Debug/XboxController/White/StickL.position = debug_stick_l_origin + left_stick_input * 10.0
 			else:
 				# Return StickL to its original position when stick is released
-				$CameraMount/Camera3D/Debug/XboxController/White/StickL.position = stick_l_origin
+				$CameraMount/Camera3D/Debug/XboxController/White/StickL.position = debug_stick_l_origin
 			# Right stick
-			var stick_r_origin:= Vector2(1107, 628)
 			var right_stick_input = Vector2(
 				Input.get_axis("look_left", "look_right"),
 				Input.get_axis("look_up", "look_down")
 			)
 			if right_stick_input.length() > 0:
 				# Move StickR based on stick input strength
-				$CameraMount/Camera3D/Debug/XboxController/White/StickR.position = stick_r_origin + right_stick_input * 10.0
+				$CameraMount/Camera3D/Debug/XboxController/White/StickR.position = debug_stick_r_origin + right_stick_input * 10.0
 			else:
 				# Return StickR to its original position when stick is released
-				$CameraMount/Camera3D/Debug/XboxController/White/StickR.position = stick_r_origin
+				$CameraMount/Camera3D/Debug/XboxController/White/StickR.position = debug_stick_r_origin
 
 
 ## Called when the node enters the scene tree for the first time.
@@ -616,7 +617,7 @@ func mangage_state() -> void:
 			var collision_point = raycast_jumptarget.get_collision_point()
 			# Move the player
 			var tween = get_tree().create_tween()
-			tween.tween_property(self, "position", collision_point , 0.2)
+			tween.tween_property(self, "position", collision_point, 0.2)
 			# Delay execution
 			await get_tree().create_timer(0.2).timeout
 			# Flag the player as no longer "climbing"
@@ -695,11 +696,10 @@ func mangage_state() -> void:
 func move_camera():
 	# Check if in "first person" perspective
 	if perspective == 1:
-		var skeleton = $Visuals/AuxScene/Node/Skeleton3D
 		var bone_name = "mixamorigHead"
-		var bone_index = skeleton.find_bone(bone_name)
-		# Get the overall transform of the specified bone, with respect to the skeleton.
-		var bone_pose = skeleton.get_bone_global_pose(bone_index)
+		var bone_index = player_skeleton.find_bone(bone_name)
+		# Get the overall transform of the specified bone, with respect to the player's skeleton.
+		var bone_pose = player_skeleton.get_bone_global_pose(bone_index)
 		# Adjust the camera mount position to match the bone's relative position (adjusting for $Visuals/AuxScene scaling)
 		camera_mount.position = Vector3(-bone_pose.origin.x * 0.01, bone_pose.origin.y * 0.01, (-bone_pose.origin.z * 0.01) - 0.165)
 
