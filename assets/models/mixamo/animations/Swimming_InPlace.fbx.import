@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://fkc1irgvu0ue"
-valid=false
+path="res://.godot/imported/Swimming_InPlace.fbx-4d5b7449dc52fc7ed5b75f4746a1ce76.scn"
 
 [deps]
 
 source_file="res://assets/models/mixamo/animations/Swimming_InPlace.fbx"
+dest_files=["res://.godot/imported/Swimming_InPlace.fbx-4d5b7449dc52fc7ed5b75f4746a1ce76.scn"]
 
 [params]
 

@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c1hfcgpl2sy6t"
-valid=false
+path="res://.godot/imported/Flying.fbx-5836881ff07aae96282ce41ab8f4e64f.scn"
 
 [deps]
 
 source_file="res://assets/models/mixamo/animations/Flying.fbx"
+dest_files=["res://.godot/imported/Flying.fbx-5836881ff07aae96282ce41ab8f4e64f.scn"]
 
 [params]
 
