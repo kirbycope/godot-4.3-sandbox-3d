@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 var animations_crouching = ["Crawling_InPlace", "Crouching_Idle"]
-var animations_flying = ["Flying"]
+var animations_flying = ["Flying", "Flying_Fast"]
 var animations_hanging = ["Hanging_Idle"]
 var animations_jumping = ["Falling_Idle"]
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -23,7 +23,7 @@ var timer_jump: float = 0.0
 # Note: `@export` variables are available for editing in the property editor.
 @export var enable_double_jump: bool = false
 @export var enable_vibration: bool = false
-@export var enable_flying: bool = false
+@export var enable_flying: bool = true
 @export var force_kicking: float = 2.0
 @export var force_kicking_sprinting: float = 3.0
 @export var force_punching: float = 1.0
@@ -578,10 +578,17 @@ func mangage_state() -> void:
 			# Reset the player's pitch
 			visuals.rotation.x = 0
 
-		# Check if the current animation is not a flying one
-		if animation_player.current_animation not in animations_flying:
-			# Play the idle "Flying" animation
-			animation_player.play("Flying")
+		# [sprint] button _pressed_
+		if Input.is_action_pressed("sprint"):
+			# Check if the current animation is not a flying one
+			if animation_player.current_animation != "Flying_Fast":
+				# Play the idle "Flying Fast" animation
+				animation_player.play("Flying_Fast")
+		else:
+			# Check if the current animation is not a flying one
+			if animation_player.current_animation not in animations_flying:
+				# Play the idle "Flying" animation
+				animation_player.play("Flying")
 
 	# Check if the player is hanging (from a ledge)
 	if is_hanging:
