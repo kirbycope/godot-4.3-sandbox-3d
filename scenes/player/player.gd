@@ -17,6 +17,7 @@ var is_kicking_right: bool = false
 var is_punching_left: bool = false
 var is_punching_right: bool = false
 var is_sprinting: bool = false
+var last_input_device: String = ""
 var timer_jump: float = 0.0
 
 # Note: `@export` variables are available for editing in the property editor.
@@ -67,8 +68,14 @@ func _input(event) -> void:
 		
 	# Check if the Debug UI is currently displayed
 	if debug_ui.visible:
+		# Check if the current Input Event was triggered by a keyboard
+		if event is InputEventKey:
+			# Flag the last input device
+			last_input_device = "Keyboard"
 		# Check if the current Input Event was triggered by a joypad
 		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+			# Flag the last input device
+			last_input_device = "Controller"
 			# Get the joypad's name
 			var device_name = Input.get_joy_name(event.device)
 			# Check if the joypad is an XBox controller
@@ -312,6 +319,32 @@ func _process(delta: float) -> void:
 		$CameraMount/Camera3D/Debug/Panel/CheckBox13.button_pressed = is_punching_right
 		$CameraMount/Camera3D/Debug/Panel/CheckBox14.button_pressed = is_sprinting
 		$CameraMount/Camera3D/Debug/Panel/CheckBox15.button_pressed = Globals.game_paused
+		
+		if last_input_device == "Controller":
+			# Left stick
+			var stick_l_origin:= Vector2(955, 564)
+			var left_stick_input = Vector2(
+				Input.get_axis("left", "right"),
+				Input.get_axis("forward", "backward")
+			)
+			if left_stick_input.length() > 0:
+				# Move StickL based on stick input strength
+				$CameraMount/Camera3D/Debug/XboxController/White/StickL.position = stick_l_origin + left_stick_input * 10.0
+			else:
+				# Return StickL to its original position when stick is released
+				$CameraMount/Camera3D/Debug/XboxController/White/StickL.position = stick_l_origin
+			# Right stick
+			var stick_r_origin:= Vector2(1107, 628)
+			var right_stick_input = Vector2(
+				Input.get_axis("look_left", "look_right"),
+				Input.get_axis("look_up", "look_down")
+			)
+			if right_stick_input.length() > 0:
+				# Move StickR based on stick input strength
+				$CameraMount/Camera3D/Debug/XboxController/White/StickR.position = stick_r_origin + right_stick_input * 10.0
+			else:
+				# Return StickR to its original position when stick is released
+				$CameraMount/Camera3D/Debug/XboxController/White/StickR.position = stick_r_origin
 
 
 ## Called when the node enters the scene tree for the first time.
@@ -403,20 +436,21 @@ func check_punch_collision() -> void:
 ## Check the eyeline for a ledge to grab.
 func check_top_edge_collision() -> void:
 	if !raycast_top.is_colliding() and raycast_high.is_colliding() and !is_climbing:
+		# Check if the current animation is not a "hanging" one
 		if animation_player.current_animation != "Hanging_Idle":
+			# Play the idle "Hanging" animation
 			animation_player.play("Hanging_Idle")
 		# Adjust for the animation's player position
 		var point = raycast_high.get_collision_point()
-		print("Collision:", point)
-		print("Player:   ", position)
-
 		# Determine the direction away from the wall
 		var offset_direction = (position - point).normalized()
 		# Offset the player by half the width away from the wall
 		position = Vector3(point.x + offset_direction.x * 0.2, position.y - 0.45, point.z + offset_direction.z * 0.2)
-		
+		# Flag the animation player as locked
 		is_animation_locked = true
+		# Flag the player as "hanging" (from a ledge)
 		is_hanging = true
+		# Flag the player as not jumping
 		is_jumping = false
 		# Reset velocity to prevent any movement
 		velocity = Vector3.ZERO
@@ -575,7 +609,7 @@ func mangage_state() -> void:
 			var collision_point = raycast_jumptarget.get_collision_point()
 			# Move the player
 			var tween = get_tree().create_tween()
-			tween.tween_property($".", "position", collision_point , 0.2)
+			tween.tween_property(self, "position", collision_point , 0.2)
 			# Delay execution
 			await get_tree().create_timer(0.2).timeout
 			# Flag the player as no longer "climbing"
@@ -711,10 +745,6 @@ func set_player_idle_animation() -> void:
 		if animation_player.current_animation in animations_jumping:
 			# Play the standing "Idle" animation
 			animation_player.play("Idle")
-		# Check if in "first person" perspective
-		#if perspective == 1:
-			# Set camera mount's position
-			#move_camera_mount(Vector3(0.0, 1.65, -0.4))
 
 
 ## Sets the player's movement speed based on status.
