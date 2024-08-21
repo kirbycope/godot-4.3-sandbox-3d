@@ -551,6 +551,7 @@ func mangage_state() -> void:
 
 ## Update the camera to follow the character head's position (while in "first person").
 func move_camera():
+
 	# Check if in "first person" perspective
 	if perspective == 1:
 		var bone_name = "mixamorigHead"

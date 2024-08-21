@@ -36,6 +36,7 @@ grow_vertical = 2
 script = ExtResource("1_nyx4n")
 
 [node name="Panel" type="Panel" parent="."]
+layout_mode = 0
 offset_right = 216.0
 offset_bottom = 410.0
 

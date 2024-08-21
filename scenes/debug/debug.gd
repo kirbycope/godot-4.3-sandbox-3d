@@ -32,7 +32,7 @@ func _input(event) -> void:
 	if visible:
 
 		# Check if the current Input Event was triggered by a keyboard
-		if event is InputEventKey:
+		if event is InputEventKey or event is InputEventMouse or event is InputEventMouseMotion:
 
 			# Flag the last input device
 			last_input_device = "Keyboard"
@@ -145,22 +145,28 @@ func _process(delta: float) -> void:
 		$Panel/CheckBox15.button_pressed = Globals.game_paused
 
 		if last_input_device == "Controller":
-			# Left stick
+
+			# Get Left-stick magnitude
 			var left_stick_input = Vector2(
 				Input.get_axis("left", "right"),
 				Input.get_axis("forward", "backward")
 			)
+
+			# Apply position based on left-stick magnitude
 			if left_stick_input.length() > 0:
 				# Move StickL based on stick input strength
 				$XboxController/White/StickL.position = stick_l_origin + left_stick_input * 10.0
 			else:
 				# Return StickL to its original position when stick is released
 				$XboxController/White/StickL.position = stick_l_origin
-			# Right stick
+
+			# Get right-stick magnitude
 			var right_stick_input = Vector2(
 				Input.get_axis("look_left", "look_right"),
 				Input.get_axis("look_up", "look_down")
 			)
+
+			# Apply position based on right-stick magnitude
 			if right_stick_input.length() > 0:
 				# Move StickR based on stick input strength
 				$XboxController/White/StickR.position = stick_r_origin + right_stick_input * 10.0
