@@ -50,6 +50,7 @@ var timer_jump: float = 0.0
 @onready var debug_stick_l_origin : Vector2 = $CameraMount/Camera3D/Debug/XboxController/White/StickL.position
 @onready var debug_stick_r_origin : Vector2 = $CameraMount/Camera3D/Debug/XboxController/White/StickR.position
 @onready var player_skeleton = $Visuals/AuxScene/Node/Skeleton3D
+@onready var pause_menu = $CameraMount/Camera3D/Pause
 @onready var raycast_jumptarget = $Visuals/RayCast3D_JumpTarget
 @onready var raycast_top = $Visuals/RayCast3D_InFrontPlayer_Top
 @onready var raycast_high = $Visuals/RayCast3D_InFrontPlayer_High
@@ -68,7 +69,7 @@ func _input(event) -> void:
 		
 		# Toggle "debug" visibility
 		debug_ui.visible = !debug_ui.visible
-		
+
 	# Check if the Debug UI is currently displayed
 	if debug_ui.visible:
 		# Check if the current Input Event was triggered by a keyboard
@@ -153,6 +154,14 @@ func _input(event) -> void:
 					$CameraMount/Camera3D/Debug/XboxController/White/ButtonR2.visible = false
 				elif event.is_action_released("right_kick"):
 					$CameraMount/Camera3D/Debug/XboxController/White/ButtonR2.visible = true
+
+	# Check if the [pause] action _pressed_
+	if event.is_action_pressed("start"):
+		# Toggle game paused
+		Globals.game_paused = !Globals.game_paused
+		
+		# Show the pause menu, if paused
+		pause_menu.visible = Globals.game_paused
 
 	# If the game is not paused...
 	if !Globals.game_paused:
@@ -304,6 +313,9 @@ func _physics_process(delta) -> void:
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 
+	# Toggle mouse capture
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE if pause_menu.visible else Input.MOUSE_MODE_CAPTURED)
+
 	# Check is the Debug Panel is visible
 	if debug_ui.visible:
 		# Panel
@@ -351,8 +363,17 @@ func _process(delta: float) -> void:
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
-	# Disable the debud ui
+	# Disable the debug ui
 	debug_ui.visible = false
+	
+	# Unpause the game
+	Globals.game_paused = false
+
+## Unload _this_ scene from the Client scene.
+func _on_leave_game_button_pressed() -> void:
+	# 0 is Globals (auto-load), 1 is Client
+	var client = get_tree().root.get_child(1)
+	client.unload_scene()
 
 
 ## Check if the kick hits anything.
