@@ -369,6 +369,15 @@ func _ready() -> void:
 	# Unpause the game
 	Globals.game_paused = false
 
+
+## Close the pasue menu
+func _on_back_to_game_button_pressed() -> void:
+	# Hide the pause menu
+	pause_menu.visible = false
+	# Unpause the game
+	Globals.game_paused = false
+
+
 ## Unload _this_ scene from the Client scene.
 func _on_leave_game_button_pressed() -> void:
 	# 0 is Globals (auto-load), 1 is Client
