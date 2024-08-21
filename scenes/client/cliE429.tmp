@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfm5kqmbkqrfu"]
-
-[ext_resource type="Script" path="res://scenes/client/client.gd" id="1_gypdw"]
-
-[node name="Client" type="Node3D"]
-script = ExtResource("1_gypdw")
