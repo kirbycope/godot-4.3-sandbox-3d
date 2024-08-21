@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://clgys2gxv3vf0"
-path="res://.godot/imported/Kicking_Left.fbx-47b47c42165537f3100ae141f1f3b55c.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/models/mixamo/animations/Kicking_Left.fbx"
-dest_files=["res://.godot/imported/Kicking_Left.fbx-47b47c42165537f3100ae141f1f3b55c.scn"]
 
 [params]
 

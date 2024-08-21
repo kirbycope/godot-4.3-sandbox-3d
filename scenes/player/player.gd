@@ -17,7 +17,6 @@ var is_kicking_right: bool = false
 var is_punching_left: bool = false
 var is_punching_right: bool = false
 var is_sprinting: bool = false
-var last_input_device: String = ""
 var timer_jump: float = 0.0
 
 # Note: `@export` variables are available for editing in the property editor.
@@ -46,9 +45,6 @@ var timer_jump: float = 0.0
 @onready var animation_player = $Visuals/AuxScene/AnimationPlayer
 @onready var camera_mount = $CameraMount
 @onready var camera = $CameraMount/Camera3D
-@onready var debug_ui = $CameraMount/Camera3D/Debug
-@onready var debug_stick_l_origin : Vector2 = $CameraMount/Camera3D/Debug/XboxController/White/StickL.position
-@onready var debug_stick_r_origin : Vector2 = $CameraMount/Camera3D/Debug/XboxController/White/StickR.position
 @onready var player_skeleton = $Visuals/AuxScene/Node/Skeleton3D
 @onready var pause_menu = $CameraMount/Camera3D/Pause
 @onready var raycast_jumptarget = $Visuals/RayCast3D_JumpTarget
@@ -63,105 +59,6 @@ var timer_jump: float = 0.0
 ## Called once for every event before _unhandled_input(), allowing you to consume some events.
 ## Use _input(event) if you only need to respond to discrete input events, such as detecting a single press or release of a key or button.
 func _input(event) -> void:
-
-	# [debug] button _pressed_
-	if event.is_action_pressed("debug"):
-		
-		# Toggle "debug" visibility
-		debug_ui.visible = !debug_ui.visible
-
-	# Check if the Debug UI is currently displayed
-	if debug_ui.visible:
-		# Check if the current Input Event was triggered by a keyboard
-		if event is InputEventKey:
-			# Flag the last input device
-			last_input_device = "Keyboard"
-		# Check if the current Input Event was triggered by a joypad
-		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
-			# Flag the last input device
-			last_input_device = "Controller"
-			# Get the joypad's name
-			var device_name = Input.get_joy_name(event.device)
-			# Check if the joypad is an XBox controller
-			if device_name == "XInput Gamepad":
-				# ⍐ (D-Pad Up)
-				if event.is_action_pressed("dpad_up"):
-					$CameraMount/Camera3D/Debug/XboxController/White/DPadUp.visible = false
-				elif event.is_action_released("dpad_up"):
-					$CameraMount/Camera3D/Debug/XboxController/White/DPadUp.visible = true
-				# ⍗ (D-Pad Down)
-				if event.is_action_pressed("dpad_down"):
-					$CameraMount/Camera3D/Debug/XboxController/White/DPadDown.visible = false
-				elif event.is_action_released("dpad_down"):
-					$CameraMount/Camera3D/Debug/XboxController/White/DPadDown.visible = true
-				# ⍇ (D-Pad Left)
-				if event.is_action_pressed("dpad_left"):
-					$CameraMount/Camera3D/Debug/XboxController/White/DPadLeft.visible = false
-				elif event.is_action_released("dpad_left"):
-					$CameraMount/Camera3D/Debug/XboxController/White/DPadLeft.visible = true
-				# ⍈ (D-Pad Right)
-				if event.is_action_pressed("dpad_right"):
-					$CameraMount/Camera3D/Debug/XboxController/White/DPadRight.visible = false
-				elif event.is_action_released("dpad_right"):
-					$CameraMount/Camera3D/Debug/XboxController/White/DPadRight.visible = true
-				# Ⓐ
-				if event.is_action_pressed("crouch"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonA.visible = false
-				elif event.is_action_released("crouch"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonA.visible = true
-				# Ⓑ
-				if event.is_action_pressed("sprint"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonB.visible = false
-				elif event.is_action_released("sprint"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonB.visible = true
-				# Ⓧ
-				if event.is_action_pressed("use"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonX.visible = false
-				elif event.is_action_released("use"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonX.visible = true
-				# Ⓨ
-				if event.is_action_pressed("jump"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonY.visible = false
-				elif event.is_action_released("jump"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonY.visible = true
-				# ☰ (Start)
-				if event.is_action_pressed("start"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonStart.visible = false
-				elif event.is_action_released("start"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonStart.visible = true
-				# ⧉ (Select)
-				if event.is_action_pressed("select"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonSelect.visible = false
-				elif event.is_action_released("select"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonSelect.visible = true
-				# Ⓛ1 (L1)
-				if event.is_action_pressed("left_punch"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonL1.visible = false
-				elif event.is_action_released("left_punch"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonL1.visible = true
-				# Ⓛ2 (L2)
-				if event.is_action_pressed("left_kick"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonL2.visible = false
-				elif event.is_action_released("left_kick"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonL2.visible = true
-				# Ⓡ1 (R1)
-				if event.is_action_pressed("right_punch"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonR1.visible = false
-				elif event.is_action_released("right_punch"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonR1.visible = true
-				# Ⓡ2 (R2)
-				if event.is_action_pressed("right_kick"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonR2.visible = false
-				elif event.is_action_released("right_kick"):
-					$CameraMount/Camera3D/Debug/XboxController/White/ButtonR2.visible = true
-
-	# Check if the [pause] action _pressed_
-	if event.is_action_pressed("start"):
-		# Toggle game paused
-		Globals.game_paused = !Globals.game_paused
-		
-		# Show the pause menu, if paused
-		pause_menu.visible = Globals.game_paused
 
 	# If the game is not paused...
 	if !Globals.game_paused:
@@ -310,79 +207,9 @@ func _physics_process(delta) -> void:
 	move_camera()
 
 
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-
-	# Toggle mouse capture
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE if pause_menu.visible else Input.MOUSE_MODE_CAPTURED)
-
-	# Check is the Debug Panel is visible
-	if debug_ui.visible:
-		# Panel
-		$CameraMount/Camera3D/Debug/Panel/CheckBox1.button_pressed = enable_double_jump
-		$CameraMount/Camera3D/Debug/Panel/CheckBox2.button_pressed = enable_flying
-		$CameraMount/Camera3D/Debug/Panel/CheckBox3.button_pressed = enable_vibration
-		$CameraMount/Camera3D/Debug/Panel/CheckBox4.button_pressed = is_animation_locked
-		$CameraMount/Camera3D/Debug/Panel/CheckBox5.button_pressed = is_crouching
-		$CameraMount/Camera3D/Debug/Panel/CheckBox6.button_pressed = is_double_jumping
-		$CameraMount/Camera3D/Debug/Panel/CheckBox7.button_pressed = is_flying
-		$CameraMount/Camera3D/Debug/Panel/CheckBox8.button_pressed = is_hanging
-		$CameraMount/Camera3D/Debug/Panel/CheckBox9.button_pressed = is_jumping
-		$CameraMount/Camera3D/Debug/Panel/CheckBox10.button_pressed = is_kicking_left
-		$CameraMount/Camera3D/Debug/Panel/CheckBox11.button_pressed = is_kicking_right
-		$CameraMount/Camera3D/Debug/Panel/CheckBox12.button_pressed = is_punching_left
-		$CameraMount/Camera3D/Debug/Panel/CheckBox13.button_pressed = is_punching_right
-		$CameraMount/Camera3D/Debug/Panel/CheckBox14.button_pressed = is_sprinting
-		$CameraMount/Camera3D/Debug/Panel/CheckBox15.button_pressed = Globals.game_paused
-		
-		if last_input_device == "Controller":
-			# Left stick
-			var left_stick_input = Vector2(
-				Input.get_axis("left", "right"),
-				Input.get_axis("forward", "backward")
-			)
-			if left_stick_input.length() > 0:
-				# Move StickL based on stick input strength
-				$CameraMount/Camera3D/Debug/XboxController/White/StickL.position = debug_stick_l_origin + left_stick_input * 10.0
-			else:
-				# Return StickL to its original position when stick is released
-				$CameraMount/Camera3D/Debug/XboxController/White/StickL.position = debug_stick_l_origin
-			# Right stick
-			var right_stick_input = Vector2(
-				Input.get_axis("look_left", "look_right"),
-				Input.get_axis("look_up", "look_down")
-			)
-			if right_stick_input.length() > 0:
-				# Move StickR based on stick input strength
-				$CameraMount/Camera3D/Debug/XboxController/White/StickR.position = debug_stick_r_origin + right_stick_input * 10.0
-			else:
-				# Return StickR to its original position when stick is released
-				$CameraMount/Camera3D/Debug/XboxController/White/StickR.position = debug_stick_r_origin
-
-
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
-	# Disable the debug ui
-	debug_ui.visible = false
-	
-	# Unpause the game
-	Globals.game_paused = false
-
-
-## Close the pasue menu
-func _on_back_to_game_button_pressed() -> void:
-	# Hide the pause menu
-	pause_menu.visible = false
-	# Unpause the game
-	Globals.game_paused = false
-
-
-## Unload _this_ scene from the Client scene.
-func _on_leave_game_button_pressed() -> void:
-	# 0 is Globals (auto-load), 1 is Client
-	var client = get_tree().root.get_child(1)
-	client.unload_scene()
+	pass
 
 
 ## Check if the kick hits anything.

@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://c15tmlt4ho2n0"
-path="res://.godot/imported/Idle.fbx-503265c189e87904f8dc85dabeb7203e.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/models/mixamo/animations/Idle.fbx"
-dest_files=["res://.godot/imported/Idle.fbx-503265c189e87904f8dc85dabeb7203e.scn"]
 
 [params]
 
