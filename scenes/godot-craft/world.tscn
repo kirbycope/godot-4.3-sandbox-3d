@@ -1,0 +1,538 @@
+[gd_scene load_steps=14 format=3 uid="uid://cyehteh3dryss"]
+
+[ext_resource type="PackedScene" uid="uid://bofof7gnh6w8s" path="res://scenes/godot-craft/dirt-grass.tscn" id="1_nh5j1"]
+[ext_resource type="PackedScene" uid="uid://dwwhi2oxu82tl" path="res://scenes/godot-craft/trunk.tscn" id="2_gd6h2"]
+[ext_resource type="PackedScene" uid="uid://b35w5nbc3tp4a" path="res://scenes/godot-craft/dirt.tscn" id="2_uxyyp"]
+[ext_resource type="PackedScene" uid="uid://dovf6hvdt0pvy" path="res://scenes/godot-craft/leaves.tscn" id="3_faqw8"]
+[ext_resource type="PackedScene" uid="uid://q5nqrm48n43l" path="res://scenes/player/player.tscn" id="3_rfg0t"]
+[ext_resource type="PackedScene" uid="uid://ddpdq72chf50a" path="res://scenes/godot-craft/flower-red.tscn" id="4_6ggav"]
+[ext_resource type="PackedScene" uid="uid://dbehtdkmecsik" path="res://scenes/godot-craft/tall-grass.tscn" id="5_xiwe2"]
+[ext_resource type="PackedScene" uid="uid://dgdbi36fv60is" path="res://scenes/godot-craft/grass.tscn" id="6_hifl8"]
+[ext_resource type="PackedScene" uid="uid://c355nvytlod2n" path="res://scenes/godot-craft/flower-white.tscn" id="7_c823s"]
+[ext_resource type="PackedScene" uid="uid://voi8vb2m4fl3" path="res://scenes/godot-craft/table.tscn" id="10_cog3v"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_k4grr"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_kpjl1"]
+sky_material = SubResource("ProceduralSkyMaterial_k4grr")
+
+[sub_resource type="Environment" id="Environment_75er4"]
+background_mode = 2
+sky = SubResource("Sky_kpjl1")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_75er4")
+
+[node name="Player" parent="." instance=ExtResource("3_rfg0t")]
+transform = Transform3D(-0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, -0.707107, 2, 0.5, -3)
+
+[node name="Island" type="Node3D" parent="."]
+
+[node name="TreeNormal" type="Node3D" parent="Island"]
+
+[node name="Trunk" parent="Island/TreeNormal" instance=ExtResource("2_gd6h2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -3)
+
+[node name="Trunk2" parent="Island/TreeNormal" instance=ExtResource("2_gd6h2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, -3)
+
+[node name="Trunk3" parent="Island/TreeNormal" instance=ExtResource("2_gd6h2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, -3)
+
+[node name="Leaves" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, -2)
+
+[node name="Leaves2" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, -1)
+
+[node name="Leaves3" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, -1)
+
+[node name="Leaves6" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, -1)
+
+[node name="Leaves7" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, -2)
+
+[node name="Leaves8" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, -3)
+
+[node name="Leaves9" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, -3)
+
+[node name="Leaves10" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, -4)
+
+[node name="Leaves11" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, -4)
+
+[node name="Leaves12" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 3, -5)
+
+[node name="Leaves13" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, -5)
+
+[node name="Leaves14" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, -5)
+
+[node name="Leaves15" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 3, -4)
+
+[node name="Leaves16" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -5)
+
+[node name="Leaves17" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -4)
+
+[node name="Leaves18" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -3)
+
+[node name="Leaves19" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -2)
+
+[node name="Leaves20" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 3, -1)
+
+[node name="Leaves21" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -1)
+
+[node name="Leaves22" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -2)
+
+[node name="Leaves23" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -3)
+
+[node name="Leaves24" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -4)
+
+[node name="Leaves25" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 3, -5)
+
+[node name="Leaves4" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, -2)
+
+[node name="Leaves5" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, -2)
+
+[node name="Trunk4" parent="Island/TreeNormal" instance=ExtResource("2_gd6h2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, -3)
+
+[node name="Leaves26" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, -2)
+
+[node name="Leaves27" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, -1)
+
+[node name="Leaves28" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -1)
+
+[node name="Leaves29" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, -1)
+
+[node name="Leaves30" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, -2)
+
+[node name="Leaves31" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, -3)
+
+[node name="Leaves32" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -3)
+
+[node name="Leaves33" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -4)
+
+[node name="Leaves34" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, -4)
+
+[node name="Leaves35" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 4, -5)
+
+[node name="Leaves36" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -5)
+
+[node name="Leaves37" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, -5)
+
+[node name="Leaves38" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, -4)
+
+[node name="Leaves39" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -5)
+
+[node name="Leaves40" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -4)
+
+[node name="Leaves41" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -3)
+
+[node name="Leaves42" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -2)
+
+[node name="Leaves43" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 4, -1)
+
+[node name="Leaves44" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -1)
+
+[node name="Leaves45" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -2)
+
+[node name="Leaves46" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -3)
+
+[node name="Leaves47" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -4)
+
+[node name="Leaves48" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 4, -5)
+
+[node name="Leaves49" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -2)
+
+[node name="Leaves50" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 4, -2)
+
+[node name="Trunk5" parent="Island/TreeNormal" instance=ExtResource("2_gd6h2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.99889, 4.99587, -2.99485)
+
+[node name="Leaves51" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5, -2)
+
+[node name="Leaves52" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5, -3)
+
+[node name="Leaves53" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5, -4)
+
+[node name="Leaves54" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, -4)
+
+[node name="Leaves55" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5, -4)
+
+[node name="Leaves56" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5, -3)
+
+[node name="Leaves57" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 5, -2)
+
+[node name="Leaves58" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 5, -2)
+
+[node name="Leaves59" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6, -2)
+
+[node name="Leaves60" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6, -3)
+
+[node name="Leaves61" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 6, -4)
+
+[node name="Leaves62" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 6, -3)
+
+[node name="Leaves63" parent="Island/TreeNormal" instance=ExtResource("3_faqw8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 6, -3)
+
+[node name="FlowerRed" parent="Island" instance=ExtResource("4_6ggav")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99629, 0.753062, -2.00018)
+
+[node name="TallGrass" parent="Island" instance=ExtResource("5_xiwe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.99636, 0.758288, -0.00244153)
+
+[node name="TallGrass2" parent="Island" instance=ExtResource("5_xiwe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00364089, 0.758288, -1.00244)
+
+[node name="TallGrass3" parent="Island" instance=ExtResource("5_xiwe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.00364, 0.758288, -1.00244)
+
+[node name="TallGrass4" parent="Island" instance=ExtResource("5_xiwe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.00364, 0.758288, -2.00244)
+
+[node name="Grass" parent="Island" instance=ExtResource("6_hifl8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.754673, -2)
+
+[node name="Grass2" parent="Island" instance=ExtResource("6_hifl8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.754673, -1)
+
+[node name="Grass3" parent="Island" instance=ExtResource("6_hifl8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.754673, -1)
+
+[node name="Grass4" parent="Island" instance=ExtResource("6_hifl8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.754673, -1)
+
+[node name="Grass5" parent="Island" instance=ExtResource("6_hifl8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.754673, -2)
+
+[node name="Grass6" parent="Island" instance=ExtResource("6_hifl8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.754673, -2)
+
+[node name="Grass7" parent="Island" instance=ExtResource("6_hifl8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.754673, -1)
+
+[node name="FlowerWhite" parent="Island" instance=ExtResource("7_c823s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.754853, -3)
+
+[node name="DirtGrass" parent="Island" instance=ExtResource("1_nh5j1")]
+
+[node name="DirtGrass2" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="DirtGrass3" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="DirtGrass4" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="DirtGrass5" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
+
+[node name="DirtGrass6" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 1)
+
+[node name="DirtGrass7" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="DirtGrass8" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 2)
+
+[node name="DirtGrass9" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="Dirt" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+
+[node name="Dirt2" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, 0)
+
+[node name="Dirt3" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, 0)
+
+[node name="Dirt4" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, 0)
+
+[node name="Dirt5" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 1)
+
+[node name="Dirt6" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, 1)
+
+[node name="Dirt7" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, 1)
+
+[node name="Dirt8" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2)
+
+[node name="Dirt9" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, 2)
+
+[node name="Dirt10" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, 2)
+
+[node name="Dirt11" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+
+[node name="Dirt12" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, 0)
+
+[node name="Dirt13" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, 0)
+
+[node name="Dirt14" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 1)
+
+[node name="Dirt15" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, 1)
+
+[node name="Dirt16" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, 1)
+
+[node name="Dirt17" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 2)
+
+[node name="Dirt18" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, 2)
+
+[node name="Dirt19" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, 2)
+
+[node name="DirtGrass10" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+
+[node name="DirtGrass11" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -3)
+
+[node name="DirtGrass12" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -3)
+
+[node name="DirtGrass13" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="DirtGrass14" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -2)
+
+[node name="DirtGrass15" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="DirtGrass16" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="DirtGrass17" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="DirtGrass18" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -1)
+
+[node name="Dirt20" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -3)
+
+[node name="Dirt21" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, -3)
+
+[node name="Dirt22" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, -3)
+
+[node name="Dirt23" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, -3)
+
+[node name="Dirt24" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -2)
+
+[node name="Dirt25" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, -2)
+
+[node name="Dirt26" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, -2)
+
+[node name="Dirt27" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -1)
+
+[node name="Dirt28" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -1, -1)
+
+[node name="Dirt29" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -1, -1)
+
+[node name="Dirt30" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -3)
+
+[node name="Dirt31" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, -3)
+
+[node name="Dirt32" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, -3)
+
+[node name="Dirt33" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -2)
+
+[node name="Dirt34" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, -2)
+
+[node name="Dirt35" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, -2)
+
+[node name="Dirt36" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, -1)
+
+[node name="Dirt37" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -2, -1)
+
+[node name="Dirt38" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -2, -1)
+
+[node name="DirtGrass19" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+
+[node name="DirtGrass20" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -3)
+
+[node name="DirtGrass21" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -3)
+
+[node name="DirtGrass22" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -2)
+
+[node name="DirtGrass23" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="DirtGrass24" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+
+[node name="DirtGrass25" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -1)
+
+[node name="DirtGrass26" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="DirtGrass27" parent="Island" instance=ExtResource("1_nh5j1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -1)
+
+[node name="Dirt39" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1, -3)
+
+[node name="Dirt40" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, -3)
+
+[node name="Dirt41" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -3)
+
+[node name="Dirt42" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -3)
+
+[node name="Dirt43" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1, -2)
+
+[node name="Dirt44" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, -2)
+
+[node name="Dirt45" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -2)
+
+[node name="Dirt46" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -1, -1)
+
+[node name="Dirt47" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -1, -1)
+
+[node name="Dirt48" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -1)
+
+[node name="Dirt49" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -3)
+
+[node name="Dirt50" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, -3)
+
+[node name="Dirt51" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, -3)
+
+[node name="Dirt52" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -2)
+
+[node name="Dirt53" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, -2)
+
+[node name="Dirt54" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, -2)
+
+[node name="Dirt55" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -2, -1)
+
+[node name="Dirt56" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -2, -1)
+
+[node name="Dirt57" parent="Island" instance=ExtResource("2_uxyyp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -2, -1)
+
+[node name="Table" parent="Island" instance=ExtResource("10_cog3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 2)

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://b35w5nbc3tp4a"]
+
+[ext_resource type="Texture2D" uid="uid://doe2d52thbimr" path="res://assets/textures/Kenney/2D assets/Voxel Pack/Tiles/dirt.png" id="1_v6cxl"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c1ppk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2t4yi"]
+albedo_texture = ExtResource("1_v6cxl")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_wjqxw"]
+material = SubResource("StandardMaterial3D_2t4yi")
+
+[node name="Dirt" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_c1ppk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_wjqxw")

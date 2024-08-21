@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddpdq72chf50a"]
+
+[ext_resource type="Texture2D" uid="uid://b3x2eapnudcyf" path="res://assets/textures/Kenney/2D assets/Voxel Pack/Tiles/tile_flowerRed.png" id="1_bkpuu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lnovb"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_bkpuu")
+texture_filter = 0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_otncg"]
+material = SubResource("StandardMaterial3D_lnovb")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[node name="FlowerRed" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+mesh = SubResource("PlaneMesh_otncg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+mesh = SubResource("PlaneMesh_otncg")

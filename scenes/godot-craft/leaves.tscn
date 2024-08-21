@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://dovf6hvdt0pvy"]
+
+[ext_resource type="Texture2D" uid="uid://ck7a35v1n0gte" path="res://assets/textures/Kenney/2D assets/Voxel Pack/Tiles/leaves_transparent.png" id="1_5l6jt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ltgmo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d4akv"]
+transparency = 1
+albedo_texture = ExtResource("1_5l6jt")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_q210i"]
+lightmap_size_hint = Vector2i(14, 21)
+material = SubResource("StandardMaterial3D_d4akv")
+
+[node name="Leaves" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ltgmo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_q210i")

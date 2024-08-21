@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbehtdkmecsik"]
+
+[ext_resource type="Texture2D" uid="uid://b50j1lljc54tq" path="res://assets/textures/Kenney/2D assets/Voxel Pack/Tiles/grass4.png" id="1_ncc7y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_106hl"]
+transparency = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_ncc7y")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_05n8u"]
+material = SubResource("StandardMaterial3D_106hl")
+size = Vector2(0.5, 0.5)
+orientation = 2
+
+[node name="TallGrass" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+mesh = SubResource("PlaneMesh_05n8u")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 0, 0, 0)
+mesh = SubResource("PlaneMesh_05n8u")

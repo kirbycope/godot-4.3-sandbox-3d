@@ -1,0 +1,84 @@
+[gd_scene load_steps=16 format=3 uid="uid://dwwhi2oxu82tl"]
+
+[ext_resource type="Texture2D" uid="uid://brc0ahgruatsd" path="res://assets/textures/Kenney/2D assets/Voxel Pack/Tiles/trunk_top.png" id="1_cts4h"]
+[ext_resource type="Texture2D" uid="uid://dcqrawxvkrg0e" path="res://assets/textures/Kenney/2D assets/Voxel Pack/Tiles/trunk_side.png" id="2_qmhyh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xbety"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qu154"]
+albedo_texture = ExtResource("1_cts4h")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_nrrcc"]
+material = SubResource("StandardMaterial3D_qu154")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_irhjq"]
+albedo_texture = ExtResource("1_cts4h")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fxkiu"]
+material = SubResource("StandardMaterial3D_irhjq")
+flip_faces = true
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfmnv"]
+albedo_texture = ExtResource("2_qmhyh")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_u2h8l"]
+material = SubResource("StandardMaterial3D_yfmnv")
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ndqx5"]
+albedo_texture = ExtResource("2_qmhyh")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jdhp3"]
+material = SubResource("StandardMaterial3D_ndqx5")
+flip_faces = true
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vr0ke"]
+albedo_texture = ExtResource("2_qmhyh")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_84ja3"]
+material = SubResource("StandardMaterial3D_vr0ke")
+size = Vector2(1, 1)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0qfcm"]
+albedo_texture = ExtResource("2_qmhyh")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sfs11"]
+material = SubResource("StandardMaterial3D_0qfcm")
+flip_faces = true
+size = Vector2(1, 1)
+orientation = 0
+
+[node name="Trunk" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_xbety")
+
+[node name="Top" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("PlaneMesh_nrrcc")
+
+[node name="Bottom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("PlaneMesh_fxkiu")
+
+[node name="Front" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = SubResource("PlaneMesh_u2h8l")
+
+[node name="Back" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("PlaneMesh_jdhp3")
+
+[node name="Right" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+mesh = SubResource("PlaneMesh_84ja3")
+
+[node name="Left" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+mesh = SubResource("PlaneMesh_sfs11")

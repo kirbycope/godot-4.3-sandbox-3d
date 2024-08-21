@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bwp0ji1quvpcl"]
+[gd_scene load_steps=14 format=3 uid="uid://bwp0ji1quvpcl"]
 
 [ext_resource type="Script" path="res://scenes/main-menu/main-menu.gd" id="1_ndtva"]
 [ext_resource type="Texture2D" uid="uid://brp3opb1hhprp" path="res://assets/textures/Kenney/2D assets/Game Icons/PNG/Black/1x/home.png" id="3_u045q"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dtgjf2rh7w1hw" path="res://assets/textures/Kenney/2D assets/Game Icons/PNG/Black/1x/warning.png" id="10_85gxt"]
 [ext_resource type="Texture2D" uid="uid://bqrj1gqvnhc5i" path="res://assets/textures/sandbox-01.png" id="11_vkj2s"]
 [ext_resource type="Texture2D" uid="uid://wckfhobyc1ds" path="res://assets/textures/Kenney/2D assets/Game Icons/PNG/Black/2x/multiplayer.png" id="11_xu7fi"]
+[ext_resource type="Texture2D" uid="uid://do5jvw2dhvwr2" path="res://assets/textures/godot-block-01.png" id="12_5f464"]
 [ext_resource type="Texture2D" uid="uid://bnwsa4lan6t5s" path="res://assets/textures/placehold.co-286x160.png" id="12_ftaka"]
 
 [node name="MainMenu" type="Control"]
@@ -507,7 +508,7 @@ offset_bottom = 164.0
 
 [node name="Thumbnail" type="TextureRect" parent="Main/Picks/Pick2/Pick2Button"]
 layout_mode = 0
-texture = ExtResource("12_ftaka")
+texture = ExtResource("12_5f464")
 
 [node name="Title" type="RichTextLabel" parent="Main/Picks/Pick2"]
 layout_mode = 0
@@ -516,7 +517,7 @@ offset_right = 286.0
 offset_bottom = 188.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 12
-text = "Example 2"
+text = "Godot Craft"
 fit_content = true
 scroll_active = false
 scroll_following = true
@@ -529,7 +530,7 @@ offset_right = 286.0
 offset_bottom = 224.0
 theme_override_colors/default_color = Color(0.501406, 0.501407, 0.501405, 1)
 theme_override_font_sizes/normal_font_size = 10
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non bibendum nulla. "
+text = "Build and craft using block shapes."
 scroll_active = false
 scroll_following = true
 autowrap_mode = 2
@@ -806,3 +807,4 @@ autowrap_mode = 2
 
 [connection signal="pressed" from="LeftNav/GodotEngineButton" to="." method="_on_godot_engine_button_pressed"]
 [connection signal="pressed" from="Main/Picks/Pick1/Pick1Button" to="." method="_on_pick_1_button_pressed"]
+[connection signal="pressed" from="Main/Picks/Pick2/Pick2Button" to="." method="_on_pick_2_button_pressed"]

@@ -1,0 +1,86 @@
+[gd_scene load_steps=17 format=3 uid="uid://bofof7gnh6w8s"]
+
+[ext_resource type="Texture2D" uid="uid://cnmllj5fy8q24" path="res://assets/textures/Kenney/2D assets/Voxel Pack/Tiles/grass_top.png" id="1_4hlq8"]
+[ext_resource type="Texture2D" uid="uid://dykaavjronqqc" path="res://assets/textures/Kenney/2D assets/Voxel Pack/Tiles/dirt_grass.png" id="2_28j1g"]
+[ext_resource type="Texture2D" uid="uid://doe2d52thbimr" path="res://assets/textures/Kenney/2D assets/Voxel Pack/Tiles/dirt.png" id="3_v101n"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gs7fw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ixor2"]
+albedo_texture = ExtResource("1_4hlq8")
+texture_filter = 1
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a8ajo"]
+material = SubResource("StandardMaterial3D_ixor2")
+size = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l8riu"]
+albedo_texture = ExtResource("2_28j1g")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x35hm"]
+material = SubResource("StandardMaterial3D_l8riu")
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kmt3k"]
+albedo_texture = ExtResource("2_28j1g")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w21jr"]
+material = SubResource("StandardMaterial3D_kmt3k")
+flip_faces = true
+size = Vector2(1, 1)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t72gp"]
+albedo_texture = ExtResource("2_28j1g")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_vbini"]
+material = SubResource("StandardMaterial3D_t72gp")
+size = Vector2(1, 1)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wg03c"]
+albedo_texture = ExtResource("2_28j1g")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mrxjq"]
+material = SubResource("StandardMaterial3D_wg03c")
+flip_faces = true
+size = Vector2(1, 1)
+orientation = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ury86"]
+albedo_texture = ExtResource("3_v101n")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_mvxft"]
+material = SubResource("StandardMaterial3D_ury86")
+flip_faces = true
+size = Vector2(1, 1)
+
+[node name="DirtGrass" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_gs7fw")
+
+[node name="Top" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("PlaneMesh_a8ajo")
+
+[node name="Front" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = SubResource("PlaneMesh_x35hm")
+
+[node name="Back" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("PlaneMesh_w21jr")
+
+[node name="Right" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0, 0)
+mesh = SubResource("PlaneMesh_vbini")
+
+[node name="Left" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+mesh = SubResource("PlaneMesh_mrxjq")
+
+[node name="Bottom" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("PlaneMesh_mvxft")

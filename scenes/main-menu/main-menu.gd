@@ -35,3 +35,12 @@ func _on_pick_1_button_pressed() -> void:
 
 	# Load the "Sandbox" scene
 	client.load_scene("res://scenes/sandbox/sandbox.tscn")
+
+
+func _on_pick_2_button_pressed():
+
+	# 0 is `$Globals` (auto-load), 1 is `$Client`
+	var client = get_tree().root.get_child(1)
+
+	# Load the "World" scene
+	client.load_scene("res://scenes/godot-craft/world.tscn")
