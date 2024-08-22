@@ -18,14 +18,25 @@ const res_main_menu: String = "res://scenes/main-menu/main-menu.tscn"
 func _exit_tree() -> void:
 
 	# [DEBUG] Message
-	if Globals.debug_mode: print("[DEBUG] '", get_script().resource_path.get_file().get_basename(), " scene unloaded.")
+	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene unloaded.")
+
+
+## Called when the object receives a notification, which can be identified in what by comparing it with a constant.
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		
+		# [DEBUG] Message
+		if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene unloaded.")
+		
+		# You can perform any additional tasks here, like saving data
+		get_tree().quit()  # This will actually close the application
 
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
 	# [DEBUG] Message
-	if Globals.debug_mode: print("[DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene loaded.")
+	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene loaded.")
 
 	# Show the "Main Menu" scene
 	scene_main_menu_add()

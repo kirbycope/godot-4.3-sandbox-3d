@@ -7,14 +7,14 @@ extends Control
 func _exit_tree() -> void:
 
 	# [DEBUG] Message
-	if Globals.debug_mode: print("[DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene unloaded.")
+	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene unloaded.")
 
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 
 	# [DEBUG] Message
-	if Globals.debug_mode: print("[DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene loaded.")
+	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene loaded.")
 
 	# Set the username
 	username.text = OS.get_environment("USERNAME")

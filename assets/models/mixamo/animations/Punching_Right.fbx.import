@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://2r3680qiq0wf"
-valid=false
+path="res://.godot/imported/Punching_Right.fbx-a550cb285807a461296bfc9acc082632.scn"
 
 [deps]
 
 source_file="res://assets/models/mixamo/animations/Punching_Right.fbx"
+dest_files=["res://.godot/imported/Punching_Right.fbx-a550cb285807a461296bfc9acc082632.scn"]
 
 [params]
 
