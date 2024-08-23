@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dfx6ch2dsl12u"]
+[gd_scene load_steps=13 format=3 uid="uid://dfx6ch2dsl12u"]
 
 [ext_resource type="Script" path="res://scenes/sandbox/sandbox.gd" id="1_bwap0"]
 [ext_resource type="PackedScene" uid="uid://q5nqrm48n43l" path="res://scenes/player/player.tscn" id="1_uevfy"]
 [ext_resource type="Texture2D" uid="uid://cmpsda8y37hpg" path="res://assets/textures/Kenney/2D assets/Prototype Textures/PNG/Dark/texture_09.png" id="2_lcu1v"]
 [ext_resource type="PackedScene" uid="uid://b4pad5c0igkil" path="res://assets/models/plush/godot_plush V2.glb" id="4_12ji6"]
 [ext_resource type="PackedScene" uid="uid://dgwu2gbf2hmo" path="res://scenes/godot-siblings/coin_gold.tscn" id="5_3772x"]
+[ext_resource type="PackedScene" uid="uid://6fnvbmrts4vb" path="res://scenes/smo/gold-coin.tscn" id="6_5q448"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1ibyv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -92,3 +93,18 @@ size = Vector3(3, 3, 3)
 
 [node name="CoinGold" parent="." instance=ExtResource("5_3772x")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.29378, 1.7, 0.56851)
+
+[node name="CoinGold2" parent="." instance=ExtResource("5_3772x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.29378, 1.7, 0.56851)
+
+[node name="CoinGold3" parent="." instance=ExtResource("5_3772x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.29378, 1.7, 0.56851)
+
+[node name="CoinGold4" parent="." instance=ExtResource("5_3772x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.29378, 1.7, 0.56851)
+
+[node name="CoinGold5" parent="." instance=ExtResource("5_3772x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.29378, 1.7, 0.56851)
+
+[node name="GoldCoin" parent="." instance=ExtResource("6_5q448")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 4)

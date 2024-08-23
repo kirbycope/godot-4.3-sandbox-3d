@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mario Odyssey Powermoon
+* source:	https://sketchfab.com/3d-models/mario-odyssey-powermoon-56ea268b71e94e00bc28007649918e0b
+* author:	Zac (https://sketchfab.com/thezacattacks)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mario Odyssey Powermoon" (https://sketchfab.com/3d-models/mario-odyssey-powermoon-56ea268b71e94e00bc28007649918e0b) by Zac (https://sketchfab.com/thezacattacks) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
