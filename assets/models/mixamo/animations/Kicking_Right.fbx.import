@@ -4,11 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://6s8emvu8hglm"
-valid=false
+path="res://.godot/imported/Kicking_Right.fbx-11abe5a543c0088a93c765bb18485f82.scn"
 
 [deps]
 
 source_file="res://assets/models/mixamo/animations/Kicking_Right.fbx"
+dest_files=["res://.godot/imported/Kicking_Right.fbx-11abe5a543c0088a93c765bb18485f82.scn"]
 
 [params]
 
