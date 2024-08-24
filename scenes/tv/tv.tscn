@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=4 uid="uid://bb2oej33jl6sn"]
+[gd_scene load_steps=9 format=4 uid="uid://bb2oej33jl6sn"]
 
 [ext_resource type="Texture2D" uid="uid://binv2othvmefa" path="res://assets/models/tv/textures/retro tv_1_BaseColor.png" id="1_ul403"]
 [ext_resource type="Texture2D" uid="uid://dube7kexi6ijx" path="res://assets/models/tv/textures/retro tv_1_Normal.png" id="2_bva7n"]
 [ext_resource type="PackedScene" uid="uid://8trp4chcetfv" path="res://scenes/tv/demo.tscn" id="2_phlqc"]
+[ext_resource type="Script" path="res://scenes/tv/sub_viewport.gd" id="3_5iuxr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7tke"]
 resource_name = "1"
@@ -64,10 +65,13 @@ skeleton = NodePath("")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.5, 0, 0)
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.936315, 0.2, 0)
+transform = Transform3D(-2.62268e-08, 0, 0.6, 0, 0.6, 0, -0.6, 0, -2.62268e-08, 0.93912, 0.2, 0)
 texture = SubResource("ViewportTexture_ef7cp")
 
 [node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(160, 160)
+size = Vector2i(256, 224)
+script = ExtResource("3_5iuxr")
 
 [node name="Demo" parent="SubViewport" instance=ExtResource("2_phlqc")]
+
+[node name="Camera2D" type="Camera2D" parent="SubViewport"]
