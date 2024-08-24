@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://biq5bbwx81ms6"
-path="res://.godot/imported/Treading_Water.fbx-523af1fa7af05fbcea5f78bb999aad2e.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/models/mixamo/animations/Treading_Water.fbx"
-dest_files=["res://.godot/imported/Treading_Water.fbx-523af1fa7af05fbcea5f78bb999aad2e.scn"]
 
 [params]
 

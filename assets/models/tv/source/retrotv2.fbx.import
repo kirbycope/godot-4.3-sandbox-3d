@@ -3,12 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://clgys2gxv3vf0"
-valid=false
+uid="uid://k83vltvtiab"
+path="res://.godot/imported/retrotv2.fbx-2b8a4bf5e1d48410015b2d9f0c16c4cf.scn"
 
 [deps]
 
-source_file="res://assets/models/mixamo/animations/Kicking_Left.fbx"
+source_file="res://assets/models/tv/source/retrotv2.fbx"
+dest_files=["res://.godot/imported/retrotv2.fbx-2b8a4bf5e1d48410015b2d9f0c16c4cf.scn"]
 
 [params]
 
@@ -26,11 +27,11 @@ meshes/force_disable_compression=false
 skins/use_named_skins=true
 animation/import=true
 animation/fps=30
-animation/trimming=false
+animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={}
-fbx/importer=1
+fbx/importer=0
 fbx/allow_geometry_helper_nodes=false
 fbx/embedded_image_handling=1

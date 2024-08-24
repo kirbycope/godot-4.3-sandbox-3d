@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://b1ml5m2b24kvo"
-path="res://.godot/imported/Running_InPlace.fbx-0ae49e032de8c778c33509304cf41253.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/models/mixamo/animations/Running_InPlace.fbx"
-dest_files=["res://.godot/imported/Running_InPlace.fbx-0ae49e032de8c778c33509304cf41253.scn"]
 
 [params]
 
