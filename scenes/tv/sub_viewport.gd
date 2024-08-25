@@ -11,5 +11,5 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	camera_2d.position.x += delta*speed
-	if camera_2d.position.x > 3500:
+	if camera_2d.position.x > (3554-128):
 		camera_2d.position.x = 122

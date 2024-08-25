@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dwwhi2oxu82tl" path="res://scenes/godot-craft/trunk.tscn" id="2_gd6h2"]
 [ext_resource type="PackedScene" uid="uid://b35w5nbc3tp4a" path="res://scenes/godot-craft/dirt.tscn" id="2_uxyyp"]
 [ext_resource type="PackedScene" uid="uid://dovf6hvdt0pvy" path="res://scenes/godot-craft/leaves.tscn" id="3_faqw8"]
-[ext_resource type="PackedScene" uid="uid://q5nqrm48n43l" path="res://scenes/player/player.tscn" id="3_rfg0t"]
+[ext_resource type="PackedScene" uid="uid://q5nqrm48n43l" path="res://scenes/player/player-3d.tscn" id="3_rfg0t"]
 [ext_resource type="PackedScene" uid="uid://ddpdq72chf50a" path="res://scenes/godot-craft/flower-red.tscn" id="4_6ggav"]
 [ext_resource type="PackedScene" uid="uid://dbehtdkmecsik" path="res://scenes/godot-craft/tall-grass.tscn" id="5_xiwe2"]
 [ext_resource type="PackedScene" uid="uid://dgdbi36fv60is" path="res://scenes/godot-craft/grass.tscn" id="6_hifl8"]

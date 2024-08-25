@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://dfx6ch2dsl12u"]
 
 [ext_resource type="Script" path="res://scenes/sandbox/sandbox.gd" id="1_bwap0"]
-[ext_resource type="PackedScene" uid="uid://q5nqrm48n43l" path="res://scenes/player/player.tscn" id="1_uevfy"]
+[ext_resource type="PackedScene" uid="uid://q5nqrm48n43l" path="res://scenes/player/player-3d.tscn" id="1_uevfy"]
 [ext_resource type="Texture2D" uid="uid://cmpsda8y37hpg" path="res://assets/textures/Kenney/2D assets/Prototype Textures/PNG/Dark/texture_09.png" id="2_lcu1v"]
 [ext_resource type="PackedScene" uid="uid://b4pad5c0igkil" path="res://assets/models/plush/godot_plush V2.glb" id="4_12ji6"]
 [ext_resource type="PackedScene" uid="uid://dgwu2gbf2hmo" path="res://scenes/godot-siblings/coin_gold.tscn" id="5_3772x"]

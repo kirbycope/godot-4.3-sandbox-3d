@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://dww7g800yok36"]
+
+[ext_resource type="Texture2D" uid="uid://cet1ie0mc5xuv" path="res://assets/textures/smb/overworld-coins.png" id="1_jcbgg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivtqx"]
+atlas = ExtResource("1_jcbgg")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gay4"]
+atlas = ExtResource("1_jcbgg")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t5xv0"]
+atlas = ExtResource("1_jcbgg")
+region = Rect2(35, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k0yqd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivtqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gay4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t5xv0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gay4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="MysteryBox" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_k0yqd")
+autoplay = "default"
+frame_progress = 0.252036
