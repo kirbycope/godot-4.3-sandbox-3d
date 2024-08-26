@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bwp0ji1quvpcl"]
+[gd_scene load_steps=15 format=3 uid="uid://bwp0ji1quvpcl"]
 
 [ext_resource type="Script" path="res://scenes/main-menu/main-menu.gd" id="1_ndtva"]
 [ext_resource type="Texture2D" uid="uid://brp3opb1hhprp" path="res://assets/textures/Kenney/2D assets/Game Icons/PNG/Black/1x/home.png" id="3_u045q"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://wckfhobyc1ds" path="res://assets/textures/Kenney/2D assets/Game Icons/PNG/Black/2x/multiplayer.png" id="11_xu7fi"]
 [ext_resource type="Texture2D" uid="uid://do5jvw2dhvwr2" path="res://assets/textures/godot-block-01.png" id="12_5f464"]
 [ext_resource type="Texture2D" uid="uid://bnwsa4lan6t5s" path="res://assets/textures/placehold.co-286x160.png" id="12_ftaka"]
+[ext_resource type="Texture2D" uid="uid://l7s3nf45l0ve" path="res://assets/textures/smb.png" id="13_6e16h"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -550,7 +551,7 @@ offset_bottom = 164.0
 
 [node name="Thumbnail" type="TextureRect" parent="Main/Picks/Pick3/Pick3Button"]
 layout_mode = 0
-texture = ExtResource("12_ftaka")
+texture = ExtResource("13_6e16h")
 
 [node name="Title" type="RichTextLabel" parent="Main/Picks/Pick3"]
 layout_mode = 0
@@ -808,3 +809,4 @@ autowrap_mode = 2
 [connection signal="pressed" from="LeftNav/GodotEngineButton" to="." method="_on_godot_engine_button_pressed"]
 [connection signal="pressed" from="Main/Picks/Pick1/Pick1Button" to="." method="_on_pick_1_button_pressed"]
 [connection signal="pressed" from="Main/Picks/Pick2/Pick2Button" to="." method="_on_pick_2_button_pressed"]
+[connection signal="pressed" from="Main/Picks/Pick3/Pick3Button" to="." method="_on_pick_3_button_pressed"]

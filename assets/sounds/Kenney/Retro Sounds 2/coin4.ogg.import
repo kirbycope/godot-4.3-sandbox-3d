@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bq6lk7tvo0vx4"
+path="res://.godot/imported/coin4.ogg-61b359274ec36d2351d1a766664ed796.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/Kenney/Retro Sounds 2/coin4.ogg"
+dest_files=["res://.godot/imported/coin4.ogg-61b359274ec36d2351d1a766664ed796.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

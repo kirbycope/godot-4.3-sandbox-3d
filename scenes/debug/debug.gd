@@ -121,8 +121,8 @@ func _input(event) -> void:
 					$XboxController/White/ButtonR2.visible = true
 
 
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+## Called every frame. '_delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
 
 	# Check is the Debug Panel is visible
 	if visible:

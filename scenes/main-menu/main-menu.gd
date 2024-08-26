@@ -30,17 +30,19 @@ func _on_godot_engine_button_pressed() -> void:
 ## Handle Pick 1 button _pressed_.
 func _on_pick_1_button_pressed() -> void:
 
-	# 0 is `$Globals` (auto-load), 1 is `$Client`
-	var client = get_tree().root.get_child(1)
-
 	# Load the "Sandbox" scene
-	client.load_scene("res://scenes/sandbox/sandbox.tscn")
+	Globals.client.load_scene("res://scenes/sandbox/sandbox.tscn")
 
 
-func _on_pick_2_button_pressed():
-
-	# 0 is `$Globals` (auto-load), 1 is `$Client`
-	var client = get_tree().root.get_child(1)
+## Handle Pick 2 button _pressed_.
+func _on_pick_2_button_pressed() -> void:
 
 	# Load the "World" scene
-	client.load_scene("res://scenes/godot-craft/world.tscn")
+	Globals.client.load_scene("res://scenes/godot-craft/world.tscn")
+
+
+## Handle Pick 3 button _pressed_.
+func _on_pick_3_button_pressed() -> void:
+	
+	# Load the "Super Mario Bros." scene
+	Globals.client.load_scene("res://scenes/smb/smb.tscn")

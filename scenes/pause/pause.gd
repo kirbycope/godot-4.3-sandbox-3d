@@ -48,8 +48,5 @@ func _on_back_to_game_button_pressed() -> void:
 ## Handle "Leave Game" button _pressed_.
 func _on_leave_game_button_pressed() -> void:
 
-	# 0 is `$Globals` (auto-load), 1 is `$Client`
-	var client = get_tree().root.get_child(1)
-
 	# Unload _this_ scene
-	client.unload_scene()
+	Globals.client.unload_scene()

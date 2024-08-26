@@ -9,7 +9,7 @@ func _ready() -> void:
 	var current_scene_path = self.get_tree().current_scene.get_path().get_concatenated_names()
 
 	# Check if _this_ scene is the root scene
-	is_root =  true if current_scene_path == "root/Demo" else false
+	is_root =  true if current_scene_path == "root/SMB" else false
 
 	# If _this_ is is the root scene, add the player scene to the tree
 	if is_root:

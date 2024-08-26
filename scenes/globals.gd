@@ -7,6 +7,14 @@ extends Node
 ## having to pass them around manually.
 ## @tutorial: https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html
 
+# The Client scene.
+var client:
+	get:
+		var children = get_tree().root.get_children()
+		for child in children:
+			if child.get_path().get_concatenated_names() == "root/Client":
+				return child
+
 # Flag for if the app was opened in Debug mode.
 var debug_mode: bool = OS.is_debug_build()
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://binv2othvmefa" path="res://assets/models/tv/textures/retro tv_1_BaseColor.png" id="1_ul403"]
 [ext_resource type="Texture2D" uid="uid://dube7kexi6ijx" path="res://assets/models/tv/textures/retro tv_1_Normal.png" id="2_bva7n"]
-[ext_resource type="PackedScene" uid="uid://8trp4chcetfv" path="res://scenes/tv/demo.tscn" id="2_phlqc"]
+[ext_resource type="PackedScene" uid="uid://8trp4chcetfv" path="res://scenes/smb/smb.tscn" id="2_phlqc"]
 [ext_resource type="Script" path="res://scenes/tv/sub_viewport.gd" id="3_5iuxr"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h7tke"]
