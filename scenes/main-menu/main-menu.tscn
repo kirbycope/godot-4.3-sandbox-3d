@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bwp0ji1quvpcl"]
+[gd_scene load_steps=12 format=3 uid="uid://bwp0ji1quvpcl"]
 
 [ext_resource type="Script" path="res://scenes/main-menu/main-menu.gd" id="1_ndtva"]
 [ext_resource type="Texture2D" uid="uid://brp3opb1hhprp" path="res://assets/textures/Kenney/2D assets/Game Icons/PNG/Black/1x/home.png" id="3_u045q"]
@@ -9,11 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://cfqwnjdcqhot" path="res://icon-0.svg" id="8_ui0o6"]
 [ext_resource type="Texture2D" uid="uid://cjxi038gpj75x" path="res://assets/textures/Kenney/2D assets/Game Icons/PNG/Black/1x/cart.png" id="9_wbk0t"]
 [ext_resource type="Texture2D" uid="uid://dtgjf2rh7w1hw" path="res://assets/textures/Kenney/2D assets/Game Icons/PNG/Black/1x/warning.png" id="10_85gxt"]
-[ext_resource type="Texture2D" uid="uid://bqrj1gqvnhc5i" path="res://assets/textures/sandbox-01.png" id="11_vkj2s"]
 [ext_resource type="Texture2D" uid="uid://wckfhobyc1ds" path="res://assets/textures/Kenney/2D assets/Game Icons/PNG/Black/2x/multiplayer.png" id="11_xu7fi"]
-[ext_resource type="Texture2D" uid="uid://do5jvw2dhvwr2" path="res://assets/textures/godot-block-01.png" id="12_5f464"]
-[ext_resource type="Texture2D" uid="uid://bnwsa4lan6t5s" path="res://assets/textures/placehold.co-286x160.png" id="12_ftaka"]
-[ext_resource type="Texture2D" uid="uid://l7s3nf45l0ve" path="res://assets/textures/smb.png" id="13_6e16h"]
+[ext_resource type="Texture2D" uid="uid://bnwsa4lan6t5s" path="res://assets/textures/placeholder-co/286x160.png" id="12_ftaka"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -453,10 +450,52 @@ text = "A curated selection of daily highlights"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Pick1" type="Control" parent="Main/Picks"]
+[node name="Pick0" type="Control" parent="Main/Picks"]
 anchors_preset = 0
 offset_top = 44.0
 offset_right = 286.0
+offset_bottom = 268.0
+
+[node name="Pick0Button" type="TextureButton" parent="Main/Picks/Pick0"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 286.0
+offset_bottom = 164.0
+
+[node name="Thumbnail" type="TextureRect" parent="Main/Picks/Pick0/Pick0Button"]
+layout_mode = 0
+texture = ExtResource("12_ftaka")
+
+[node name="Title" type="RichTextLabel" parent="Main/Picks/Pick0"]
+layout_mode = 0
+offset_top = 168.0
+offset_right = 286.0
+offset_bottom = 188.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Example 1"
+fit_content = true
+scroll_active = false
+scroll_following = true
+autowrap_mode = 0
+
+[node name="Description" type="RichTextLabel" parent="Main/Picks/Pick0"]
+layout_mode = 0
+offset_top = 184.0
+offset_right = 286.0
+offset_bottom = 224.0
+theme_override_colors/default_color = Color(0.501406, 0.501407, 0.501405, 1)
+theme_override_font_sizes/normal_font_size = 10
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non bibendum nulla. "
+scroll_active = false
+scroll_following = true
+autowrap_mode = 2
+
+[node name="Pick1" type="Control" parent="Main/Picks"]
+anchors_preset = 0
+offset_left = 304.0
+offset_top = 44.0
+offset_right = 590.0
 offset_bottom = 268.0
 
 [node name="Pick1Button" type="TextureButton" parent="Main/Picks/Pick1"]
@@ -467,7 +506,7 @@ offset_bottom = 164.0
 
 [node name="Thumbnail" type="TextureRect" parent="Main/Picks/Pick1/Pick1Button"]
 layout_mode = 0
-texture = ExtResource("11_vkj2s")
+texture = ExtResource("12_ftaka")
 
 [node name="Title" type="RichTextLabel" parent="Main/Picks/Pick1"]
 layout_mode = 0
@@ -476,7 +515,7 @@ offset_right = 286.0
 offset_bottom = 188.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 12
-text = "Godot 4.3 Sandbox 3D"
+text = "Example 2"
 fit_content = true
 scroll_active = false
 scroll_following = true
@@ -489,16 +528,16 @@ offset_right = 286.0
 offset_bottom = 224.0
 theme_override_colors/default_color = Color(0.501406, 0.501407, 0.501405, 1)
 theme_override_font_sizes/normal_font_size = 10
-text = "Used to test different player mechaincs."
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non bibendum nulla. "
 scroll_active = false
 scroll_following = true
 autowrap_mode = 2
 
 [node name="Pick2" type="Control" parent="Main/Picks"]
 anchors_preset = 0
-offset_left = 304.0
+offset_left = 608.0
 offset_top = 44.0
-offset_right = 590.0
+offset_right = 894.0
 offset_bottom = 268.0
 
 [node name="Pick2Button" type="TextureButton" parent="Main/Picks/Pick2"]
@@ -509,51 +548,9 @@ offset_bottom = 164.0
 
 [node name="Thumbnail" type="TextureRect" parent="Main/Picks/Pick2/Pick2Button"]
 layout_mode = 0
-texture = ExtResource("12_5f464")
+texture = ExtResource("12_ftaka")
 
 [node name="Title" type="RichTextLabel" parent="Main/Picks/Pick2"]
-layout_mode = 0
-offset_top = 168.0
-offset_right = 286.0
-offset_bottom = 188.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "Godot Craft"
-fit_content = true
-scroll_active = false
-scroll_following = true
-autowrap_mode = 0
-
-[node name="Description" type="RichTextLabel" parent="Main/Picks/Pick2"]
-layout_mode = 0
-offset_top = 184.0
-offset_right = 286.0
-offset_bottom = 224.0
-theme_override_colors/default_color = Color(0.501406, 0.501407, 0.501405, 1)
-theme_override_font_sizes/normal_font_size = 10
-text = "Build and craft using block shapes."
-scroll_active = false
-scroll_following = true
-autowrap_mode = 2
-
-[node name="Pick3" type="Control" parent="Main/Picks"]
-anchors_preset = 0
-offset_left = 608.0
-offset_top = 44.0
-offset_right = 894.0
-offset_bottom = 268.0
-
-[node name="Pick3Button" type="TextureButton" parent="Main/Picks/Pick3"]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 286.0
-offset_bottom = 164.0
-
-[node name="Thumbnail" type="TextureRect" parent="Main/Picks/Pick3/Pick3Button"]
-layout_mode = 0
-texture = ExtResource("13_6e16h")
-
-[node name="Title" type="RichTextLabel" parent="Main/Picks/Pick3"]
 layout_mode = 0
 offset_top = 168.0
 offset_right = 286.0
@@ -566,7 +563,7 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 0
 
-[node name="Description" type="RichTextLabel" parent="Main/Picks/Pick3"]
+[node name="Description" type="RichTextLabel" parent="Main/Picks/Pick2"]
 layout_mode = 0
 offset_top = 184.0
 offset_right = 286.0
@@ -578,24 +575,24 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 2
 
-[node name="Pick4" type="Control" parent="Main/Picks"]
+[node name="Pick3" type="Control" parent="Main/Picks"]
 anchors_preset = 0
 offset_left = 912.0
 offset_top = 44.0
 offset_right = 1198.0
 offset_bottom = 268.0
 
-[node name="Pick4Button" type="TextureButton" parent="Main/Picks/Pick4"]
+[node name="Pick3Button" type="TextureButton" parent="Main/Picks/Pick3"]
 layout_mode = 0
 offset_top = 4.0
 offset_right = 286.0
 offset_bottom = 164.0
 
-[node name="Thumbnail" type="TextureRect" parent="Main/Picks/Pick4/Pick4Button"]
+[node name="Thumbnail" type="TextureRect" parent="Main/Picks/Pick3/Pick3Button"]
 layout_mode = 0
 texture = ExtResource("12_ftaka")
 
-[node name="Title" type="RichTextLabel" parent="Main/Picks/Pick4"]
+[node name="Title" type="RichTextLabel" parent="Main/Picks/Pick3"]
 layout_mode = 0
 offset_top = 168.0
 offset_right = 286.0
@@ -608,7 +605,7 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 0
 
-[node name="Description" type="RichTextLabel" parent="Main/Picks/Pick4"]
+[node name="Description" type="RichTextLabel" parent="Main/Picks/Pick3"]
 layout_mode = 0
 offset_top = 184.0
 offset_right = 286.0
@@ -638,11 +635,53 @@ text = "Recommended For You"
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Recommend1" type="Control" parent="Main/Recommend"]
+[node name="Recommend0" type="Control" parent="Main/Recommend"]
 anchors_preset = 0
 offset_left = -1.0
 offset_top = 25.0
 offset_right = 285.0
+offset_bottom = 249.0
+
+[node name="Recommend0Button" type="TextureButton" parent="Main/Recommend/Recommend0"]
+layout_mode = 0
+offset_top = 4.0
+offset_right = 286.0
+offset_bottom = 164.0
+
+[node name="Thumbnail" type="TextureRect" parent="Main/Recommend/Recommend0/Recommend0Button"]
+layout_mode = 0
+texture = ExtResource("12_ftaka")
+
+[node name="Title" type="RichTextLabel" parent="Main/Recommend/Recommend0"]
+layout_mode = 0
+offset_top = 168.0
+offset_right = 97.0
+offset_bottom = 188.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 12
+text = "Example 1"
+fit_content = true
+scroll_active = false
+scroll_following = true
+autowrap_mode = 0
+
+[node name="Description" type="RichTextLabel" parent="Main/Recommend/Recommend0"]
+layout_mode = 0
+offset_top = 184.0
+offset_right = 286.0
+offset_bottom = 224.0
+theme_override_colors/default_color = Color(0.501406, 0.501407, 0.501405, 1)
+theme_override_font_sizes/normal_font_size = 10
+text = "👍96% Rating"
+scroll_active = false
+scroll_following = true
+autowrap_mode = 2
+
+[node name="Recommend1" type="Control" parent="Main/Recommend"]
+anchors_preset = 0
+offset_left = 303.0
+offset_top = 25.0
+offset_right = 589.0
 offset_bottom = 249.0
 
 [node name="Recommend1Button" type="TextureButton" parent="Main/Recommend/Recommend1"]
@@ -662,7 +701,7 @@ offset_right = 97.0
 offset_bottom = 188.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 12
-text = "Example 1"
+text = "Example 2"
 fit_content = true
 scroll_active = false
 scroll_following = true
@@ -682,9 +721,9 @@ autowrap_mode = 2
 
 [node name="Recommend2" type="Control" parent="Main/Recommend"]
 anchors_preset = 0
-offset_left = 303.0
+offset_left = 607.0
 offset_top = 25.0
-offset_right = 589.0
+offset_right = 893.0
 offset_bottom = 249.0
 
 [node name="Recommend2Button" type="TextureButton" parent="Main/Recommend/Recommend2"]
@@ -704,7 +743,7 @@ offset_right = 97.0
 offset_bottom = 188.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 12
-text = "Example 2"
+text = "Example 3"
 fit_content = true
 scroll_active = false
 scroll_following = true
@@ -724,9 +763,9 @@ autowrap_mode = 2
 
 [node name="Recommend3" type="Control" parent="Main/Recommend"]
 anchors_preset = 0
-offset_left = 607.0
+offset_left = 911.0
 offset_top = 25.0
-offset_right = 893.0
+offset_right = 1197.0
 offset_bottom = 249.0
 
 [node name="Recommend3Button" type="TextureButton" parent="Main/Recommend/Recommend3"]
@@ -746,7 +785,7 @@ offset_right = 97.0
 offset_bottom = 188.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 12
-text = "Example 3"
+text = "Example 4"
 fit_content = true
 scroll_active = false
 scroll_following = true
@@ -764,49 +803,7 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 2
 
-[node name="Recommend4" type="Control" parent="Main/Recommend"]
-anchors_preset = 0
-offset_left = 911.0
-offset_top = 25.0
-offset_right = 1197.0
-offset_bottom = 249.0
-
-[node name="Recommend4Button" type="TextureButton" parent="Main/Recommend/Recommend4"]
-layout_mode = 0
-offset_top = 4.0
-offset_right = 286.0
-offset_bottom = 164.0
-
-[node name="Thumbnail" type="TextureRect" parent="Main/Recommend/Recommend4/Recommend4Button"]
-layout_mode = 0
-texture = ExtResource("12_ftaka")
-
-[node name="Title" type="RichTextLabel" parent="Main/Recommend/Recommend4"]
-layout_mode = 0
-offset_top = 168.0
-offset_right = 97.0
-offset_bottom = 188.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 12
-text = "Example 4"
-fit_content = true
-scroll_active = false
-scroll_following = true
-autowrap_mode = 0
-
-[node name="Description" type="RichTextLabel" parent="Main/Recommend/Recommend4"]
-layout_mode = 0
-offset_top = 184.0
-offset_right = 286.0
-offset_bottom = 224.0
-theme_override_colors/default_color = Color(0.501406, 0.501407, 0.501405, 1)
-theme_override_font_sizes/normal_font_size = 10
-text = "👍96% Rating"
-scroll_active = false
-scroll_following = true
-autowrap_mode = 2
-
 [connection signal="pressed" from="LeftNav/GodotEngineButton" to="." method="_on_godot_engine_button_pressed"]
-[connection signal="pressed" from="Main/Picks/Pick1/Pick1Button" to="." method="_on_pick_1_button_pressed"]
-[connection signal="pressed" from="Main/Picks/Pick2/Pick2Button" to="." method="_on_pick_2_button_pressed"]
-[connection signal="pressed" from="Main/Picks/Pick3/Pick3Button" to="." method="_on_pick_3_button_pressed"]
+[connection signal="pressed" from="Main/Picks/Pick0/Pick0Button" to="." method="_on_pick_1_button_pressed"]
+[connection signal="pressed" from="Main/Picks/Pick1/Pick1Button" to="." method="_on_pick_2_button_pressed"]
+[connection signal="pressed" from="Main/Picks/Pick2/Pick2Button" to="." method="_on_pick_3_button_pressed"]

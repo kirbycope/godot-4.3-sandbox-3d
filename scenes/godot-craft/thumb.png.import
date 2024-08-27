@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqrj1gqvnhc5i"
-path="res://.godot/imported/sandbox-01.png-a70e98c4d7d499f72a39e33f78fe9138.ctex"
+uid="uid://do5jvw2dhvwr2"
+path="res://.godot/imported/thumb.png-aeea8ebb4d3fb514580f74d00e8d616a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/textures/sandbox-01.png"
-dest_files=["res://.godot/imported/sandbox-01.png-a70e98c4d7d499f72a39e33f78fe9138.ctex"]
+source_file="res://scenes/godot-craft/thumb.png"
+dest_files=["res://.godot/imported/thumb.png-aeea8ebb4d3fb514580f74d00e8d616a.ctex"]
 
 [params]
 

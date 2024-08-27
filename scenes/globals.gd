@@ -21,7 +21,6 @@ var debug_mode: bool = OS.is_debug_build()
 # Flag for if the game is Paused.
 var game_paused: bool = false
 
-
 # The current time in RFC 3339 format
 var time_stamp_utc: bool = true
 var time_stamp: String:
