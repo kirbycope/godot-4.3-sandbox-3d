@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dww7g800yok36"]
 
 [ext_resource type="Texture2D" uid="uid://cet1ie0mc5xuv" path="res://assets/textures/smb/overworld-coins.png" id="1_jcbgg"]
-[ext_resource type="Script" path="res://scenes/smb/mystery_box.gd" id="2_vl5gs"]
+[ext_resource type="Script" path="res://scenes/smb/mystery-box.gd" id="2_vl5gs"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ivtqx"]
 atlas = ExtResource("1_jcbgg")

@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://cj4k7alcqgyv8"]
+
+[ext_resource type="Texture2D" uid="uid://digflpgya78uj" path="res://assets/textures/smb/goomba.png" id="1_ylj30"]
+[ext_resource type="Script" path="res://scenes/smb/goomba.gd" id="2_cepc8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5c4c"]
+atlas = ExtResource("1_ylj30")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4wnt"]
+atlas = ExtResource("1_ylj30")
+region = Rect2(18, 1, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y3cuv"]
+atlas = ExtResource("1_ylj30")
+region = Rect2(35, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ouxwy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5c4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4wnt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y3cuv")
+}],
+"loop": true,
+"name": &"squish",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyyh1"]
+size = Vector2(16, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_poixr"]
+size = Vector2(20, 16)
+
+[node name="Goomba" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ouxwy")
+autoplay = "default"
+frame_progress = 0.413249
+script = ExtResource("2_cepc8")
+
+[node name="Stomp" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stomp"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_fyyh1")
+
+[node name="Bite" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bite"]
+shape = SubResource("RectangleShape2D_poixr")
+
+[connection signal="body_entered" from="Stomp" to="." method="_on_stomp_body_entered"]
+[connection signal="body_exited" from="Stomp" to="." method="_on_stomp_body_exited"]
+[connection signal="body_entered" from="Bite" to="." method="_on_bite_body_entered"]
+[connection signal="body_exited" from="Bite" to="." method="_on_bite_body_exited"]

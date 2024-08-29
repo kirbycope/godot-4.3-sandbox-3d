@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://v2fyqwwybi2w"]
+
+[ext_resource type="Script" path="res://scenes/smb/warp-pipe-a.gd" id="1_wsltg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wycmb"]
+size = Vector2(32, 8)
+
+[node name="WarpPipeA" type="Area2D"]
+script = ExtResource("1_wsltg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wycmb")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://yuditfkct2vh"]
+
+[ext_resource type="Texture2D" uid="uid://cet1ie0mc5xuv" path="res://assets/textures/smb/overworld-coins.png" id="1_1ou3v"]
+[ext_resource type="Script" path="res://scenes/smb/coin.gd" id="2_r7jr6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qja8l"]
+atlas = ExtResource("1_1ou3v")
+region = Rect2(1, 18, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g32v6"]
+atlas = ExtResource("1_1ou3v")
+region = Rect2(18, 18, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5n2my"]
+atlas = ExtResource("1_1ou3v")
+region = Rect2(35, 18, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e0omp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qja8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g32v6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5n2my")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rvi4e"]
+size = Vector2(16, 16)
+
+[node name="Coin" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_e0omp")
+autoplay = "default"
+frame_progress = 0.273273
+script = ExtResource("2_r7jr6")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rvi4e")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

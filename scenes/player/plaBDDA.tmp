@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://il46oeikwp0a"]
+
+[ext_resource type="Script" path="res://scenes/player/player-2d.gd" id="1_y6v5k"]
+[ext_resource type="Texture2D" uid="uid://c3v13tfvykqq1" path="res://assets/textures/smb/mario-small.png" id="2_7f7ji"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rq3tn"]
+size = Vector2(16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tfkd"]
+atlas = ExtResource("2_7f7ji")
+region = Rect2(1, 1, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6g174"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tfkd")
+}],
+"loop": false,
+"name": &"default",
+"speed": 0.0
+}]
+
+[node name="Player2D" type="CharacterBody2D"]
+texture_filter = 1
+script = ExtResource("1_y6v5k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_rq3tn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_6g174")
+frame_progress = 0.0117232
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+limit_left = 0
+limit_top = 0
+limit_bottom = 128
