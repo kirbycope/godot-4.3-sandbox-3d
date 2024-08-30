@@ -26,3 +26,11 @@ func go_up_pipe():
 	$"../../Player2D/Camera2D".limit_top = 0
 	$"../../Player2D/Camera2D".limit_right = 10000000
 	$"../../Player2D/Camera2D".limit_bottom = 128
+	# Play sound effect
+	var sfx = load("res://assets/sounds/smb/Warp.wav")
+	Globals.main_sound_player.stream = sfx
+	Globals.main_sound_player.play()
+	# Play "Overworld" music
+	var song = load("res://assets/sounds/smb/Overworld Theme.ogg")
+	Globals.main_music_player.stream = song
+	Globals.main_music_player.play()

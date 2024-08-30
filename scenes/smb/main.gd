@@ -17,17 +17,24 @@ func _input(event: InputEvent) -> void:
 
 
 func start() -> void:
-	print("start!")
-	$Title.queue_free()
 
-	# Load W1L1
-	var path = "res://scenes/smb/w1l1.tscn"
-	# Load the scene
-	var scene = load(path)
-	
-	# Instantiate the scene
-	var instance_current = scene.instantiate()
+	# Check if the game has not started
+	if !game_started:
 
-	# Add the instance to the current scene
-	add_child(instance_current)
+		# Clear title screen
+		$Title.queue_free()
 
+		# Define next scene to load
+		var path = "res://scenes/smb/w1l1.tscn"
+		
+		# Load the scene
+		var scene = load(path)
+		
+		# Instantiate the scene
+		var instance_current = scene.instantiate()
+
+		# Add the instance to the current scene
+		add_child(instance_current)
+
+		# Flag the game as started
+		game_started = true

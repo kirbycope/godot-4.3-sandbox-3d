@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=4 uid="uid://cyh4p4sg00gfk"]
+[gd_scene load_steps=21 format=4 uid="uid://cyh4p4sg00gfk"]
 
 [ext_resource type="Texture2D" uid="uid://dsbv4ovf6tfei" path="res://assets/textures/smb/overworld-ground-and-stone.png" id="1_f5sq8"]
+[ext_resource type="Script" path="res://scenes/smb/w_1l_1.gd" id="1_km7ny"]
 [ext_resource type="Texture2D" uid="uid://3n4s6e7phini" path="res://assets/textures/smb/overworld-water-and-sky.png" id="2_rmfiu"]
 [ext_resource type="Texture2D" uid="uid://bplr56sfeo7ty" path="res://assets/textures/smb/overworld-pipes-and-scenery.png" id="3_fmm64"]
 [ext_resource type="Texture2D" uid="uid://cet1ie0mc5xuv" path="res://assets/textures/smb/overworld-coins.png" id="4_bjq44"]
@@ -267,6 +268,7 @@ sources/5 = SubResource("TileSetAtlasSource_mep0v")
 
 [node name="W1L1" type="Node2D"]
 texture_filter = 1
+script = ExtResource("1_km7ny")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 

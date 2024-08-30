@@ -13,12 +13,19 @@ func _process(delta: float) -> void:
 		
 		# Check if player is in biting range but not stomping on this Goomba
 		if player_in_bite_area and !player_in_stomp_area and player.velocity.y == 0:
-			print("Bite!")
+			# Play sound effect
+			var sfx = load("res://assets/sounds/smb/Die.wav")
+			Globals.main_sound_player.stream = sfx
+			Globals.main_sound_player.play()
 		
 		# Check if player is stomping on this Goomba and is jumping (ignoring biting range)
 		elif player_in_stomp_area and player.velocity.y > 0:
 			# Play the "squish" animation
 			play("squish")
+			# Play sound effect
+			var sfx = load("res://assets/sounds/smb/Squish.wav")
+			Globals.main_sound_player.stream = sfx
+			Globals.main_sound_player.play()
 			# Vault the player off the goomba
 			player.velocity.y = -256
 			# Wait a moment

@@ -6,4 +6,8 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_mise8")
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+
 [node name="Title" parent="." instance=ExtResource("2_t65wg")]

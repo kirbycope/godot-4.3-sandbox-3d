@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://d2vvdd177tsit"
+path="res://.godot/imported/Under Water Theme.ogg-3351c50721d47bc475b85fbedc76c141.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/smb/Under Water Theme.ogg"
+dest_files=["res://.godot/imported/Under Water Theme.ogg-3351c50721d47bc475b85fbedc76c141.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

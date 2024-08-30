@@ -5,10 +5,7 @@ var speed: float = 100.0
 
 
 func _ready() -> void:
-	$SMB/Player2D/Camera2D.zoom = Vector2(1.0, 1.0)
-	#$Demo/Player2D/Camera2D.zoom = Vector2(1.0, 1.0)
-	#camera_2d.position.x = 128
-	#camera_2d.position.y = 122
+	$Title/Camera2D.zoom = Vector2(1.0, 1.0)
 
 
 func _physics_process(delta: float) -> void:

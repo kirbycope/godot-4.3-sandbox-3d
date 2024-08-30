@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cba181tvvr68p"
+path="res://.godot/imported/Overworld Theme.ogg-08e6bea6811e3cb371cd8110978b334b.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/smb/Overworld Theme.ogg"
+dest_files=["res://.godot/imported/Overworld Theme.ogg-08e6bea6811e3cb371cd8110978b334b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

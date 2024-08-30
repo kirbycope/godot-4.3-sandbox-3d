@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 const JUMP_VELOCITY = -240.0
-const HIGH_JUMP_VELOCITY = -280.0
+const HIGH_JUMP_VELOCITY = -300.0
 
 var is_jumping: bool = false
 var is_high_jumping: bool = false
@@ -21,13 +21,8 @@ func _ready() -> void:
 ## Use _physics_process(delta) if the input needs to be checked continuously in sync with the physics engine, like for smooth movement or jump control.
 func _physics_process(delta: float) -> void:
 
-	# Check if the player is not grounded.
-	if not is_on_floor():
-		# Add the gravity.
-		velocity += get_gravity() * delta
-
 	# Jump if not jumping
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("crouch") and is_on_floor():
 		# Set the "jump timer" to the current game time
 		timer_jump = Time.get_ticks_msec()
 		# Flag the player as no longer "high jumping"
@@ -36,9 +31,13 @@ func _physics_process(delta: float) -> void:
 		is_jumping = true
 		# Set the player's vertical velocity
 		velocity.y = JUMP_VELOCITY
+		# Play "jump" sound effect
+		var sfx = load("res://assets/sounds/smb/Jump.wav")
+		Globals.main_sound_player.stream = sfx
+		Globals.main_sound_player.play()
 	
 	# Jump higher is jump button is held
-	if Input.is_action_pressed("ui_accept") and !is_on_floor() and !is_high_jumping:
+	if Input.is_action_pressed("crouch") and !is_on_floor() and !is_high_jumping:
 		# Get the current game time
 		var time_now = Time.get_ticks_msec()
 		# Check if _this_ button press is within 120 milliseconds
@@ -49,15 +48,29 @@ func _physics_process(delta: float) -> void:
 			velocity.y = HIGH_JUMP_VELOCITY
 
 	# Stop jumping is jump button is released
-	if Input.is_action_just_released("ui_accept"):
+	if Input.is_action_just_released("crouch"):
 		is_high_jumping = true
 
 	# Get the input direction and handle the movement/deceleration.
-	var direction := Input.get_axis("left", "right")
+	var direction := Input.get_axis("left", "right") # -1 left, 0 middle , 1 right
 	if direction:
 		velocity.x = direction * SPEED
+		if direction < 0:
+			$AnimatedSprite2D.flip_h = true
+			$AnimatedSprite2D.play("walk_right")
+		else:
+			$AnimatedSprite2D.flip_h = false
+			$AnimatedSprite2D.play("walk_right")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		$AnimatedSprite2D.play("default")
+
+	# Check if the player is not on a floor
+	if !is_on_floor():
+		# Add the gravity
+		velocity += get_gravity() * delta
+		# Play the "jump" animation
+		$AnimatedSprite2D.play("jump_right")
 
 	# Move player
 	move_and_slide()

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c0c37wces7ftx"
+path="res://.godot/imported/Fire Ball.wav-6536edca0e8731e4985c592462addb6b.sample"
+
+[deps]
+
+source_file="res://assets/sounds/smb/Fire Ball.wav"
+dest_files=["res://.godot/imported/Fire Ball.wav-6536edca0e8731e4985c592462addb6b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
