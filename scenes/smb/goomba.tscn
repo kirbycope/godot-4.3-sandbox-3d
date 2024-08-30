@@ -44,6 +44,7 @@ size = Vector2(16, 8)
 size = Vector2(20, 16)
 
 [node name="Goomba" type="AnimatedSprite2D"]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ouxwy")
 autoplay = "default"
 frame_progress = 0.413249

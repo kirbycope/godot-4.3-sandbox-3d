@@ -97,7 +97,7 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Player2D" type="CharacterBody2D"]
+[node name="Player2D" type="CharacterBody2D" groups=["Player"]]
 texture_filter = 1
 script = ExtResource("1_y6v5k")
 

@@ -36,6 +36,7 @@ animations = [{
 size = Vector2(16, 16)
 
 [node name="Coin" type="AnimatedSprite2D"]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_e0omp")
 autoplay = "default"
 frame_progress = 0.273273

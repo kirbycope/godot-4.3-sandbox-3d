@@ -36,9 +36,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jp1bp"]
-size = Vector2(16, 2)
+size = Vector2(8, 2)
 
 [node name="MysteryBox" type="AnimatedSprite2D"]
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_k0yqd")
 autoplay = "default"
 frame_progress = 0.252036

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cpxbanj8hwjbf" path="res://scenes/smb/title.tscn" id="2_t65wg"]
 
 [node name="Main" type="Node2D"]
+texture_filter = 1
 script = ExtResource("1_mise8")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
