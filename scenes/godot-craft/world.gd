@@ -7,8 +7,11 @@ func _ready() -> void:
 	# Disable the mouse pointer and capture the motion
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+	# Put the player in first-person perspective
+	$Player.perspective = 1
 
+	# Set camera's position
+	$Player/CameraMount/Camera3D.position = Vector3(0.0, 0.0, 0.0)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+	# Align visuals with the camera
+	$Player/Visuals.rotation = Vector3(0.0, 0.0, $Player/CameraMount.rotation.z)
