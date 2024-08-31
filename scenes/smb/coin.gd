@@ -2,10 +2,12 @@ extends AnimatedSprite2D
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+
+	# Check if the collision was triggered by a player
 	if body is CharacterBody2D:
+
 		# Play sound effect
-		var sfx = load("res://assets/sounds/smb/Coin.wav")
-		Globals.main_sound_player.stream = sfx
-		Globals.main_sound_player.play()
+		Globals.play_audio("res://assets/sounds/smb/Coin.wav")
+
 		# Remove _this_ node from the scene.
 		queue_free()

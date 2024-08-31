@@ -27,10 +27,6 @@ func go_down_pipe():
 	$"../../Player2D/Camera2D".limit_right = 424
 	$"../../Player2D/Camera2D".limit_bottom = 328
 	# Play sound effect
-	var sfx = load("res://assets/sounds/smb/Warp.wav")
-	Globals.main_sound_player.stream = sfx
-	Globals.main_sound_player.play()
+	Globals.play_audio("res://assets/sounds/smb/Warp.wav")
 	# Play "Underground" music
-	var song = load("res://assets/sounds/smb/Under Ground Theme.ogg")
-	Globals.main_music_player.stream = song
-	Globals.main_music_player.play()
+	Globals.play_music("res://assets/sounds/smb/Under Ground Theme.ogg")

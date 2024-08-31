@@ -32,9 +32,7 @@ func _physics_process(delta: float) -> void:
 		# Set the player's vertical velocity
 		velocity.y = JUMP_VELOCITY
 		# Play "jump" sound effect
-		var sfx = load("res://assets/sounds/smb/Jump.wav")
-		Globals.main_sound_player.stream = sfx
-		Globals.main_sound_player.play()
+		Globals.play_audio("res://assets/sounds/smb/Jump.wav")
 	
 	# Jump higher is jump button is held
 	if Input.is_action_pressed("crouch") and !is_on_floor() and !is_high_jumping:

@@ -9,7 +9,6 @@ var player_2_coins: int = 0
 var player_2_lives: int = 5
 var player_2_progress: int = 0
 
-
 func _input(event: InputEvent) -> void:
 	if !game_started:
 		if event.is_action_pressed("start") or (event is InputEventKey and event.pressed and event.keycode == KEY_ENTER):
