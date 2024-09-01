@@ -1,3 +1,4 @@
+## The "main" scene and its script are loaded from $Client.
 extends Node2D
 
 var game_started: bool = false
@@ -8,6 +9,7 @@ var player_1_progress: int = 0
 var player_2_coins: int = 0
 var player_2_lives: int = 5
 var player_2_progress: int = 0
+
 
 func _input(event: InputEvent) -> void:
 	if !game_started:

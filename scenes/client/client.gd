@@ -23,13 +23,15 @@ func _exit_tree() -> void:
 
 ## Called when the object receives a notification, which can be identified in what by comparing it with a constant.
 func _notification(what):
+
+	# Check if notifcation is a "close request"
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		
 		# [DEBUG] Message
-		if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene unloaded.")
+		if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' application closed.")
 		
-		# You can perform any additional tasks here, like saving data
-		get_tree().quit()  # This will actually close the application
+		# Close _this_ application
+		get_tree().quit()
 
 
 ## Called when the node enters the scene tree for the first time.

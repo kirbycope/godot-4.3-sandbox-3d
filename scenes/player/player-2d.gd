@@ -1,17 +1,27 @@
 extends CharacterBody2D
 
-
-const SPEED = 100.0
-const JUMP_VELOCITY = -240.0
-const HIGH_JUMP_VELOCITY = -300.0
-
 var is_jumping: bool = false
 var is_high_jumping: bool = false
 var timer_jump: float = 0.0
 
+# Note: `@export` variables are available for editing in the property editor.
+@export var SPEED = 100.0
+@export var JUMP_VELOCITY = -240.0
+@export var HIGH_JUMP_VELOCITY = -300.0
+
+
+## Called when the node leaves the scene tree.
+func _exit_tree() -> void:
+
+	# [DEBUG] Message
+	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene unloaded.")
+
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+
+	# [DEBUG] Message
+	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene loaded.")
 
 	# Set the player collision to match "small" Mario
 	$CollisionShape2D.shape.size = Vector2($CollisionShape2D.shape.size.x, 16)

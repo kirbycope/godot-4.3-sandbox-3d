@@ -70,7 +70,7 @@ func play_music(resourse: String):
 	music_player.play()
 
 
-## Plays the given resource on the Music player.
+## Plays the given resource on the Sound player.
 func play_sound(resourse: String):
 	var sound_player = null
 	# Get sound player if app loaded from $Client
