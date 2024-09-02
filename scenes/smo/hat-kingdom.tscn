@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://44mlae6k72xp"]
+
+[ext_resource type="PackedScene" uid="uid://c0ykbyig7yj07" path="res://scenes/smo/hat-kingdom/ground-000.tscn" id="1_8opca"]
+[ext_resource type="PackedScene" uid="uid://q5nqrm48n43l" path="res://scenes/player/player-3d.tscn" id="2_mwb3h"]
+[ext_resource type="PackedScene" uid="uid://p73cn3l323kj" path="res://scenes/smo/hat-kingdom/ground-002.tscn" id="3_n4pd6"]
+[ext_resource type="PackedScene" uid="uid://dqfwqrwurtb23" path="res://scenes/smo/hat-kingdom/bridge.tscn" id="4_slt4v"]
+[ext_resource type="PackedScene" uid="uid://cq8qnpv4ddcuf" path="res://scenes/smo/hat-kingdom/tower-001.tscn" id="5_2v5va"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qgqtb"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_f6hjt"]
+sky_material = SubResource("ProceduralSkyMaterial_qgqtb")
+
+[sub_resource type="Environment" id="Environment_anywd"]
+background_mode = 2
+sky = SubResource("Sky_f6hjt")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="HatKingdom" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_anywd")
+
+[node name="Player" parent="." instance=ExtResource("2_mwb3h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -155.621, -6.79705, 157.497)
+enable_flying = true
+
+[node name="Ground000" parent="." instance=ExtResource("1_8opca")]
+
+[node name="Ground002" parent="." instance=ExtResource("3_n4pd6")]
+
+[node name="Bridge" parent="." instance=ExtResource("4_slt4v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8, -8, 5.35)
+
+[node name="Tower001" parent="." instance=ExtResource("5_2v5va")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.4, 0, 5.5)
