@@ -4,14 +4,14 @@
 		"short": "Used to test different player mechanics.",
 		"long": "To be implemented...",
 		"thumb": "res://scenes/sandbox/thumb.png",
-		"scene": "res://scenes/sandbox/sandbox.tscn"
+		"scene": "res://scenes/sandbox/main.tscn"
 	},
 	{
 		"title": "Godot Craft",
 		"short": "Build and craft using block shapes.",
 		"long": "To be implemented...",
 		"thumb": "res://scenes/godot-craft/thumb.png",
-		"scene": "res://scenes/godot-craft/world.tscn"
+		"scene": "res://scenes/godot-craft/main.tscn"
 	},
 	{
 		"title": "Super Mario Bros.",

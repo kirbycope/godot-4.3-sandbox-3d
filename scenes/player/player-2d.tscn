@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://il46oeikwp0a"]
+[gd_scene load_steps=15 format=3 uid="uid://il46oeikwp0a"]
 
 [ext_resource type="Script" path="res://scenes/player/player-2d.gd" id="1_y6v5k"]
 [ext_resource type="Texture2D" uid="uid://c3v13tfvykqq1" path="res://assets/textures/smb/mario-small.png" id="2_7f7ji"]
+[ext_resource type="PackedScene" uid="uid://bf6dhhwfpuau6" path="res://scenes/pause/pause.tscn" id="3_617b5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rq3tn"]
 size = Vector2(16, 32)
@@ -115,3 +116,14 @@ zoom = Vector2(3, 3)
 limit_left = 0
 limit_top = 0
 limit_bottom = 128
+
+[node name="Pause" parent="Camera2D" instance=ExtResource("3_617b5")]
+visible = false
+top_level = true
+z_index = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(0.33, 0.33)

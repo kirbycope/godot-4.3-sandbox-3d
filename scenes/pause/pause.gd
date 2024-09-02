@@ -48,5 +48,14 @@ func _on_back_to_game_button_pressed() -> void:
 ## Handle "Leave Game" button _pressed_.
 func _on_leave_game_button_pressed() -> void:
 
-	# Unload _this_ scene
-	Globals.client.unload_scene()
+	# Check if this scene was loaded by the $Client
+	if Globals.client:
+
+		# Unload _this_ scene
+		Globals.client.unload_scene()
+
+	# The scene must have been launched directly
+	else:
+
+		# Close "main" scene.
+		Globals.main.queue_free()

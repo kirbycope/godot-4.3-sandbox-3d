@@ -1,4 +1,3 @@
-## The "main" scene and its script are loaded from $Client.
 extends Node2D
 
 var game_started: bool = false
@@ -10,7 +9,27 @@ var player_2_coins: int = 0
 var player_2_lives: int = 5
 var player_2_progress: int = 0
 
+## Called when the node leaves the scene tree.
+func _exit_tree() -> void:
 
+	# [DEBUG] Message
+	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene unloaded.")
+
+
+## Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+
+	# [DEBUG] Message
+	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene loaded.")
+
+	# Disable the mouse pointer and capture the motion
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+	# Make sure the game is unpaused
+	Globals.game_paused = false
+
+
+## Called when there is an input event. The input event propagates up through the node tree until a node consumes it.
 func _input(event: InputEvent) -> void:
 	if !game_started:
 		if event.is_action_pressed("start") or (event is InputEventKey and event.pressed and event.keycode == KEY_ENTER):
