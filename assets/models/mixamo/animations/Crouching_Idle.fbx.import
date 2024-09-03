@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://db5kwq3vs1ame"
-path="res://.godot/imported/Crouching_Idle.fbx-104904a86eb1da49819c1203f9669b14.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/models/mixamo/animations/Crouching_Idle.fbx"
-dest_files=["res://.godot/imported/Crouching_Idle.fbx-104904a86eb1da49819c1203f9669b14.scn"]
 
 [params]
 

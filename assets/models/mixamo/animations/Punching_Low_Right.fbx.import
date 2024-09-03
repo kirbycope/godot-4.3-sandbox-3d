@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://4hcup2shvlre"
-path="res://.godot/imported/Punching_Low_Right.fbx-14489bcd1366cafa4675076882aed4ba.scn"
+valid=false
 
 [deps]
 
 source_file="res://assets/models/mixamo/animations/Punching_Low_Right.fbx"
-dest_files=["res://.godot/imported/Punching_Low_Right.fbx-14489bcd1366cafa4675076882aed4ba.scn"]
 
 [params]
 
