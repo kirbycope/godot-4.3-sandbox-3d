@@ -9,6 +9,7 @@ var player_2_coins: int = 0
 var player_2_lives: int = 5
 var player_2_progress: int = 0
 
+
 ## Called when the node leaves the scene tree.
 func _exit_tree() -> void:
 
@@ -31,11 +32,18 @@ func _ready() -> void:
 
 ## Called when there is an input event. The input event propagates up through the node tree until a node consumes it.
 func _input(event: InputEvent) -> void:
+
+	# Check if the game is no started
 	if !game_started:
+
+		# Check if the input is "start" or [Enter]
 		if event.is_action_pressed("start") or (event is InputEventKey and event.pressed and event.keycode == KEY_ENTER):
+
+			# Start the gamed
 			start()
 
 
+# Start the game, if not started.
 func start() -> void:
 
 	# Check if the game has not started
