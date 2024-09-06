@@ -54,10 +54,10 @@ func start() -> void:
 
 		# Define next scene to load
 		var path = "res://scenes/smb/w1l1.tscn"
-		
+
 		# Load the scene
 		var scene = load(path)
-		
+
 		# Instantiate the scene
 		var instance_current = scene.instantiate()
 
