@@ -23,6 +23,9 @@ func _ready() -> void:
 	# Check if the "Picks" haven't been populated
 	if picks == null:
 		
+		# WIP
+		$HTTPRequest.request("https://github.com/kirbycope/godot-minecraft/blob/main/ci%5Cgodot-minecraft.pck")
+		
 		# Get the "Picks" from disk (as a string)
 		var json_as_text = FileAccess.get_file_as_string("res://scenes/main-menu/picks.json")
 		
@@ -65,3 +68,8 @@ func _on_pick_button_pressed(index: int):
 
 	# Load the scene
 	Globals.client.load_scene(picks[index].scene)
+
+
+func _on_http_request_request_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	pass # Replace with function body.
+	print(response_code)

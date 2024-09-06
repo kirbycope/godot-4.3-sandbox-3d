@@ -21,6 +21,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ndtva")
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [node name="BackgroundColor" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -803,6 +805,7 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 2
 
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
 [connection signal="pressed" from="LeftNav/GodotEngineButton" to="." method="_on_godot_engine_button_pressed"]
 [connection signal="pressed" from="Main/Picks/Pick0/Pick0Button" to="." method="_on_pick_1_button_pressed"]
 [connection signal="pressed" from="Main/Picks/Pick1/Pick1Button" to="." method="_on_pick_2_button_pressed"]
