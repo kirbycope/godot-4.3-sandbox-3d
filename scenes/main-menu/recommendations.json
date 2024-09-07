@@ -1,0 +1,11 @@
+[
+	{
+		"title": "Minecraft: Godot Edition (MCGE)",
+		"short": "Minecraft remade in the Godot Engine.",
+		"long": "To be implemented...",
+		"thumb": "https://raw.githubusercontent.com/kirbycope/godot-minecraft/main/ci/thumbnail.png",
+		"pack": "godot-minecraft",
+		"scene": "res://scenes/minecraft/main.tscn",
+		"url": "https://github.com/kirbycope/godot-minecraft/raw/main/ci/godot-minecraft.pck"
+	}
+]

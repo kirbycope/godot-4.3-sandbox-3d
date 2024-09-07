@@ -21,8 +21,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ndtva")
 
-[node name="HTTPRequest" type="HTTPRequest" parent="."]
-
 [node name="BackgroundColor" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -619,14 +617,14 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 2
 
-[node name="Recommend" type="Control" parent="Main"]
+[node name="Recommendations" type="Control" parent="Main"]
 anchors_preset = 0
 offset_left = 24.0
 offset_top = 446.0
 offset_right = 1204.0
 offset_bottom = 714.0
 
-[node name="Heading" type="RichTextLabel" parent="Main/Recommend"]
+[node name="Heading" type="RichTextLabel" parent="Main/Recommendations"]
 layout_mode = 0
 offset_right = 286.0
 offset_bottom = 20.0
@@ -637,24 +635,24 @@ text = "Recommended For You"
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Recommend0" type="Control" parent="Main/Recommend"]
+[node name="Recommendation0" type="Control" parent="Main/Recommendations"]
 anchors_preset = 0
 offset_left = -1.0
 offset_top = 25.0
 offset_right = 285.0
 offset_bottom = 249.0
 
-[node name="Recommend0Button" type="TextureButton" parent="Main/Recommend/Recommend0"]
+[node name="Recommendation0Button" type="TextureButton" parent="Main/Recommendations/Recommendation0"]
 layout_mode = 0
 offset_top = 4.0
 offset_right = 286.0
 offset_bottom = 164.0
 
-[node name="Thumbnail" type="TextureRect" parent="Main/Recommend/Recommend0/Recommend0Button"]
+[node name="Thumbnail" type="TextureRect" parent="Main/Recommendations/Recommendation0/Recommendation0Button"]
 layout_mode = 0
 texture = ExtResource("12_ftaka")
 
-[node name="Title" type="RichTextLabel" parent="Main/Recommend/Recommend0"]
+[node name="Title" type="RichTextLabel" parent="Main/Recommendations/Recommendation0"]
 layout_mode = 0
 offset_top = 168.0
 offset_right = 97.0
@@ -667,7 +665,7 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 0
 
-[node name="Description" type="RichTextLabel" parent="Main/Recommend/Recommend0"]
+[node name="Description" type="RichTextLabel" parent="Main/Recommendations/Recommendation0"]
 layout_mode = 0
 offset_top = 184.0
 offset_right = 286.0
@@ -679,24 +677,24 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 2
 
-[node name="Recommend1" type="Control" parent="Main/Recommend"]
+[node name="Recommendation1" type="Control" parent="Main/Recommendations"]
 anchors_preset = 0
 offset_left = 303.0
 offset_top = 25.0
 offset_right = 589.0
 offset_bottom = 249.0
 
-[node name="Recommend1Button" type="TextureButton" parent="Main/Recommend/Recommend1"]
+[node name="RecommendationButton" type="TextureButton" parent="Main/Recommendations/Recommendation1"]
 layout_mode = 0
 offset_top = 4.0
 offset_right = 286.0
 offset_bottom = 164.0
 
-[node name="Thumbnail" type="TextureRect" parent="Main/Recommend/Recommend1/Recommend1Button"]
+[node name="Thumbnail" type="TextureRect" parent="Main/Recommendations/Recommendation1/RecommendationButton"]
 layout_mode = 0
 texture = ExtResource("12_ftaka")
 
-[node name="Title" type="RichTextLabel" parent="Main/Recommend/Recommend1"]
+[node name="Title" type="RichTextLabel" parent="Main/Recommendations/Recommendation1"]
 layout_mode = 0
 offset_top = 168.0
 offset_right = 97.0
@@ -709,7 +707,7 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 0
 
-[node name="Description" type="RichTextLabel" parent="Main/Recommend/Recommend1"]
+[node name="Description" type="RichTextLabel" parent="Main/Recommendations/Recommendation1"]
 layout_mode = 0
 offset_top = 184.0
 offset_right = 286.0
@@ -721,24 +719,24 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 2
 
-[node name="Recommend2" type="Control" parent="Main/Recommend"]
+[node name="Recommendation2" type="Control" parent="Main/Recommendations"]
 anchors_preset = 0
 offset_left = 607.0
 offset_top = 25.0
 offset_right = 893.0
 offset_bottom = 249.0
 
-[node name="Recommend2Button" type="TextureButton" parent="Main/Recommend/Recommend2"]
+[node name="Recommendation2Button" type="TextureButton" parent="Main/Recommendations/Recommendation2"]
 layout_mode = 0
 offset_top = 4.0
 offset_right = 286.0
 offset_bottom = 164.0
 
-[node name="Thumbnail" type="TextureRect" parent="Main/Recommend/Recommend2/Recommend2Button"]
+[node name="Thumbnail" type="TextureRect" parent="Main/Recommendations/Recommendation2/Recommendation2Button"]
 layout_mode = 0
 texture = ExtResource("12_ftaka")
 
-[node name="Title" type="RichTextLabel" parent="Main/Recommend/Recommend2"]
+[node name="Title" type="RichTextLabel" parent="Main/Recommendations/Recommendation2"]
 layout_mode = 0
 offset_top = 168.0
 offset_right = 97.0
@@ -751,7 +749,7 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 0
 
-[node name="Description" type="RichTextLabel" parent="Main/Recommend/Recommend2"]
+[node name="Description" type="RichTextLabel" parent="Main/Recommendations/Recommendation2"]
 layout_mode = 0
 offset_top = 184.0
 offset_right = 286.0
@@ -763,24 +761,24 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 2
 
-[node name="Recommend3" type="Control" parent="Main/Recommend"]
+[node name="Recommendation3" type="Control" parent="Main/Recommendations"]
 anchors_preset = 0
 offset_left = 911.0
 offset_top = 25.0
 offset_right = 1197.0
 offset_bottom = 249.0
 
-[node name="Recommend3Button" type="TextureButton" parent="Main/Recommend/Recommend3"]
+[node name="Recommendation3Button" type="TextureButton" parent="Main/Recommendations/Recommendation3"]
 layout_mode = 0
 offset_top = 4.0
 offset_right = 286.0
 offset_bottom = 164.0
 
-[node name="Thumbnail" type="TextureRect" parent="Main/Recommend/Recommend3/Recommend3Button"]
+[node name="Thumbnail" type="TextureRect" parent="Main/Recommendations/Recommendation3/Recommendation3Button"]
 layout_mode = 0
 texture = ExtResource("12_ftaka")
 
-[node name="Title" type="RichTextLabel" parent="Main/Recommend/Recommend3"]
+[node name="Title" type="RichTextLabel" parent="Main/Recommendations/Recommendation3"]
 layout_mode = 0
 offset_top = 168.0
 offset_right = 97.0
@@ -793,7 +791,7 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 0
 
-[node name="Description" type="RichTextLabel" parent="Main/Recommend/Recommend3"]
+[node name="Description" type="RichTextLabel" parent="Main/Recommendations/Recommendation3"]
 layout_mode = 0
 offset_top = 184.0
 offset_right = 286.0
@@ -805,7 +803,6 @@ scroll_active = false
 scroll_following = true
 autowrap_mode = 2
 
-[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
 [connection signal="pressed" from="LeftNav/GodotEngineButton" to="." method="_on_godot_engine_button_pressed"]
 [connection signal="pressed" from="Main/Picks/Pick0/Pick0Button" to="." method="_on_pick_1_button_pressed"]
 [connection signal="pressed" from="Main/Picks/Pick1/Pick1Button" to="." method="_on_pick_2_button_pressed"]
