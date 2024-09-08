@@ -15,7 +15,7 @@ A 3D sandbox for version 4.3 of the Godot Engine.
 1. Arrange functions and variables alphabetically.
 1. Use prefixes to group variables, i.e. `player_postion` and `player_health`.
 
-### Godot Color Codes (from icon.svg)
+## Godot Color Codes (from icon.svg)
 https://rgbcolorcode.com/color/`{hex}`
 
 **Charcoal** </br>

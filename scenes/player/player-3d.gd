@@ -69,6 +69,8 @@ func _ready() -> void:
 	# [DEBUG] Message
 	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene loaded.")
 
+	# Setup controls
+	setup_controls()
 
 ## Called once for every event before _unhandled_input(), allowing you to consume some events.
 ## Use _input(event) if you only need to respond to discrete input events, such as detecting a single press or release of a key or button.
@@ -642,6 +644,177 @@ func set_player_speed(input_magnitude) -> void:
 	else:
 		# Determine player speed based on input magnitude (walking or running)
 		player_current_speed = lerp(player_walking_speed, player_running_speed, input_magnitude)
+
+
+
+## Define the initial control configuration.
+func setup_controls():
+
+	# Check if [move_forward] action is not in the Input Map
+	if not InputMap.has_action("move_forward"):
+
+		# Add the [move_forward] action to the Input Map
+		InputMap.add_action("move_forward")
+
+		# Keyboard 🅆
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_W
+		InputMap.action_add_event("move_forward", key_event)
+
+		# Controller [left-stick, forward]
+		var joystick_event = InputEventJoypadMotion.new()
+		joystick_event.axis = JOY_AXIS_LEFT_Y
+		joystick_event.axis_value = 1.0
+		InputMap.action_add_event("move_forward", joystick_event)
+
+	# Check if [move_left] action is not in the Input Map
+	if not InputMap.has_action("move_left"):
+
+		# Add the [move_left] action to the Input Map
+		InputMap.add_action("move_left")
+
+		# Keyboard 🄰
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_A
+		InputMap.action_add_event("move_left", key_event)
+
+		# Controller [left-stick, left]
+		var joystick_event = InputEventJoypadMotion.new()
+		joystick_event.axis = JOY_AXIS_LEFT_X
+		joystick_event.axis_value = -1.0
+		InputMap.action_add_event("move_left", joystick_event)
+
+	# Check if [move_backward] action is not in the Input Map
+	if not InputMap.has_action("move_backward"):
+
+		# Add the [move_backward] action to the Input Map
+		InputMap.add_action("move_backward")
+
+		# Keyboard 🅂
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_S
+		InputMap.action_add_event("move_backward", key_event)
+
+		# Controller [left-stick, backward]
+		var joystick_event = InputEventJoypadMotion.new()
+		joystick_event.axis = JOY_AXIS_LEFT_Y
+		joystick_event.axis_value = -1.0
+		InputMap.action_add_event("move_backward", joystick_event)
+
+	# Check if [move_right] action is not in the Input Map
+	if not InputMap.has_action("move_right"):
+
+		# Add the [move_right] action to the Input Map
+		InputMap.add_action("move_right")
+
+		# Keyboard 🄳
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_D
+		InputMap.action_add_event("move_right", key_event)
+
+		# Controller [left-stick, right]
+		var joystick_event = InputEventJoypadMotion.new()
+		joystick_event.axis = JOY_AXIS_RIGHT_X
+		joystick_event.axis_value = 1.0
+		InputMap.action_add_event("move_right", joystick_event)
+
+	# Check if [select] action is not in the Input Map
+	if not InputMap.has_action("select"):
+		
+		# Add the [select] action to the Input Map
+		InputMap.add_action("select")
+
+		# Keyboard [F5]
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_F5
+		InputMap.action_add_event("select", key_event)
+
+		# Controller ⧉
+		var joypad_button_event = InputEventJoypadButton.new()
+		joypad_button_event.button_index = JOY_BUTTON_BACK
+		InputMap.action_add_event("select", joypad_button_event)
+
+	# Check if [start] action is not in the Input Map
+	if not InputMap.has_action("start"):
+		
+		# Add the [start] action to the Input Map
+		InputMap.add_action("start")
+
+		# Keyboard [Esc]
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_ESCAPE
+		InputMap.action_add_event("start", key_event)
+
+		# Controller ☰
+		var joypad_button_event = InputEventJoypadButton.new()
+		joypad_button_event.button_index = JOY_BUTTON_START
+		InputMap.action_add_event("start", joypad_button_event)
+
+	# Check if [look_left] action is not in the Input Map
+	if not InputMap.has_action("look_left"):
+
+		# Add the [look_left] action to the Input Map
+		InputMap.add_action("look_left")
+
+		# Keyboard ⍇
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_LEFT
+		InputMap.action_add_event("look_left", key_event)
+
+		# Controller [right-stick, left]
+		var joystick_event = InputEventJoypadMotion.new()
+		joystick_event.axis = JOY_AXIS_RIGHT_X
+		joystick_event.axis_value = -1.0
+		InputMap.action_add_event("look_left", joystick_event)
+
+	# Check if [look_right] action is not in the Input Map
+	if not InputMap.has_action("look_right"):
+
+		# Add the [look_right] action to the Input Map
+		InputMap.add_action("look_right")
+
+		# Keyboard ⍈
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_LEFT
+		InputMap.action_add_event("look_right", key_event)
+
+		# Controller [right-stick, right]
+		var joystick_event = InputEventJoypadMotion.new()
+		joystick_event.axis = JOY_AXIS_RIGHT_X
+		joystick_event.axis_value = 1.0
+		InputMap.action_add_event("look_right", joystick_event)
+
+	# Check if [jump] action is not in the Input Map
+	if not InputMap.has_action("jump"):
+
+		# Add the [jump] action to the Input Map
+		InputMap.add_action("jump")
+
+		# Keyboard [Space]
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_SPACE
+		InputMap.action_add_event("jump", key_event)
+
+		# Controller Ⓐ
+		var joypad_button_event = InputEventJoypadButton.new()
+		joypad_button_event.button_index = JOY_BUTTON_A
+		InputMap.action_add_event("jump", joypad_button_event)
+
+	# Check if [sneak] action is not in the Input Map
+	if not InputMap.has_action("sneak"):
+
+		# Add the [sneak] action to the Input Map
+		InputMap.add_action("sneak")
+
+		# Keyboard [Shift]
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_SHIFT
+		InputMap.action_add_event("sneak", key_event)
+
+		# Controller Ⓑ
+		var joypad_button_event = InputEventJoypadButton.new()
+		joypad_button_event.button_index = JOY_BUTTON_B
+		InputMap.action_add_event("jump", joypad_button_event)
 
 
 ## Update the player's velocity based on input and status.
