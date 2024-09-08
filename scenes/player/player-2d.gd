@@ -240,6 +240,21 @@ func setup_controls():
 		joypad_button_event.button_index = JOY_BUTTON_A
 		InputMap.action_add_event("jump", joypad_button_event)
 
+	# Check if [sprint] action is not in the Input Map
+	if not InputMap.has_action("sprint"):
+
+		# Add the [sprint] action to the Input Map
+		InputMap.add_action("sprint")
+
+		# Keyboard [Shift]
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_SHIFT
+		InputMap.action_add_event("sprint", key_event)
+
+		# Controller Ⓑ
+		var joypad_button_event = InputEventJoypadButton.new()
+		joypad_button_event.button_index = JOY_BUTTON_B
+		InputMap.action_add_event("sprint", joypad_button_event)
 
 ## Update the player's velocity based on input and status.
 func update_velocity(delta: float) -> void:
