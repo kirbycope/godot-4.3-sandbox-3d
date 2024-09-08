@@ -224,7 +224,7 @@ func setup_controls():
 		joypad_button_event.button_index = JOY_BUTTON_START
 		InputMap.action_add_event("start", joypad_button_event)
 
-	# Check if [jump] action is not in the Input Map
+	# Ⓐ Check if [jump] action is not in the Input Map
 	if not InputMap.has_action("jump"):
 
 		# Add the [jump] action to the Input Map
@@ -240,7 +240,7 @@ func setup_controls():
 		joypad_button_event.button_index = JOY_BUTTON_A
 		InputMap.action_add_event("jump", joypad_button_event)
 
-	# Check if [sprint] action is not in the Input Map
+	# Ⓑ Check if [sprint] action is not in the Input Map
 	if not InputMap.has_action("sprint"):
 
 		# Add the [sprint] action to the Input Map

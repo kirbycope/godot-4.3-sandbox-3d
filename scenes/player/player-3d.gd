@@ -650,6 +650,17 @@ func set_player_speed(input_magnitude) -> void:
 ## Define the initial control configuration.
 func setup_controls():
 
+	# Check if [debug] action is not in the Input Map
+	if not InputMap.has_action("debug"):
+		
+		# Add the [debug] action to the Input Map
+		InputMap.add_action("debug")
+
+		# Keyboard [F3]
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_F3
+		InputMap.action_add_event("debug", key_event)
+
 	# Check if [move_forward] action is not in the Input Map
 	if not InputMap.has_action("move_forward"):
 
@@ -750,6 +761,23 @@ func setup_controls():
 		joypad_button_event.button_index = JOY_BUTTON_START
 		InputMap.action_add_event("start", joypad_button_event)
 
+	# Check if [look_up] action is not in the Input Map
+	if not InputMap.has_action("look_up"):
+
+		# Add the [look_up] action to the Input Map
+		InputMap.add_action("look_up")
+
+		# Keyboard ⍐
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_UP
+		InputMap.action_add_event("look_up", key_event)
+
+		# Controller [right-stick, up]
+		var joystick_event = InputEventJoypadMotion.new()
+		joystick_event.axis = JOY_AXIS_RIGHT_Y
+		joystick_event.axis_value = 1.0
+		InputMap.action_add_event("look_up", joystick_event)
+
 	# Check if [look_left] action is not in the Input Map
 	if not InputMap.has_action("look_left"):
 
@@ -766,6 +794,23 @@ func setup_controls():
 		joystick_event.axis = JOY_AXIS_RIGHT_X
 		joystick_event.axis_value = -1.0
 		InputMap.action_add_event("look_left", joystick_event)
+
+	# Check if [look_down] action is not in the Input Map
+	if not InputMap.has_action("look_down"):
+
+		# Add the [look_down] action to the Input Map
+		InputMap.add_action("look_down")
+
+		# Keyboard ⍗
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_UP
+		InputMap.action_add_event("look_down", key_event)
+
+		# Controller [right-stick, down]
+		var joystick_event = InputEventJoypadMotion.new()
+		joystick_event.axis = JOY_AXIS_RIGHT_Y
+		joystick_event.axis_value = -1.0
+		InputMap.action_add_event("look_down", joystick_event)
 
 	# Check if [look_right] action is not in the Input Map
 	if not InputMap.has_action("look_right"):
@@ -784,7 +829,7 @@ func setup_controls():
 		joystick_event.axis_value = 1.0
 		InputMap.action_add_event("look_right", joystick_event)
 
-	# Check if [jump] action is not in the Input Map
+	# Ⓐ Check if [jump] action is not in the Input Map
 	if not InputMap.has_action("jump"):
 
 		# Add the [jump] action to the Input Map
@@ -800,7 +845,7 @@ func setup_controls():
 		joypad_button_event.button_index = JOY_BUTTON_A
 		InputMap.action_add_event("jump", joypad_button_event)
 
-	# Check if [sprint] action is not in the Input Map
+	# Ⓑ Check if [sprint] action is not in the Input Map
 	if not InputMap.has_action("sprint"):
 
 		# Add the [sprint] action to the Input Map
@@ -816,6 +861,38 @@ func setup_controls():
 		joypad_button_event.button_index = JOY_BUTTON_B
 		InputMap.action_add_event("sprint", joypad_button_event)
 
+	# Ⓧ Check if [use] action is not in the Input Map
+	if not InputMap.has_action("use"):
+
+		# Add the [use] action to the Input Map
+		InputMap.add_action("use")
+
+		# Keyboard [E]
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_E
+		InputMap.action_add_event("use", key_event)
+
+		# Controller Ⓧ
+		var joypad_button_event = InputEventJoypadButton.new()
+		joypad_button_event.button_index = JOY_BUTTON_X
+		InputMap.action_add_event("use", joypad_button_event)
+
+	# Ⓨ Check if [crouch] action is not in the Input Map
+	if not InputMap.has_action("crouch"):
+
+		# Add the [use] action to the Input Map
+		InputMap.add_action("crouch")
+
+		# Keyboard [Ctrl]
+		var key_event = InputEventKey.new()
+		key_event.physical_keycode = KEY_CTRL
+		InputMap.action_add_event("crouch", key_event)
+
+		# Controller Ⓨ
+		var joypad_button_event = InputEventJoypadButton.new()
+		joypad_button_event.button_index = JOY_BUTTON_Y
+		InputMap.action_add_event("crouch", joypad_button_event)
+
 
 ## Update the player's velocity based on input and status.
 func update_velocity(delta: float) -> void:
@@ -826,7 +903,7 @@ func update_velocity(delta: float) -> void:
 		velocity.y -= gravity * delta
 
 	# Get the input direction and handle the movement/deceleration.
-	var input_dir = Input.get_vector("left", "right", "forward", "backward")
+	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	# Calculate the input magnitude (intensity of the left-analog stick)

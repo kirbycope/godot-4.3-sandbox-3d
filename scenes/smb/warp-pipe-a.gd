@@ -15,7 +15,7 @@ func _on_body_exited(body: Node2D) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("backward") and player_in_area:
+	if event.is_action_pressed("move_down") and player_in_area:
 		go_down_pipe()
 
 

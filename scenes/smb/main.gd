@@ -36,8 +36,8 @@ func _input(event: InputEvent) -> void:
 	# Check if the game is no started
 	if !game_started:
 
-		# Check if the input is "start" or [Enter]
-		if event.is_action_pressed("start") or (event is InputEventKey and event.pressed and event.keycode == KEY_ENTER):
+		# Check if the input is [Enter]
+		if event is InputEventKey and event.pressed and event.keycode == KEY_ENTER:
 
 			# Start the game
 			start()
