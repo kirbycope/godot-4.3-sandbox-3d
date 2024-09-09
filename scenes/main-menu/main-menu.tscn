@@ -684,13 +684,13 @@ offset_top = 25.0
 offset_right = 589.0
 offset_bottom = 249.0
 
-[node name="RecommendationButton" type="TextureButton" parent="Main/Recommendations/Recommendation1"]
+[node name="Recommendation1Button" type="TextureButton" parent="Main/Recommendations/Recommendation1"]
 layout_mode = 0
 offset_top = 4.0
 offset_right = 286.0
 offset_bottom = 164.0
 
-[node name="Thumbnail" type="TextureRect" parent="Main/Recommendations/Recommendation1/RecommendationButton"]
+[node name="Thumbnail" type="TextureRect" parent="Main/Recommendations/Recommendation1/Recommendation1Button"]
 layout_mode = 0
 texture = ExtResource("12_ftaka")
 

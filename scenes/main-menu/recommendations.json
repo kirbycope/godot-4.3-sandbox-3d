@@ -7,5 +7,14 @@
 		"pack": "godot-minecraft",
 		"scene": "res://scenes/minecraft/main.tscn",
 		"url": "https://github.com/kirbycope/godot-minecraft/raw/main/ci/godot-minecraft.pck"
+	},
+	{
+		"title": "Super Mario Bros.",
+		"short": "Do you have what it takes to save the Mushroom Princess?",
+		"long": "To be implemented...",
+		"thumb": "https://raw.githubusercontent.com/kirbycope/godot-super-mario-bros/main/ci/thumbnail.png",
+		"pack": "godot-super-mario-bros",
+		"scene": "res://scenes/super-mario-bros/main.tscn",
+		"url": "https://github.com/kirbycope/godot-super-mario-bros/raw/main/ci/godot-super-mario-bros.pck"
 	}
 ]
