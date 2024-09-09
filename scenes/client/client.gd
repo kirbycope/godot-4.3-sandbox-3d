@@ -75,7 +75,6 @@ func scene_loading_add() -> void:
 	# Add the instance of the "Loading" scene to the current scene
 	add_child(instance_loading)
 
-
 ## Removes the "Loading" scene from _this_ scene.
 func scene_loading_remove() -> void:
 
