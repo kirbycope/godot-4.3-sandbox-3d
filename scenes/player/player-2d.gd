@@ -183,7 +183,7 @@ func setup_controls():
 
 		# Controller [left-stick, right]
 		var joystick_event = InputEventJoypadMotion.new()
-		joystick_event.axis = JOY_AXIS_RIGHT_X
+		joystick_event.axis = JOY_AXIS_LEFT_X
 		joystick_event.axis_value = 1.0
 		InputMap.action_add_event("move_right", joystick_event)
 
@@ -255,6 +255,7 @@ func setup_controls():
 		var joypad_button_event = InputEventJoypadButton.new()
 		joypad_button_event.button_index = JOY_BUTTON_B
 		InputMap.action_add_event("sprint", joypad_button_event)
+
 
 ## Update the player's velocity based on input and status.
 func update_velocity(delta: float) -> void:
