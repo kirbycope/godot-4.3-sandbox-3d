@@ -5,20 +5,6 @@ var last_input_device: String = ""
 @onready var stick_r_origin: Vector2 = $XboxController/White/StickR.position
 
 
-## Called when the node leaves the scene tree.
-func _exit_tree() -> void:
-
-	# [DEBUG] Message
-	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene unloaded.")
-
-
-## Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-
-	# [DEBUG] Message
-	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene loaded.")
-
-
 ## Called once for every event before _unhandled_input(), allowing you to consume some events.
 func _input(event) -> void:
 

@@ -1,20 +1,6 @@
 extends Control
 
 
-## Called when the node leaves the scene tree.
-func _exit_tree() -> void:
-
-	# [DEBUG] Message
-	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene unloaded.")
-
-
-## Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-
-	# [DEBUG] Message
-	if Globals.debug_mode: print(Globals.time_stamp, " [DEBUG] '", get_script().resource_path.get_file().get_basename(), "' scene loaded.")
-
-
 ## Called once for every event before _unhandled_input(), allowing you to consume some events.
 func _input(event) -> void:
 
@@ -48,14 +34,5 @@ func _on_back_to_game_button_pressed() -> void:
 ## Handle "Leave Game" button _pressed_.
 func _on_leave_game_button_pressed() -> void:
 
-	# Check if this scene was loaded by the $Client
-	if Globals.client:
-
-		# Unload _this_ scene
-		Globals.client.unload_scene()
-
-	# The scene must have been launched directly
-	else:
-
-		# Close "main" scene.
-		Globals.main.queue_free()
+	# Close the application
+	get_tree().quit()
