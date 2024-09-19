@@ -1,6 +1,6 @@
 extends Node2D
 
-const MAX_DISTANCE := 48
+const MAX_DISTANCE := 64
 const SWIPE_DEADZONE := 8
 
 var swipe_current_position = null
@@ -21,7 +21,7 @@ func _draw() -> void:
 		var draw_position_gray =  swipe_initial_position
 
 		# Draw a gray circle at the event origin
-		draw_circle(draw_position_gray, 48, Color(0.502, 0.502, 0.502, 0.5))
+		draw_circle(draw_position_gray, 64, Color(0.502, 0.502, 0.502, 0.5))
 
 		# Check if for drag motion
 		if swipe_current_position != null:
@@ -36,7 +36,7 @@ func _draw() -> void:
 			var draw_position_white = swipe_initial_position + swipe_delta
 
 			# Draw a white circle at the event location
-			draw_circle(draw_position_white, 32, Color(1.0, 1.0, 1.0, 0.5))
+			draw_circle(draw_position_white, 48, Color(1.0, 1.0, 1.0, 0.5))
 
 
 ## Called when there is an input event. The input event propagates up through the node tree until a node consumes it.
