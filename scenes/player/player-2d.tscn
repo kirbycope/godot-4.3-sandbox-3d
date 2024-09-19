@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://il46oeikwp0a"]
+[gd_scene load_steps=16 format=3 uid="uid://il46oeikwp0a"]
 
 [ext_resource type="Script" path="res://scenes/player/player-2d.gd" id="1_y6v5k"]
 [ext_resource type="Texture2D" uid="uid://c3v13tfvykqq1" path="res://assets/textures/smb/mario-small.png" id="2_7f7ji"]
+[ext_resource type="Script" path="res://scenes/player/virtual-controller-2d.gd" id="2_xs0gb"]
 [ext_resource type="PackedScene" uid="uid://bf6dhhwfpuau6" path="res://scenes/pause/pause.tscn" id="3_617b5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rq3tn"]
@@ -101,6 +102,11 @@ animations = [{
 [node name="Player2D" type="CharacterBody2D" groups=["Player"]]
 texture_filter = 1
 script = ExtResource("1_y6v5k")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="VirtualController" type="Node2D" parent="CanvasLayer"]
+script = ExtResource("2_xs0gb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
