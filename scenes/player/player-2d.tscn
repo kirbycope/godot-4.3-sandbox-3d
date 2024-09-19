@@ -105,7 +105,7 @@ script = ExtResource("1_y6v5k")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="VirtualController" type="Node2D" parent="CanvasLayer"]
+[node name="VirtualController2D" type="Node2D" parent="CanvasLayer"]
 script = ExtResource("2_xs0gb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

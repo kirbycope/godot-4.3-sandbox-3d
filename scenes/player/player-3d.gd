@@ -661,22 +661,22 @@ func setup_controls():
 		key_event.physical_keycode = KEY_F3
 		InputMap.action_add_event("debug", key_event)
 
-	# Check if [move_forward] action is not in the Input Map
-	if not InputMap.has_action("move_forward"):
+	# Check if [move_up] action is not in the Input Map
+	if not InputMap.has_action("move_up"):
 
-		# Add the [move_forward] action to the Input Map
-		InputMap.add_action("move_forward")
+		# Add the [move_up] action to the Input Map
+		InputMap.add_action("move_up")
 
 		# Keyboard 🅆
 		var key_event = InputEventKey.new()
 		key_event.physical_keycode = KEY_W
-		InputMap.action_add_event("move_forward", key_event)
+		InputMap.action_add_event("move_up", key_event)
 
 		# Controller [left-stick, forward]
 		var joystick_event = InputEventJoypadMotion.new()
 		joystick_event.axis = JOY_AXIS_LEFT_Y
 		joystick_event.axis_value = 1.0
-		InputMap.action_add_event("move_forward", joystick_event)
+		InputMap.action_add_event("move_up", joystick_event)
 
 	# Check if [move_left] action is not in the Input Map
 	if not InputMap.has_action("move_left"):
@@ -695,22 +695,22 @@ func setup_controls():
 		joystick_event.axis_value = -1.0
 		InputMap.action_add_event("move_left", joystick_event)
 
-	# Check if [move_backward] action is not in the Input Map
-	if not InputMap.has_action("move_backward"):
+	# Check if [move_down] action is not in the Input Map
+	if not InputMap.has_action("move_down"):
 
-		# Add the [move_backward] action to the Input Map
-		InputMap.add_action("move_backward")
+		# Add the [move_down] action to the Input Map
+		InputMap.add_action("move_down")
 
 		# Keyboard 🅂
 		var key_event = InputEventKey.new()
 		key_event.physical_keycode = KEY_S
-		InputMap.action_add_event("move_backward", key_event)
+		InputMap.action_add_event("move_down", key_event)
 
 		# Controller [left-stick, backward]
 		var joystick_event = InputEventJoypadMotion.new()
 		joystick_event.axis = JOY_AXIS_LEFT_Y
 		joystick_event.axis_value = -1.0
-		InputMap.action_add_event("move_backward", joystick_event)
+		InputMap.action_add_event("move_down", joystick_event)
 
 	# Check if [move_right] action is not in the Input Map
 	if not InputMap.has_action("move_right"):
@@ -903,7 +903,7 @@ func update_velocity(delta: float) -> void:
 		velocity.y -= gravity * delta
 
 	# Get the input direction and handle the movement/deceleration.
-	var input_dir = Input.get_vector("move_left", "move_right", "move_forward", "move_backward")
+	var input_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
 	# Calculate the input magnitude (intensity of the left-analog stick)
