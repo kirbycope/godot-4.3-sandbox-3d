@@ -262,6 +262,8 @@ func update_velocity(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("move_left", "move_right") # -1 left, 0 middle , 1 right
+
+	# Check if the move direction is set
 	if direction:
 		velocity.x = direction * speed
 		if direction < 0:
