@@ -893,6 +893,81 @@ func setup_controls():
 		joypad_button_event.button_index = JOY_BUTTON_Y
 		InputMap.action_add_event("crouch", joypad_button_event)
 
+	# 🄻1
+	if not InputMap.has_action("left_punch"):
+
+		# Add the [left_punch] action to the Input Map
+		InputMap.add_action("left_punch")
+
+		# Mouse [left-click]
+		var mouse_button_event = InputEventMouseButton.new()
+		mouse_button_event.button_index  = MOUSE_BUTTON_LEFT
+		mouse_button_event.pressed = true
+		InputMap.action_add_event("left_punch", mouse_button_event)
+
+		# Controller 🄻1
+		var joypad_button_event = InputEventJoypadButton.new()
+		joypad_button_event.button_index = JOY_BUTTON_LEFT_SHOULDER
+		InputMap.action_add_event("left_punch", joypad_button_event)
+
+	# 🄻2
+	if not InputMap.has_action("left_kick"):
+
+		# Add the [left_kick] action to the Input Map
+		InputMap.add_action("left_kick")
+
+		# Mouse [forward-click]
+		var mouse_button_event = InputEventMouseButton.new()
+		mouse_button_event.button_index  = MOUSE_BUTTON_XBUTTON2
+		mouse_button_event.pressed = true
+		InputMap.action_add_event("left_kick", mouse_button_event)
+
+		# Controller 🄻2
+		var joypad_axis_event = InputEventJoypadMotion.new()
+		joypad_axis_event.axis = JOY_AXIS_LEFT_X
+		joypad_axis_event.axis_value = 1.0
+		InputMap.action_add_event("left_kick", joypad_axis_event)
+
+	# Ⓛ3
+
+	# 🅁1
+	if not InputMap.has_action("right_punch"):
+
+		# Add the [right_punch] action to the Input Map
+		InputMap.add_action("right_punch")
+
+		# Mouse [right-click]
+		var mouse_button_event = InputEventMouseButton.new()
+		mouse_button_event.button_index = MOUSE_BUTTON_RIGHT
+		mouse_button_event.pressed = true
+		InputMap.action_add_event("right_punch", mouse_button_event)
+
+		# Controller 🅁1
+		var joypad_button_event = InputEventJoypadButton.new()
+		joypad_button_event.button_index = JOY_BUTTON_RIGHT_SHOULDER
+		mouse_button_event.pressed = true
+		InputMap.action_add_event("right_punch", joypad_button_event)
+
+	# 🅁2
+	if not InputMap.has_action("right_kick"):
+
+		# Add the [right_kick] action to the Input Map
+		InputMap.add_action("right_kick")
+
+		# Mouse [back-click]
+		var mouse_button_event = InputEventMouseButton.new()
+		mouse_button_event.button_index = MOUSE_BUTTON_XBUTTON1
+		mouse_button_event.pressed = true
+		InputMap.action_add_event("right_kick", mouse_button_event)
+
+		# Controller 🅁2
+		var joypad_axis_event = InputEventJoypadMotion.new()
+		joypad_axis_event.axis = JOY_AXIS_RIGHT_X
+		joypad_axis_event.axis_value = -1.0
+		InputMap.action_add_event("right_kick", joypad_axis_event)
+
+	# Ⓡ3
+
 
 ## Update the player's velocity based on input and status.
 func update_velocity(delta: float) -> void:
