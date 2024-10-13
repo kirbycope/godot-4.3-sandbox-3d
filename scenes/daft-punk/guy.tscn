@@ -6,17 +6,21 @@
 [ext_resource type="Texture2D" uid="uid://bu1modh5peldi" path="res://assets/models/lionsharp/textures/normal.png" id="3_toif2"]
 [ext_resource type="Texture2D" uid="uid://bp7dyrdu7y1dy" path="res://assets/models/lionsharp/textures/specular.png" id="4_eox4o"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_qwxxo"]
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_24v00"]
 panorama = ExtResource("1_i273n")
 
-[sub_resource type="Sky" id="Sky_kn34w"]
-sky_material = SubResource("PanoramaSkyMaterial_qwxxo")
+[sub_resource type="Sky" id="Sky_ub1eb"]
+sky_material = SubResource("PanoramaSkyMaterial_24v00")
 
-[sub_resource type="Environment" id="Environment_jihwa"]
+[sub_resource type="Environment" id="Environment_1xww1"]
 background_mode = 2
-sky = SubResource("Sky_kn34w")
+sky = SubResource("Sky_ub1eb")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q40ng"]
+radius = 5.0
+height = 23.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_px058"]
 resource_name = "guymanuel"
@@ -44,160 +48,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Skin" id="Skin_3kbf4"]
-resource_name = "Skin"
-bind_count = 50
-bind/0/name = &"Bone"
-bind/0/bone = -1
-bind/0/pose = Transform3D(1, 3.26531e-10, -3.34557e-10, -3.34557e-10, 0.999705, -0.024276, 3.26531e-10, 0.0242758, 0.999705, -2.61665e-10, -0.801111, -0.0194533)
-bind/1/name = &"Bone.001"
-bind/1/bone = -1
-bind/1/pose = Transform3D(-1, 2.69628e-08, 1.49031e-07, 1.95679e-09, 0.986243, -0.165303, -1.51438e-07, -0.165302, -0.986243, -8.24986e-08, -3.33688, 0.49597)
-bind/2/name = &"Bone.001_L"
-bind/2/bone = -1
-bind/2/pose = Transform3D(-0.0184901, 0.053611, 0.998391, 0.992197, -0.122163, 0.0249354, 0.123303, 0.991061, -0.0509341, 0.24144, 0.813453, -6.5095)
-bind/3/name = &"Bone.001_L.001"
-bind/3/bone = -1
-bind/3/pose = Transform3D(-0.481304, -0.611685, 0.627844, 0.730956, -0.6754, -0.0976672, 0.483787, 0.411918, 0.772188, 5.04456, 2.95721, -3.01591)
-bind/4/name = &"Bone.001_L.002"
-bind/4/bone = -1
-bind/4/pose = Transform3D(-0.644139, -0.421747, 0.638134, 0.614241, -0.782375, 0.102944, 0.455843, 0.458278, 0.763013, 4.90551, 0.923453, -3.10715)
-bind/5/name = &"hand_left"
-bind/5/bone = -1
-bind/5/pose = Transform3D(-0.808078, -0.434223, 0.398071, 0.491937, -0.869164, 0.0505233, 0.324051, 0.236652, 0.915963, 5.74594, -1.13196, -1.82796)
-bind/6/name = &"Bone.001_L.004"
-bind/6/bone = -1
-bind/6/pose = Transform3D(-0.758586, -0.382115, 0.527764, 0.483108, -0.873359, 0.0620638, 0.437212, 0.302047, 0.84712, 5.44652, -2.21014, -2.64349)
-bind/7/name = &"Bone.001_L.005"
-bind/7/bone = -1
-bind/7/pose = Transform3D(-0.895311, -0.248135, 0.369929, 0.290345, -0.954899, 0.0621889, 0.337814, 0.163085, 0.926976, 6.1981, -1.35629, -1.87602)
-bind/8/name = &"Bone.001_L.006"
-bind/8/bone = -1
-bind/8/pose = Transform3D(-0.995708, -0.0892369, 0.0245662, 0.0908306, -0.993113, 0.0740131, 0.0177923, 0.0759265, 0.996955, 6.68494, -0.384905, 0.311376)
-bind/9/name = &"Bone.001_L.007"
-bind/9/bone = -1
-bind/9/pose = Transform3D(-0.730445, -0.396208, 0.5563, 0.332577, -0.917778, -0.216973, 0.596526, 0.0265256, 0.802156, 5.44267, -1.37862, -3.13471)
-bind/10/name = &"Bone.001_L.008"
-bind/10/bone = -1
-bind/10/pose = Transform3D(-0.892368, -0.250629, 0.375319, 0.224003, -0.967927, -0.113763, 0.391794, -0.0174465, 0.919888, 6.23789, -0.983383, -1.68283)
-bind/11/name = &"Bone.001_L.009"
-bind/11/bone = -1
-bind/11/pose = Transform3D(-0.998136, 0.0600618, 0.0108295, -0.0586305, -0.992943, 0.103087, 0.0169447, 0.10226, 0.994614, 6.50979, 0.715537, 0.805697)
-bind/12/name = &"Bone.001_L.010"
-bind/12/bone = -1
-bind/12/pose = Transform3D(-0.692376, -0.487891, 0.531581, 0.382595, -0.872882, -0.302818, 0.611749, -0.00628412, 0.791027, 5.25786, -1.75639, -2.84428)
-bind/13/name = &"Bone.001_L.011"
-bind/13/bone = -1
-bind/13/pose = Transform3D(-0.873052, -0.327848, 0.360966, 0.231342, -0.930117, -0.285243, 0.429257, -0.165526, 0.887885, 6.05173, -1.05546, -1.48571)
-bind/14/name = &"Bone.001_L.012"
-bind/14/bone = -1
-bind/14/pose = Transform3D(-0.998564, 0.0527294, 0.00946117, -0.0534677, -0.991948, -0.114806, 0.00333158, -0.115147, 0.993343, 6.21348, 0.659987, 1.27842)
-bind/15/name = &"Bone.001_L.013"
-bind/15/bone = -1
-bind/15/pose = Transform3D(-0.760352, -0.29327, 0.579532, 0.503396, -0.829915, 0.240487, 0.410435, 0.474589, 0.778659, 5.21085, -2.35913, -2.95836)
-bind/16/name = &"Bone.001_L.014"
-bind/16/bone = -1
-bind/16/pose = Transform3D(-0.930724, -0.112985, 0.347833, 0.221485, -0.93097, 0.290242, 0.291029, 0.347174, 0.8915, 6.22245, -0.909919, -2.09192)
-bind/17/name = &"Bone.001_L.015"
-bind/17/bone = -1
-bind/17/pose = Transform3D(-0.999249, -0.030754, 0.0235837, 0.0341157, -0.986727, 0.158765, 0.0183881, 0.15945, 0.987035, 6.67521, 0.0425026, -0.225002)
-bind/18/name = &"Bone.001_L.016"
-bind/18/bone = -1
-bind/18/pose = Transform3D(-0.992056, -0.0755748, 0.100564, 0.124378, -0.469584, 0.874083, -0.0188354, 0.879647, 0.475254, 5.94915, 0.67809, -1.33659)
-bind/19/name = &"Bone.001_L.017"
-bind/19/bone = -1
-bind/19/pose = Transform3D(-0.962645, -0.205219, 0.176634, 0.270408, -0.695091, 0.66613, -0.0139259, 0.68901, 0.724618, 5.99536, -0.403775, -1.03859)
-bind/20/name = &"Bone.001_L.018"
-bind/20/bone = -1
-bind/20/pose = Transform3D(-0.945021, -0.263916, 0.19309, 0.326589, -0.791652, 0.516359, 0.0165844, 0.551031, 0.83432, 5.95279, -1.23087, -1.10142)
-bind/21/name = &"Bone.001_R"
-bind/21/bone = -1
-bind/21/pose = Transform3D(-0.0184901, -0.0536109, -0.998391, -0.992197, -0.122163, 0.0249353, -0.123303, 0.991061, -0.0509341, -0.241441, 0.813453, -6.5095)
-bind/22/name = &"Bone.001_R.001"
-bind/22/bone = -1
-bind/22/pose = Transform3D(-0.481304, 0.611685, -0.627844, -0.730956, -0.6754, -0.0976672, -0.483787, 0.411918, 0.772187, -5.04456, 2.95722, -3.01591)
-bind/23/name = &"Bone.001_R.002"
-bind/23/bone = -1
-bind/23/pose = Transform3D(-0.644139, 0.421748, -0.638134, -0.614241, -0.782375, 0.102944, -0.455843, 0.458278, 0.763012, -4.90551, 0.923453, -3.10715)
-bind/24/name = &"hand_right"
-bind/24/bone = -1
-bind/24/pose = Transform3D(-0.808078, 0.434223, -0.398071, -0.491937, -0.869164, 0.0505233, -0.324051, 0.236652, 0.915962, -5.74594, -1.13196, -1.82796)
-bind/25/name = &"Bone.001_R.004"
-bind/25/bone = -1
-bind/25/pose = Transform3D(-0.758586, 0.382115, -0.527765, -0.483107, -0.873359, 0.0620638, -0.437212, 0.302047, 0.84712, -5.44652, -2.21014, -2.64349)
-bind/26/name = &"Bone.001_R.005"
-bind/26/bone = -1
-bind/26/pose = Transform3D(-0.895311, 0.248135, -0.369929, -0.290345, -0.954899, 0.062189, -0.337814, 0.163085, 0.926976, -6.1981, -1.35628, -1.87602)
-bind/27/name = &"Bone.001_R.006"
-bind/27/bone = -1
-bind/27/pose = Transform3D(-0.995707, 0.0892369, -0.0245662, -0.0908304, -0.993113, 0.0740132, -0.0177921, 0.0759264, 0.996955, -6.68493, -0.384903, 0.311377)
-bind/28/name = &"Bone.001_R.007"
-bind/28/bone = -1
-bind/28/pose = Transform3D(-0.730445, 0.396208, -0.5563, -0.332577, -0.917778, -0.216973, -0.596525, 0.0265254, 0.802156, -5.44267, -1.37862, -3.1347)
-bind/29/name = &"Bone.001_R.008"
-bind/29/bone = -1
-bind/29/pose = Transform3D(-0.892368, 0.250629, -0.375319, -0.224002, -0.967926, -0.113763, -0.391793, -0.0174465, 0.919888, -6.23789, -0.983383, -1.68283)
-bind/30/name = &"Bone.001_R.009"
-bind/30/bone = -1
-bind/30/pose = Transform3D(-0.998136, -0.0600618, -0.0108296, 0.0586308, -0.992943, 0.103087, -0.0169446, 0.10226, 0.994613, -6.50979, 0.715539, 0.805697)
-bind/31/name = &"Bone.001_R.010"
-bind/31/bone = -1
-bind/31/pose = Transform3D(-0.692376, 0.487891, -0.531581, -0.382595, -0.872882, -0.302818, -0.611749, -0.00628417, 0.791027, -5.25786, -1.75639, -2.84427)
-bind/32/name = &"Bone.001_R.011"
-bind/32/bone = -1
-bind/32/pose = Transform3D(-0.873052, 0.327848, -0.360966, -0.231342, -0.930117, -0.285243, -0.429257, -0.165526, 0.887885, -6.05173, -1.05546, -1.48571)
-bind/33/name = &"Bone.001_R.012"
-bind/33/bone = -1
-bind/33/pose = Transform3D(-0.998564, -0.0527294, -0.00946122, 0.0534677, -0.991948, -0.114806, -0.00333133, -0.115147, 0.993343, -6.21348, 0.659987, 1.27842)
-bind/34/name = &"Bone.001_R.013"
-bind/34/bone = -1
-bind/34/pose = Transform3D(-0.760352, 0.29327, -0.579532, -0.503396, -0.829915, 0.240487, -0.410435, 0.474589, 0.778659, -5.21085, -2.35913, -2.95836)
-bind/35/name = &"Bone.001_R.014"
-bind/35/bone = -1
-bind/35/pose = Transform3D(-0.930724, 0.112985, -0.347833, -0.221484, -0.93097, 0.290242, -0.291029, 0.347174, 0.8915, -6.22245, -0.909919, -2.09192)
-bind/36/name = &"Bone.001_R.015"
-bind/36/bone = -1
-bind/36/pose = Transform3D(-0.999249, 0.0307539, -0.0235837, -0.0341155, -0.986727, 0.158765, -0.0183878, 0.15945, 0.987035, -6.67521, 0.0425039, -0.225001)
-bind/37/name = &"Bone.001_R.016"
-bind/37/bone = -1
-bind/37/pose = Transform3D(-0.992056, 0.0755748, -0.100564, -0.124378, -0.469584, 0.874083, 0.0188355, 0.879647, 0.475254, -5.94915, 0.678091, -1.33659)
-bind/38/name = &"Bone.001_R.017"
-bind/38/bone = -1
-bind/38/pose = Transform3D(-0.962645, 0.205219, -0.176634, -0.270408, -0.695091, 0.66613, 0.0139261, 0.68901, 0.724618, -5.99536, -0.403773, -1.03859)
-bind/39/name = &"Bone.001_R.018"
-bind/39/bone = -1
-bind/39/pose = Transform3D(-0.945021, 0.263916, -0.19309, -0.326589, -0.791652, 0.516359, -0.0165843, 0.551031, 0.83432, -5.95279, -1.23087, -1.10142)
-bind/40/name = &"neck"
-bind/40/bone = -1
-bind/40/pose = Transform3D(-1, 2.05221e-08, -1.50035e-07, 3.80725e-10, 0.991112, 0.133029, 1.51431e-07, 0.133029, -0.991112, -2.17704e-07, -6.40076, -1.45733)
-bind/41/name = &"head"
-bind/41/bone = -1
-bind/41/pose = Transform3D(-1, -1.41268e-08, -1.50689e-07, 3.89347e-10, 0.995391, -0.0959003, 1.51349e-07, -0.0959001, -0.995391, 9.20171e-08, -8.92857, 0.589038)
-bind/42/name = &"Bone_L.001"
-bind/42/bone = -1
-bind/42/pose = Transform3D(-0.996937, -0.0669981, 0.0403447, 0.0628234, -0.99329, -0.0971008, 0.0465795, -0.0942687, 0.994456, 1.06869, 0.418865, -0.0199355)
-bind/43/name = &"Bone_L.002"
-bind/43/bone = -1
-bind/43/pose = Transform3D(-0.996869, -0.0790375, -0.0021205, 0.0790659, -0.996511, -0.0267336, -1.67638e-07, -0.0268176, 0.99964, 0.992965, -4.69698, 0.355727)
-bind/44/name = &"Bone_L.003"
-bind/44/bone = -1
-bind/44/pose = Transform3D(-0.99745, -0.0192952, 0.0687158, 0.0713734, -0.269674, 0.960303, 1.63913e-06, 0.962758, 0.270363, 1.64188, -2.25044, 9.89456)
-bind/45/name = &"Bone_L.004"
-bind/45/bone = -1
-bind/45/pose = Transform3D(-0.999704, -0.000501836, 0.0243402, 0.0243453, -0.018396, 0.999534, -5.37908e-05, 0.99983, 0.0184029, 1.88365, -1.1323, 10.5098)
-bind/46/name = &"Bone_R.001"
-bind/46/bone = -1
-bind/46/pose = Transform3D(-0.996937, 0.0669981, -0.0403447, -0.0628234, -0.99329, -0.0971008, -0.0465795, -0.0942687, 0.994456, -1.06869, 0.418865, -0.0199355)
-bind/47/name = &"Bone_R.002"
-bind/47/bone = -1
-bind/47/pose = Transform3D(-0.996869, 0.0790375, 0.0021205, -0.0790659, -0.996511, -0.0267336, 1.67638e-07, -0.0268176, 0.99964, -0.992965, -4.69698, 0.355727)
-bind/48/name = &"Bone_R.003"
-bind/48/bone = -1
-bind/48/pose = Transform3D(-0.99745, 0.0192952, -0.0687158, -0.0713734, -0.269674, 0.960303, -1.63913e-06, 0.962758, 0.270363, -1.64188, -2.25044, 9.89456)
-bind/49/name = &"Bone_R.004"
-bind/49/bone = -1
-bind/49/pose = Transform3D(-0.999704, 0.000501836, -0.0243402, -0.0243453, -0.018396, 0.999534, 5.37908e-05, 0.99983, 0.0184029, -1.88365, -1.1323, 10.5098)
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bsjrq"]
 albedo_texture = ExtResource("1_npbkf")
 metallic = 1.0
@@ -207,19 +57,24 @@ emission_on_uv2 = true
 emission_texture = ExtResource("2_8a0dp")
 normal_enabled = true
 normal_texture = ExtResource("3_toif2")
-refraction_enabled = true
 
-[node name="Guy" type="Node3D"]
-transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, 0, 0, 0)
+[node name="Guy" type="CharacterBody3D"]
+transform = Transform3D(-0.08, 0, -6.99382e-09, 0, 0.08, 0, 6.99382e-09, 0, -0.08, 0, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_jihwa")
+environment = SubResource("Environment_1xww1")
 
-[node name="rigged" type="Node3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("CapsuleShape3D_q40ng")
 
-[node name="Armature_Guy-Manuel" type="Node3D" parent="rigged"]
+[node name="Visuals" type="Node3D" parent="."]
 
-[node name="Skeleton3D" type="Skeleton3D" parent="rigged/Armature_Guy-Manuel"]
+[node name="AuxScene" type="Node3D" parent="Visuals"]
+
+[node name="Armature_Guy-Manuel" type="Node3D" parent="Visuals/AuxScene"]
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Visuals/AuxScene/Armature_Guy-Manuel"]
 bones/0/name = "Bone"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, -3.34557e-10, 3.26531e-10, 3.26531e-10, 0.999705, 0.0242759, -3.34557e-10, -0.0242759, 0.999705, 0, 0.801347, 0)
@@ -571,9 +426,8 @@ bones/49/position = Vector3(1.67638e-07, 1.58217, 1.37612e-07)
 bones/49/rotation = Quaternion(0.127192, 0.00606847, 0.0233461, 0.991585)
 bones/49/scale = Vector3(1, 1, 1)
 
-[node name="Guy-Manuel" type="MeshInstance3D" parent="rigged/Armature_Guy-Manuel/Skeleton3D"]
+[node name="Guy-Manuel" type="MeshInstance3D" parent="Visuals/AuxScene/Armature_Guy-Manuel/Skeleton3D"]
 mesh = SubResource("ArrayMesh_gv3oa")
-skin = SubResource("Skin_3kbf4")
 surface_material_override/0 = SubResource("StandardMaterial3D_bsjrq")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="rigged/Armature_Guy-Manuel"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/AuxScene/Armature_Guy-Manuel"]

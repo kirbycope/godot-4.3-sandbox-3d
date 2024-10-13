@@ -60,9 +60,6 @@ mesh = SubResource("BoxMesh_bamu4")
 [node name="Player" parent="." instance=ExtResource("3_ddioh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="godot_plush V2" parent="." instance=ExtResource("4_tykvp")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.5, 0.5, 2.8)
-
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1, -2.5)
 use_collision = true
@@ -127,8 +124,11 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 2,
 [node name="TV" parent="." instance=ExtResource("10_nmiug")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 1.6, 4)
 
+[node name="godot_plush V2" parent="." instance=ExtResource("4_tykvp")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 2.83577, 0.5, 3.3)
+
 [node name="Guy" parent="." instance=ExtResource("11_g6elf")]
-transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -1.07702, 1.4, -1.9)
+transform = Transform3D(-0.08, 0, -6.99382e-09, 0, 0.08, 0, 6.99382e-09, 0, -0.08, 4.55981, 1.4, 2.6)
 
 [node name="Thomas" parent="." instance=ExtResource("12_67c8s")]
-transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -0.112781, 1.38174, -1.90949)
+transform = Transform3D(-0.08, 0, -6.99382e-09, 0, 0.08, 0, 6.99382e-09, 0, -0.08, 3.45997, 1.4, 2.6)
