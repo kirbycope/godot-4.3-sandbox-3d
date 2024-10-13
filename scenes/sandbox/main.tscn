@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dfx6ch2dsl12u"]
+[gd_scene load_steps=19 format=3 uid="uid://dfx6ch2dsl12u"]
 
 [ext_resource type="Script" path="res://scenes/sandbox/main.gd" id="1_lcjjf"]
 [ext_resource type="Texture2D" uid="uid://cmpsda8y37hpg" path="res://assets/textures/Kenney/2D assets/Prototype Textures/PNG/Dark/texture_09.png" id="2_ahsfr"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://cjmbj1b7rh673" path="res://scenes/smo/mystery-block.tscn" id="8_gh3q0"]
 [ext_resource type="PackedScene" uid="uid://bhpko26u3o484" path="res://scenes/smo/powermoon.tscn" id="9_yl66l"]
 [ext_resource type="PackedScene" uid="uid://bb2oej33jl6sn" path="res://scenes/tv/tv.tscn" id="10_nmiug"]
+[ext_resource type="PackedScene" uid="uid://cjw4xo6rqucit" path="res://scenes/daft-punk/guy.tscn" id="11_g6elf"]
+[ext_resource type="PackedScene" uid="uid://clsmo28n82p5s" path="res://scenes/daft-punk/thomas.tscn" id="12_67c8s"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1ibyv"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -124,3 +126,9 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3, 2,
 
 [node name="TV" parent="." instance=ExtResource("10_nmiug")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 4, 1.6, 4)
+
+[node name="Guy" parent="." instance=ExtResource("11_g6elf")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -1.07702, 1.4, -1.9)
+
+[node name="Thomas" parent="." instance=ExtResource("12_67c8s")]
+transform = Transform3D(0.08, 0, 0, 0, 0.08, 0, 0, 0, 0.08, -0.112781, 1.38174, -1.90949)
