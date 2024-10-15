@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://dfjyqhmcjhskk"]
 
+[ext_resource type="AudioStream" uid="uid://ce5tk88nrxau4" path="res://assets/sounds/daft-punk/Alive.mp3" id="1_c2chi"]
 [ext_resource type="PackedScene" uid="uid://boop2in5i5xws" path="res://assets/models/mallet-j/scene.gltf" id="1_gulhr"]
-[ext_resource type="AudioStream" uid="uid://bkyk8p1gq2c4y" path="res://assets/sounds/daft-punk/Derezzed.mp3" id="1_p7htp"]
 [ext_resource type="PackedScene" uid="uid://bndij04hsiyk" path="res://scenes/naeem3d/guy.tscn" id="1_w1lfd"]
 [ext_resource type="PackedScene" uid="uid://btrpwketebox5" path="res://scenes/naeem3d/thomas.tscn" id="2_dvioy"]
 
@@ -18,7 +18,7 @@ tonemap_mode = 2
 [node name="Pyramid" type="Node3D"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_p7htp")
+stream = ExtResource("1_c2chi")
 autoplay = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
