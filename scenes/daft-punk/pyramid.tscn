@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://dfjyqhmcjhskk"]
+
+[ext_resource type="PackedScene" uid="uid://boop2in5i5xws" path="res://assets/models/mallet-j/scene.gltf" id="1_gulhr"]
+[ext_resource type="AudioStream" uid="uid://bkyk8p1gq2c4y" path="res://assets/sounds/daft-punk/Derezzed.mp3" id="1_p7htp"]
+[ext_resource type="PackedScene" uid="uid://bndij04hsiyk" path="res://scenes/naeem3d/guy.tscn" id="1_w1lfd"]
+[ext_resource type="PackedScene" uid="uid://btrpwketebox5" path="res://scenes/naeem3d/thomas.tscn" id="2_dvioy"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tij08"]
+
+[sub_resource type="Sky" id="Sky_6ush1"]
+sky_material = SubResource("ProceduralSkyMaterial_tij08")
+
+[sub_resource type="Environment" id="Environment_bw15r"]
+background_mode = 2
+sky = SubResource("Sky_6ush1")
+tonemap_mode = 2
+
+[node name="Pyramid" type="Node3D"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_p7htp")
+autoplay = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.470076, 0.470076, 0.470076, 1)
+light_energy = 0.768
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_bw15r")
+
+[node name="Sketchfab_Scene" parent="." instance=ExtResource("1_gulhr")]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+
+[node name="Guy" parent="." instance=ExtResource("1_w1lfd")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -8, 24, 43)
+
+[node name="Thomas" parent="." instance=ExtResource("2_dvioy")]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 8, 24, 43)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, -50, 41.5, 183.922)

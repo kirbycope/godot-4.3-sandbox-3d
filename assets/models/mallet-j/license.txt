@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pyramid Stage
+* source:	https://sketchfab.com/3d-models/pyramid-stage-c5ab728ed3c840de85bec828eff77eaa
+* author:	Mallet-J (https://sketchfab.com/Mallet-J)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pyramid Stage" (https://sketchfab.com/3d-models/pyramid-stage-c5ab728ed3c840de85bec828eff77eaa) by Mallet-J (https://sketchfab.com/Mallet-J) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
