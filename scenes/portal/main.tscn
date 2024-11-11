@@ -97,7 +97,7 @@ transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -3, 1, -
 [node name="Player" parent="." instance=ExtResource("3_iyorm")]
 
 [node name="BluePortal" parent="." instance=ExtResource("4_iqxx2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.99)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.98702)
 
 [node name="RedPortal" parent="." instance=ExtResource("5_liqvn")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.99, 1, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.97084, 1, 0)
