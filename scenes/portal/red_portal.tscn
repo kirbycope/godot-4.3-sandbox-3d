@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfqi5hcr7b85m"]
+
+[ext_resource type="Script" path="res://scenes/portal/red_portal.gd" id="1_cvdmn"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_k1eyp"]
+size = Vector2(1, 2)
+orientation = 2
+
+[node name="RedPortal" type="Node3D"]
+script = ExtResource("1_cvdmn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_k1eyp")
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance3D"]
+
+[node name="Camera3D" type="Camera3D" parent="MeshInstance3D/SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, -0.8)

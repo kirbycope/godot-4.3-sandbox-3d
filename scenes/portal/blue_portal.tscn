@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bw5oooswies20"]
+
+[ext_resource type="Script" path="res://scenes/portal/blue_portal.gd" id="1_fi7yt"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d3xkc"]
+size = Vector2(1, 2)
+orientation = 2
+
+[node name="BluePortal" type="Node3D"]
+script = ExtResource("1_fi7yt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_d3xkc")
+
+[node name="SubViewport" type="SubViewport" parent="MeshInstance3D"]
+
+[node name="Camera3D" type="Camera3D" parent="MeshInstance3D/SubViewport"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, -0.8)

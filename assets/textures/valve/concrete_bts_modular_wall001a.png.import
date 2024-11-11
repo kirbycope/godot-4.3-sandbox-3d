@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1tji2a6uniha"
-path.s3tc="res://.godot/imported/metalgold00_nrm.png-eca771a3c3653c86746b8671799cb866.s3tc.ctex"
+uid="uid://c8qywwyop4h72"
+path.s3tc="res://.godot/imported/concrete_bts_modular_wall001a.png-0235ede0a7f96bee9403d65ecf9dc458.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/models/smo/CapKingdom/metalgold00_nrm.png"
-dest_files=["res://.godot/imported/metalgold00_nrm.png-eca771a3c3653c86746b8671799cb866.s3tc.ctex"]
+source_file="res://assets/textures/valve/concrete_bts_modular_wall001a.png"
+dest_files=["res://.godot/imported/concrete_bts_modular_wall001a.png-0235ede0a7f96bee9403d65ecf9dc458.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://assets/models/smo/CapKingdom/MetalGold00_nrm.png"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://6jdh0fp2ikc2"]
+
+[ext_resource type="Texture2D" uid="uid://c8qywwyop4h72" path="res://assets/textures/valve/concrete_bts_modular_wall001a.png" id="1_7wb1e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2k7f2"]
+size = Vector3(2, 2, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qnft0"]
+albedo_texture = ExtResource("1_7wb1e")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ysdoq"]
+material = SubResource("StandardMaterial3D_qnft0")
+orientation = 2
+
+[node name="ConcreteModularWall001A" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_2k7f2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_ysdoq")

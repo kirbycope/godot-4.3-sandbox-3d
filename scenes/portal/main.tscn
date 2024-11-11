@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://dmqhtfxng652j"]
+
+[ext_resource type="PackedScene" uid="uid://cwlr3aa3wcsq1" path="res://scenes/portal/concrete_modular_floor_001a.tscn" id="1_mr2ry"]
+[ext_resource type="PackedScene" uid="uid://6jdh0fp2ikc2" path="res://scenes/portal/concrete_modular_wall_001_a.tscn" id="2_55yvl"]
+[ext_resource type="PackedScene" uid="uid://q5nqrm48n43l" path="res://scenes/player/player-3d.tscn" id="3_iyorm"]
+[ext_resource type="PackedScene" uid="uid://bw5oooswies20" path="res://scenes/portal/blue_portal.tscn" id="4_iqxx2"]
+[ext_resource type="PackedScene" uid="uid://bfqi5hcr7b85m" path="res://scenes/portal/red_portal.tscn" id="5_liqvn"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tc5xh"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_0k54r"]
+sky_material = SubResource("ProceduralSkyMaterial_tc5xh")
+
+[sub_resource type="Environment" id="Environment_1yn16"]
+background_mode = 2
+sky = SubResource("Sky_0k54r")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Main" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1yn16")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Floor" type="Node" parent="."]
+
+[node name="ConcreteModularFloor001A" parent="Floor" instance=ExtResource("1_mr2ry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="ConcreteModularFloor001A2" parent="Floor" instance=ExtResource("1_mr2ry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="ConcreteModularFloor001A3" parent="Floor" instance=ExtResource("1_mr2ry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="ConcreteModularFloor001A4" parent="Floor" instance=ExtResource("1_mr2ry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+
+[node name="ConcreteModularFloor001A5" parent="Floor" instance=ExtResource("1_mr2ry")]
+
+[node name="ConcreteModularFloor001A6" parent="Floor" instance=ExtResource("1_mr2ry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="ConcreteModularFloor001A7" parent="Floor" instance=ExtResource("1_mr2ry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 2)
+
+[node name="ConcreteModularFloor001A8" parent="Floor" instance=ExtResource("1_mr2ry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="ConcreteModularFloor001A9" parent="Floor" instance=ExtResource("1_mr2ry")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 2)
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="ConcreteModularWall001A" parent="Walls" instance=ExtResource("2_55yvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -3)
+
+[node name="ConcreteModularWall001A2" parent="Walls" instance=ExtResource("2_55yvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -3)
+
+[node name="ConcreteModularWall001A3" parent="Walls" instance=ExtResource("2_55yvl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -3)
+
+[node name="ConcreteModularWall001A4" parent="Walls" instance=ExtResource("2_55yvl")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 1, -2)
+
+[node name="ConcreteModularWall001A5" parent="Walls" instance=ExtResource("2_55yvl")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 1, 0)
+
+[node name="ConcreteModularWall001A6" parent="Walls" instance=ExtResource("2_55yvl")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 1, 2)
+
+[node name="ConcreteModularWall001A7" parent="Walls" instance=ExtResource("2_55yvl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 2, 1, 3)
+
+[node name="ConcreteModularWall001A8" parent="Walls" instance=ExtResource("2_55yvl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, 3)
+
+[node name="ConcreteModularWall001A9" parent="Walls" instance=ExtResource("2_55yvl")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -2, 1, 3)
+
+[node name="ConcreteModularWall001A10" parent="Walls" instance=ExtResource("2_55yvl")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -3, 1, 2)
+
+[node name="ConcreteModularWall001A11" parent="Walls" instance=ExtResource("2_55yvl")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -3, 1, 0)
+
+[node name="ConcreteModularWall001A12" parent="Walls" instance=ExtResource("2_55yvl")]
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -3, 1, -2)
+
+[node name="Player" parent="." instance=ExtResource("3_iyorm")]
+
+[node name="BluePortal" parent="." instance=ExtResource("4_iqxx2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.99)
+
+[node name="RedPortal" parent="." instance=ExtResource("5_liqvn")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.99, 1, 0)
