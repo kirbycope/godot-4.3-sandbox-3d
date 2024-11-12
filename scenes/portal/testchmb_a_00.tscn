@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj2jb36mntftr"]
+
+[ext_resource type="PackedScene" uid="uid://cuomo1yrtcxsl" path="res://scenes/portal/concrete_modular_floor_001c.tscn" id="1_iicjc"]
+[ext_resource type="PackedScene" uid="uid://do5bjk1xnlnnd" path="res://scenes/portal/glasswindow_frosted.tscn" id="2_6i4av"]
+
+[node name="TestchmbA00" type="Node3D"]
+
+[node name="ConcreteModularFloor001C" parent="." instance=ExtResource("1_iicjc")]
+
+[node name="GlasswindowFrosted" parent="." instance=ExtResource("2_6i4av")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)

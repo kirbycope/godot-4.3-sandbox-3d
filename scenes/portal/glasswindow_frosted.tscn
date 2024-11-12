@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://do5bjk1xnlnnd"]
+
+[ext_resource type="Texture2D" uid="uid://ihph61kqr5pk" path="res://assets/textures/valve/glasswindow_frosted.png" id="1_iiokt"]
+[ext_resource type="Texture2D" uid="uid://d124ke7r6fjwp" path="res://assets/textures/valve/glasswindow_refract.png" id="2_0slft"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ynsvu"]
+size = Vector3(2, 2, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bxp2f"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+albedo_texture = ExtResource("1_iiokt")
+normal_enabled = true
+refraction_enabled = true
+refraction_texture = ExtResource("2_0slft")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_tlh7u"]
+material = SubResource("StandardMaterial3D_bxp2f")
+orientation = 2
+
+[node name="GlasswindowFrosted" type="StaticBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ynsvu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_tlh7u")

@@ -1,10 +1,17 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmqhtfxng652j"]
+[gd_scene load_steps=16 format=3 uid="uid://dmqhtfxng652j"]
 
 [ext_resource type="PackedScene" uid="uid://cwlr3aa3wcsq1" path="res://scenes/portal/concrete_modular_floor_001a.tscn" id="1_mr2ry"]
 [ext_resource type="PackedScene" uid="uid://6jdh0fp2ikc2" path="res://scenes/portal/concrete_modular_wall_001_a.tscn" id="2_55yvl"]
 [ext_resource type="PackedScene" uid="uid://q5nqrm48n43l" path="res://scenes/player/player-3d.tscn" id="3_iyorm"]
 [ext_resource type="PackedScene" uid="uid://bw5oooswies20" path="res://scenes/portal/blue_portal.tscn" id="4_iqxx2"]
 [ext_resource type="PackedScene" uid="uid://bfqi5hcr7b85m" path="res://scenes/portal/red_portal.tscn" id="5_liqvn"]
+[ext_resource type="PackedScene" uid="uid://dksrh8obol85y" path="res://scenes/portal/toilet.tscn" id="6_wpyg2"]
+[ext_resource type="PackedScene" uid="uid://ct2d37wpuqchx" path="res://scenes/portal/bed.tscn" id="7_52qnb"]
+[ext_resource type="PackedScene" uid="uid://f5vwlvepl8rr" path="res://scenes/portal/table.tscn" id="8_e2gtq"]
+[ext_resource type="PackedScene" uid="uid://cnjuiv2c2pgkp" path="res://scenes/portal/radio.tscn" id="9_od0f7"]
+[ext_resource type="PackedScene" uid="uid://cw6h7nm2ej0if" path="res://scenes/portal/metal_box.tscn" id="10_gaaok"]
+[ext_resource type="PackedScene" uid="uid://ndx6vts57yrd" path="res://scenes/portal/cake.tscn" id="11_onus5"]
+[ext_resource type="PackedScene" uid="uid://do5bjk1xnlnnd" path="res://scenes/portal/glasswindow_frosted.tscn" id="12_mh8dx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tc5xh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -101,3 +108,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2.98702)
 
 [node name="RedPortal" parent="." instance=ExtResource("5_liqvn")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 2.97084, 1, 0)
+
+[node name="Bed" parent="." instance=ExtResource("7_52qnb")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0.0006, 0)
+
+[node name="Table" parent="." instance=ExtResource("8_e2gtq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 2.5)
+
+[node name="Radio" parent="." instance=ExtResource("9_od0f7")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0.427791, 2.53088)
+
+[node name="Toilet" parent="." instance=ExtResource("6_wpyg2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 2)
+
+[node name="MetalBox" parent="." instance=ExtResource("10_gaaok")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.3771, 2.5)
+
+[node name="Cake" parent="." instance=ExtResource("11_onus5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.7388, 2.5)
+
+[node name="GlasswindowFrosted" parent="." instance=ExtResource("12_mh8dx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
