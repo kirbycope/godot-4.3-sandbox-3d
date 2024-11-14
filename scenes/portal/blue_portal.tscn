@@ -1,13 +1,42 @@
-[gd_scene load_steps=3 format=3 uid="uid://bw5oooswies20"]
+[gd_scene load_steps=9 format=3 uid="uid://bw5oooswies20"]
 
 [ext_resource type="Script" path="res://scenes/portal/blue_portal.gd" id="1_fi7yt"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_82760"]
+size = Vector3(1, 2, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vshc5"]
+transparency = 1
+albedo_color = Color(0, 0, 1, 0.607843)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_d3xkc"]
+material = SubResource("StandardMaterial3D_vshc5")
 size = Vector2(1, 2)
 orientation = 2
 
-[node name="BluePortal" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q5n0s"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ns0xi"]
+material = SubResource("StandardMaterial3D_q5n0s")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sijvy"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_opah7"]
+material = SubResource("StandardMaterial3D_sijvy")
+size = Vector3(0.1, 0, 0.1)
+
+[node name="BluePortal" type="Area3D"]
 script = ExtResource("1_fi7yt")
+
+[node name="CameraMount" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_82760")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PlaneMesh_d3xkc")
@@ -15,4 +44,21 @@ mesh = SubResource("PlaneMesh_d3xkc")
 [node name="SubViewport" type="SubViewport" parent="MeshInstance3D"]
 
 [node name="Camera3D" type="Camera3D" parent="MeshInstance3D/SubViewport"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, -0.8)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, -0.8)
+current = true
+
+[node name="CameraPositionMarker" type="MeshInstance3D" parent="MeshInstance3D/SubViewport/Camera3D"]
+mesh = SubResource("SphereMesh_ns0xi")
+
+[node name="BlueLens" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.001)
+mesh = SubResource("PlaneMesh_d3xkc")
+
+[node name="ExitPoint" type="Node3D" parent="."]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1, 0.33)
+
+[node name="ExitPositionMarker" type="MeshInstance3D" parent="ExitPoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+mesh = SubResource("BoxMesh_opah7")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
