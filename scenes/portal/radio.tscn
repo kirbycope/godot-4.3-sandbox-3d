@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://cnjuiv2c2pgkp"]
+[gd_scene load_steps=7 format=4 uid="uid://cnjuiv2c2pgkp"]
 
 [ext_resource type="Texture2D" uid="uid://dd7p6345tscfs" path="res://assets/models/valve/radio_reference_radio.png" id="1_mhtrr"]
 [ext_resource type="Texture2D" uid="uid://6wfllwccsqfi" path="res://assets/models/valve/radio_reference_radio_exponent.png" id="2_k6dut"]
@@ -38,13 +38,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="Skin" id="Skin_1owb5"]
-resource_name = "Skin"
-bind_count = 1
-bind/0/name = &"polymsh"
-bind/0/bone = -1
-bind/0/pose = Transform3D(1, 0, 0, 0, 1, -3.57628e-07, 0, 3.71403e-07, 1, 0, 0, 0)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_m7o1i"]
 size = Vector3(0.424683, 0.269676, 0.190826)
 
@@ -65,7 +58,6 @@ bones/0/scale = Vector3(1, 1, 1)
 
 [node name="Body_radio_reference_smd" type="MeshInstance3D" parent="radio_reference/radio_reference_ARM/Skeleton3D"]
 mesh = SubResource("ArrayMesh_qfjm4")
-skin = SubResource("Skin_1owb5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000671387, 0.137173, 0.00242615)

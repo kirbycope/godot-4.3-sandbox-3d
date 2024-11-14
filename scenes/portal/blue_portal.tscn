@@ -48,6 +48,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 
 current = true
 
 [node name="CameraPositionMarker" type="MeshInstance3D" parent="MeshInstance3D/SubViewport/Camera3D"]
+visible = false
 mesh = SubResource("SphereMesh_ns0xi")
 
 [node name="BlueLens" type="MeshInstance3D" parent="."]
@@ -59,6 +60,7 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, -1,
 
 [node name="ExitPositionMarker" type="MeshInstance3D" parent="ExitPoint"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+visible = false
 mesh = SubResource("BoxMesh_opah7")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
