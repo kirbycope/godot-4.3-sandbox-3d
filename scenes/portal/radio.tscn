@@ -41,7 +41,7 @@ blend_shape_mode = 0
 [sub_resource type="BoxShape3D" id="BoxShape3D_m7o1i"]
 size = Vector3(0.424683, 0.269676, 0.190826)
 
-[node name="Radio" type="StaticBody3D"]
+[node name="Radio" type="RigidBody3D"]
 
 [node name="radio_reference" type="Node3D" parent="."]
 
