@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b52j61n1fiheb"]
+
+[ext_resource type="PackedScene" uid="uid://dps00eh74lv4c" path="res://assets/models/valve/door_01_frame_wide_reference.glb" id="1_2gbsv"]
+[ext_resource type="PackedScene" uid="uid://bl3cmoelirsxu" path="res://assets/models/valve/door_01_lftdoor_reference.glb" id="2_2rjua"]
+[ext_resource type="PackedScene" uid="uid://ctvtfn72qxwq6" path="res://assets/models/valve/door_01_rtdoor_reference.glb" id="3_ejkm0"]
+
+[node name="Door01Wide" type="Node3D"]
+
+[node name="door_01_frame_wide_reference" parent="." instance=ExtResource("1_2gbsv")]
+
+[node name="door_01_lftdoor_reference" parent="." instance=ExtResource("2_2rjua")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="door_01_rtdoor_reference" parent="." instance=ExtResource("3_ejkm0")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

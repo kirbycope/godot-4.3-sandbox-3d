@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cj2jb36mntftr"]
+[gd_scene load_steps=57 format=3 uid="uid://cj2jb36mntftr"]
 
 [ext_resource type="Script" path="res://scenes/portal/testchmb_a_00.gd" id="1_nlfkw"]
 [ext_resource type="PackedScene" uid="uid://ct2d37wpuqchx" path="res://scenes/portal/bed.tscn" id="3_whroe"]
@@ -16,7 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://6jdh0fp2ikc2" path="res://scenes/portal/concrete_modular_wall_001_a.tscn" id="11_8slco"]
 [ext_resource type="Texture2D" uid="uid://c8qywwyop4h72" path="res://assets/textures/valve/concrete_bts_modular_wall001a.png" id="11_wffce"]
 [ext_resource type="Texture2D" uid="uid://dm5oloa31vxuf" path="res://assets/textures/valve/metalwall048b.png" id="13_jdgl5"]
+[ext_resource type="Texture2D" uid="uid://caorc2tg0wu7d" path="res://assets/textures/valve/metalwall_bts_006a.png" id="13_xboyb"]
 [ext_resource type="Texture2D" uid="uid://cv7rcbtu7mpxf" path="res://assets/textures/valve/concrete_modular_ceiling001a.png" id="17_7umt6"]
+[ext_resource type="PackedScene" uid="uid://b25h8djxkdutg" path="res://scenes/portal/security_camera.tscn" id="18_rgnwq"]
+[ext_resource type="PackedScene" uid="uid://bbnnnvonajrvm" path="res://scenes/portal/door_01.tscn" id="19_aneee"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uylwd"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -39,14 +42,35 @@ albedo_texture = ExtResource("6_tct3h")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_dokgd"]
-size = Vector2(3, 2)
-orientation = 2
+[sub_resource type="BoxShape3D" id="BoxShape3D_eny0b"]
+size = Vector3(3, 2, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ukqu6"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a6o1h"]
 transparency = 1
 cull_mode = 2
 albedo_texture = ExtResource("7_krptu")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_8jcx0"]
+material = SubResource("StandardMaterial3D_a6o1h")
+size = Vector2(3, 2)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kbpv6"]
+albedo_texture = ExtResource("13_xboyb")
+uv1_scale = Vector3(0.3, 0.3, 0.3)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ft3kn"]
+material = SubResource("StandardMaterial3D_kbpv6")
+flip_faces = true
+size = Vector3(3, 6, 3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0x1si"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kv32v"]
+material = SubResource("StandardMaterial3D_0x1si")
+size = Vector2(3, 3)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yuuix"]
 flip_faces = true
@@ -130,13 +154,21 @@ uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_offset = Vector3(0.25, 0, 0)
 uv1_triplanar = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7tuvn"]
+albedo_texture = ExtResource("11_wffce")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s54cr"]
+material = SubResource("StandardMaterial3D_7tuvn")
+orientation = 2
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_m4hsa"]
-size = Vector2(8, 4)
+size = Vector2(8, 2)
 orientation = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jhgv4"]
 albedo_texture = ExtResource("11_wffce")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_offset = Vector3(0, 0.5, 0)
 uv1_triplanar = true
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_eewiq"]
@@ -187,58 +219,92 @@ transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 
 [node name="Radio" parent="ObservationRoom" instance=ExtResource("6_r4ujp")]
 transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.05153, 0.416916, -1.10545)
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="ObservationRoom"]
+[node name="Floor" type="CSGMesh3D" parent="ObservationRoom"]
 use_collision = true
 mesh = SubResource("PlaneMesh_76jpf")
 material = SubResource("StandardMaterial3D_407qg")
 
-[node name="CSGMesh3D2" type="CSGMesh3D" parent="ObservationRoom"]
+[node name="Walls" type="Node3D" parent="ObservationRoom"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ObservationRoom/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1.5)
-use_collision = true
-mesh = SubResource("PlaneMesh_dokgd")
-material = SubResource("StandardMaterial3D_ukqu6")
 
-[node name="CSGMesh3D3" type="CSGMesh3D" parent="ObservationRoom"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObservationRoom/Walls/StaticBody3D"]
+shape = SubResource("BoxShape3D_eny0b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ObservationRoom/Walls/StaticBody3D"]
+mesh = SubResource("PlaneMesh_8jcx0")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="ObservationRoom/Walls"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.5, 1, 0)
-use_collision = true
-mesh = SubResource("PlaneMesh_dokgd")
-material = SubResource("StandardMaterial3D_ukqu6")
 
-[node name="CSGMesh3D4" type="CSGMesh3D" parent="ObservationRoom"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObservationRoom/Walls/StaticBody3D2"]
+shape = SubResource("BoxShape3D_eny0b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ObservationRoom/Walls/StaticBody3D2"]
+mesh = SubResource("PlaneMesh_8jcx0")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="ObservationRoom/Walls"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 1, 1.5)
-use_collision = true
-mesh = SubResource("PlaneMesh_dokgd")
-material = SubResource("StandardMaterial3D_ukqu6")
 
-[node name="CSGMesh3D5" type="CSGMesh3D" parent="ObservationRoom"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObservationRoom/Walls/StaticBody3D3"]
+shape = SubResource("BoxShape3D_eny0b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ObservationRoom/Walls/StaticBody3D3"]
+mesh = SubResource("PlaneMesh_8jcx0")
+
+[node name="StaticBody3D4" type="StaticBody3D" parent="ObservationRoom/Walls"]
 transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -1.5, 1, 0)
-use_collision = true
-mesh = SubResource("PlaneMesh_dokgd")
-material = SubResource("StandardMaterial3D_ukqu6")
 
-[node name="CSGMesh3D6" type="CSGMesh3D" parent="ObservationRoom"]
-transform = Transform3D(-1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0, 0, 1, 0, 3, -1.5)
-use_collision = true
-mesh = SubResource("PlaneMesh_dokgd")
-material = SubResource("StandardMaterial3D_ukqu6")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObservationRoom/Walls/StaticBody3D4"]
+shape = SubResource("BoxShape3D_eny0b")
 
-[node name="CSGMesh3D7" type="CSGMesh3D" parent="ObservationRoom"]
-transform = Transform3D(4.37114e-08, -8.74228e-08, 1, -3.82137e-15, -1, -8.74228e-08, 1, 0, -4.37114e-08, -1.5, 3, 0)
-use_collision = true
-mesh = SubResource("PlaneMesh_dokgd")
-material = SubResource("StandardMaterial3D_ukqu6")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ObservationRoom/Walls/StaticBody3D4"]
+mesh = SubResource("PlaneMesh_8jcx0")
 
-[node name="CSGMesh3D8" type="CSGMesh3D" parent="ObservationRoom"]
-transform = Transform3D(1, -8.74228e-08, -8.74228e-08, -8.74228e-08, -1, 7.64274e-15, -8.74228e-08, 0, -1, 0, 3, 1.5)
-use_collision = true
-mesh = SubResource("PlaneMesh_dokgd")
-material = SubResource("StandardMaterial3D_ukqu6")
+[node name="StaticBody3D5" type="StaticBody3D" parent="ObservationRoom/Walls"]
+transform = Transform3D(1.31134e-07, 0, 1, 8.74228e-08, -1, -1.14641e-14, 1, 8.74228e-08, -1.31134e-07, -1.5, 3, 0)
 
-[node name="CSGMesh3D9" type="CSGMesh3D" parent="ObservationRoom"]
-transform = Transform3D(-1.31134e-07, -8.74228e-08, -1, 1.14641e-14, -1, 8.74228e-08, -1, 0, 1.31134e-07, 1.5, 3, 0)
-use_collision = true
-mesh = SubResource("PlaneMesh_dokgd")
-material = SubResource("StandardMaterial3D_ukqu6")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObservationRoom/Walls/StaticBody3D5"]
+shape = SubResource("BoxShape3D_eny0b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ObservationRoom/Walls/StaticBody3D5"]
+mesh = SubResource("PlaneMesh_8jcx0")
+
+[node name="StaticBody3D6" type="StaticBody3D" parent="ObservationRoom/Walls"]
+transform = Transform3D(-1, -8.74228e-08, 8.74228e-08, 8.74228e-08, -1, -1.14641e-14, 8.74228e-08, -3.82137e-15, 1, 0, 3, -1.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObservationRoom/Walls/StaticBody3D6"]
+shape = SubResource("BoxShape3D_eny0b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ObservationRoom/Walls/StaticBody3D6"]
+mesh = SubResource("PlaneMesh_8jcx0")
+
+[node name="StaticBody3D7" type="StaticBody3D" parent="ObservationRoom/Walls"]
+transform = Transform3D(-4.37114e-08, 7.64275e-15, -1, 8.74228e-08, -1, -1.14641e-14, -1, -8.74228e-08, 4.37114e-08, 1.5, 3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObservationRoom/Walls/StaticBody3D7"]
+shape = SubResource("BoxShape3D_eny0b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ObservationRoom/Walls/StaticBody3D7"]
+mesh = SubResource("PlaneMesh_8jcx0")
+
+[node name="StaticBody3D8" type="StaticBody3D" parent="ObservationRoom/Walls"]
+transform = Transform3D(1, 8.74228e-08, 7.10543e-15, 8.74228e-08, -1, -1.14641e-14, 7.10543e-15, 1.14641e-14, -1, 0, 3, 1.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ObservationRoom/Walls/StaticBody3D8"]
+shape = SubResource("BoxShape3D_eny0b")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ObservationRoom/Walls/StaticBody3D8"]
+mesh = SubResource("PlaneMesh_8jcx0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ObservationRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.5, 0)
+mesh = SubResource("BoxMesh_ft3kn")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ObservationRoom/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.9, 0)
+mesh = SubResource("PlaneMesh_kv32v")
 
 [node name="Ceilings" type="Node3D" parent="."]
 
@@ -318,8 +384,16 @@ use_collision = true
 mesh = SubResource("PlaneMesh_g4xfm")
 material = SubResource("StandardMaterial3D_la3p6")
 
+[node name="CSGMesh3D12" type="CSGMesh3D" parent="Walls"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 3, 2.5, 4.5)
+mesh = SubResource("PlaneMesh_s54cr")
+
+[node name="CSGMesh3D13" type="CSGMesh3D" parent="Walls"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -3, 2.5, 4.5)
+mesh = SubResource("PlaneMesh_s54cr")
+
 [node name="CSGMesh3D5" type="CSGMesh3D" parent="Walls"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.5, 4.5)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, 4.5)
 use_collision = true
 mesh = SubResource("PlaneMesh_m4hsa")
 material = SubResource("StandardMaterial3D_jhgv4")
@@ -365,3 +439,12 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 2.
 
 [node name="ConcreteModularWall001A4" parent="Walls" instance=ExtResource("11_8slco")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -6, 2.5, -0.5)
+
+[node name="SecurityCamera" parent="." instance=ExtResource("18_rgnwq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 3, 2.5, 4.45)
+
+[node name="SecurityCamera2" parent="." instance=ExtResource("18_rgnwq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.95, 2.5, 0.5)
+
+[node name="Door01" parent="." instance=ExtResource("19_aneee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1, -0.5, 0.5)
