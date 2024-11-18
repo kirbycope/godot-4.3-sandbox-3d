@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cj2jb36mntftr"]
+[gd_scene load_steps=58 format=3 uid="uid://cj2jb36mntftr"]
 
 [ext_resource type="Script" path="res://scenes/portal/testchmb_a_00.gd" id="1_nlfkw"]
 [ext_resource type="PackedScene" uid="uid://ct2d37wpuqchx" path="res://scenes/portal/bed.tscn" id="3_whroe"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cv7rcbtu7mpxf" path="res://assets/textures/valve/concrete_modular_ceiling001a.png" id="17_7umt6"]
 [ext_resource type="PackedScene" uid="uid://b25h8djxkdutg" path="res://scenes/portal/security_camera.tscn" id="18_rgnwq"]
 [ext_resource type="PackedScene" uid="uid://bbnnnvonajrvm" path="res://scenes/portal/door_01.tscn" id="19_aneee"]
+[ext_resource type="PackedScene" uid="uid://cw6h7nm2ej0if" path="res://scenes/portal/metal_box.tscn" id="21_x6m5a"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_uylwd"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -191,7 +192,7 @@ shadow_enabled = true
 environment = SubResource("Environment_wqvuh")
 
 [node name="Player" parent="." instance=ExtResource("5_tj43e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.09, 0)
 
 [node name="BluePortal" parent="." instance=ExtResource("10_7rs0s")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03, 0.5, -4.45)
@@ -448,3 +449,6 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.95,
 
 [node name="Door01" parent="." instance=ExtResource("19_aneee")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1, -0.5, 0.5)
+
+[node name="MetalBox" parent="." instance=ExtResource("21_x6m5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -0.125, 0)
