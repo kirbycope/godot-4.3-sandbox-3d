@@ -6,7 +6,7 @@ Download asset from [models-resource](https://www.models-resource.com/nintendo_s
 ## Example
 1. Download the [Bonneton](https://www.models-resource.com/download/37435/) location
 1. Unarchive the downloaded .zip file
-1. Import the .FBX into your assets folder
+1. Import `Ground000.FBX` into your assets folder
     - An FBX importer was added to Godot in 4.3
 1. Create a new Scene (StaticBody3D)
 1. Drag-and-drop the FBX file into the scene
