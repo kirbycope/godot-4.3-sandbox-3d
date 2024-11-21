@@ -28,3 +28,6 @@ To Convert images use, https://www.coolutils.com/online/VTF-to-PNG
 1. Select "File" -> "Export" -> "glTF 2.0 (.glb/.gltf)
 1. Enter a name for the file and then select "Export glTF 2.0"
     - The file extenstion will be saved as .glb by default but you can change it to .glTF (model + bin + textures saved as seperate files)
+
+### Sounds
+https://www.sounds-resource.com/pc_computer/portal/
