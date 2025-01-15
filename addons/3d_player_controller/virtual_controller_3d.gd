@@ -15,6 +15,8 @@ var right_touch_initial_time = null
 var tap_event_index = null
 var tap_initial_position = null
 
+@onready var player = get_parent().get_parent()
+
 
 ## Called when CanvasItem has been requested to redraw (after queue_redraw is called, either manually or by the engine).
 func _draw() -> void:
@@ -87,10 +89,7 @@ func _input(event: InputEvent) -> void:
 				left_swipe_initial_position = event.position
 
 			# Check if the touch event took place on the right-half of the screen and the event has not been recorded
-			if event.position.x > get_viewport().get_visible_rect().size.x / 2 and !right_swipe_event_index:
-
-				# Record the event time 
-				right_touch_initial_time = Time.get_ticks_msec()
+			if event.position.x > get_viewport().get_visible_rect().size.x / 2 and !right_swipe_event_index and !player.lock_camera:
 
 				# Record the touch event index
 				right_swipe_event_index = event.index
@@ -127,16 +126,6 @@ func _input(event: InputEvent) -> void:
 
 			# Check if the event is related to the right-swipe event
 			if event.index == right_swipe_event_index:
-
-				# Get the current game time
-				var time_now = Time.get_ticks_msec()
-
-				# Check if _this_ touch is within 120 milliseconds
-				if time_now - right_touch_initial_time < 120:
-					
-					# Trigger the [jump] action _pressed_
-					Input.action_press("jump")
-					Input.action_release("jump")
 
 				# Reset swipe current position
 				right_swipe_current_position = null
@@ -232,10 +221,3 @@ func _input(event: InputEvent) -> void:
 
 	# Redraw canvas items via `_draw()`
 	queue_redraw()
-
-
-## Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-
-	# This CanvasItem will not inherit its transform from parent CanvasItems. 
-	top_level = true

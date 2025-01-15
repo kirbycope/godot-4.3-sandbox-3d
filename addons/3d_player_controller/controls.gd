@@ -1,5 +1,43 @@
 extends Node
 
+enum InputType {
+	MOUSE_KEYBOARD,
+	CONTROLLER,
+	TOUCH
+}
+
+signal input_type_changed(new_type)
+
+var current_input_type: InputType:
+	set(value):
+		if current_input_type != value:
+			current_input_type = value
+			input_type_changed.emit(value)
+	get:
+		return current_input_type
+
+
+## Called when there is an input event.
+func _input(event: InputEvent) -> void:
+
+	# Check if the input is a keyboard or mouse event
+	if event is InputEventKey or event is InputEventMouse:
+
+		# Set the current input type to Mouse and Keyboard
+		current_input_type = InputType.MOUSE_KEYBOARD
+
+	# Check if the input is a controller event
+	elif event is InputEventJoypadButton or event is InputEventJoypadMotion:
+
+		# Set the current input type to Controller
+		current_input_type = InputType.CONTROLLER
+
+	# Check if the input is a touch event
+	elif event is InputEventScreenTouch or event is InputEventScreenDrag:
+
+		# Set the current input type to Touch
+		current_input_type = InputType.TOUCH
+
 
 ## Called when the node enters the scene tree for the first time.
 func _ready() -> void:
