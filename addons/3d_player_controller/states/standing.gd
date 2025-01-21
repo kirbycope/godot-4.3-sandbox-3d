@@ -8,7 +8,7 @@ var node_name = "Standing"
 func _input(event: InputEvent) -> void:
 
 	# Check if the game is not paused
-	if !Globals.game_paused:
+	if !player.game_paused:
 
 		# [crouch] button just _pressed_ and crouching is enabled
 		if Input.is_action_just_pressed("crouch") and player.enable_crouching:
@@ -280,6 +280,9 @@ func start() -> void:
 
 	# Flag the player as "standing"
 	player.is_standing = true
+
+	# Flag the player as "grounded"
+	player.is_grounded = true
 
 	# Set the player's speed
 	player.speed_current = 0.0

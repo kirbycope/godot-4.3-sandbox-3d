@@ -8,7 +8,7 @@ var node_name = "Jumping"
 func _input(event: InputEvent) -> void:
 
 	# Check if the game is not paused
-	if !Globals.game_paused:
+	if !player.game_paused:
 
 		# [jump] button just _pressed_
 		if Input.is_action_just_pressed("jump"):
@@ -108,6 +108,9 @@ func start() -> void:
 
 	# Flag the player as "jumping"
 	player.is_jumping = true
+
+	# Flag the player as not "grounded"
+	player.is_grounded = false
 
 	# Flag the player as not "double jumping"
 	player.is_double_jumping = false

@@ -1,6 +1,7 @@
 extends Control
 
 var last_input_device: String = ""
+@onready var player: CharacterBody3D = get_parent().get_parent().get_parent()
 @onready var stick_l_origin: Vector2 = $XboxController/White/StickL.position
 @onready var stick_r_origin: Vector2 = $XboxController/White/StickR.position
 
@@ -128,7 +129,7 @@ func _process(_delta: float) -> void:
 		$Panel/CheckBox12.button_pressed = $"../../..".is_punching_left
 		$Panel/CheckBox13.button_pressed = $"../../..".is_punching_right
 		$Panel/CheckBox14.button_pressed = $"../../..".is_sprinting
-		$Panel/CheckBox15.button_pressed = Globals.game_paused
+		$Panel/CheckBox15.button_pressed = player.game_paused
 
 		if last_input_device == "Controller":
 
