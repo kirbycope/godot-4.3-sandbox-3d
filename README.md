@@ -1,5 +1,5 @@
 # godot-4.3-sandbox-3d
-A 3D sandbox for version 4.3 of the Godot Engine.
+A 3D sandbox for v4.3 of the Godot game engine.
 
 # Godot Best Practices
 1. Directory names are `kebab-cased`, i.e. `"res://foo-bar/main.tscn"`.
